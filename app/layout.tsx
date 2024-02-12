@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Navbar } from "./components/navigation/Navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+import "@mantine/core/styles.css";
+
+import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -19,9 +20,14 @@ export default function RootLayout({
 	return (
 		<ClerkProvider>
 			<html lang="en">
-				<body className="bg-[#0e0e0e0e] dark:bg-[#0e0e0e] text-gray-800 dark:text-gray-200">
-					<Navbar />
-					{children}
+				<head>
+					<ColorSchemeScript />
+				</head>
+				<body className="bg-text dark:bg-background text-background dark:text-text">
+					<MantineProvider>
+						<Navbar />
+						{children}
+					</MantineProvider>
 				</body>
 			</html>
 		</ClerkProvider>

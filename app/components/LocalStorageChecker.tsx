@@ -16,6 +16,5 @@ export const LocalStorageChecker: FC<{
 		}
 	}, [router]);
 
-	console.log(router);
 	return <>{children}</>;
 };

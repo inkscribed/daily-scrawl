@@ -32,7 +32,7 @@ export const ThemeToggler = () => {
 		<div className="flex flex-row items-center justify-center gap-2">
 			<button
 				onClick={toggleTheme}
-				className="flex flex-row items-center justify-center gap-2 font-semibold border-border rounded-md px-4 py-2"
+				className="flex flex-row items-center justify-center gap-2 font-semibold border-border rounded-md px-2 py-1"
 			>
 				<IconSun size={20} />
 			</button>

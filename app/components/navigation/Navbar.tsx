@@ -9,11 +9,11 @@ export const Navbar = () => {
 				<Image src={cyclops_3} alt="cyclops" width={40} height={40} />
 				<h1 className="font-semibold text-lg">Daily Scrawl</h1>
 			</ul>
-			<section className="flex">
+			<section className="flex items-center gap-2">
 				<button className="flex flex-row items-center justify-center gap-2 font-semibold ">
 					Signup / Login
 				</button>
-				<UserButton afterSignOutUrl="/" />
+				{/* <UserButton afterSignOutUrl="/" /> */}
 				<ThemeToggler />
 			</section>
 		</nav>

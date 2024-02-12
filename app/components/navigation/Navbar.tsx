@@ -11,7 +11,6 @@ export const Navbar = () => {
 				<button className="flex flex-row items-center justify-center gap-2 font-semibold">
 					Signup / Login
 				</button>
-				{/* <UserButton afterSignOutUrl="/" /> */}
 				<ThemeToggler />
 			</section>
 		</nav>

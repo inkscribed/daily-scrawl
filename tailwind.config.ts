@@ -18,6 +18,7 @@ const config: Config = {
 				background: "#151414",
 				text: "#d0d0d0",
 				border: "#222222",
+				lightBorder: "#b0b0b0",
 			},
 		},
 	},

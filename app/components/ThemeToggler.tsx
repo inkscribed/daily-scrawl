@@ -1,6 +1,6 @@
 "use client";
 
-import { IconSun, IconMoon } from "@tabler/icons-react";
+import { IconSunFilled, IconMoonStars } from "@tabler/icons-react";
 import { useTheme } from "next-themes";
 
 export const ThemeToggler = () => {
@@ -10,9 +10,13 @@ export const ThemeToggler = () => {
 		<div className="flex flex-row items-center justify-center gap-2">
 			<button
 				onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-				className="flex flex-row items-center justify-center gap-2 font-semibold border-border rounded-md px-2 py-1"
+				className="flex flex-row items-center justify-center gap-2 font-semiboldrounded-md px-2 py-1 "
 			>
-				{theme === "dark" ? <IconSun size={20} /> : <IconMoon size={20} />}
+				{theme === "dark" ? (
+					<IconMoonStars size={20} className="text-sky-500" />
+				) : (
+					<IconSunFilled size={20} className="text-yellow-600" />
+				)}
 			</button>
 		</div>
 	);

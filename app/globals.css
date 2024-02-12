@@ -9,18 +9,18 @@ html {
 
 :root {
 	/* Your default theme */
-	--background: white;
+	--background: #d0d0d0;
 	--foreground: #151414;
 }
 
 [data-theme="dark"] {
 	--background: #151414;
-	--foreground: white;
+	--foreground: #d0d0d0;
 }
 
 body {
 	overflow-x: hidden !important;
 	max-width: 100% !important;
-	color: white;
+	color: #d0d0d0;
 	background: #151414;
 }

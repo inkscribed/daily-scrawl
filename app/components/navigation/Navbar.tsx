@@ -1,7 +1,6 @@
-import { ThemeToggler } from "@/app/providers/ThemeProvider";
-import { UserButton } from "@clerk/nextjs";
 import cyclops_3 from "@/public/cyclops_3.svg";
 import Image from "next/image";
+import { ThemeToggler } from "../ThemeToggler";
 export const Navbar = () => {
 	return (
 		<nav className="flex items-center justify-between w-full p-4 gap-4">

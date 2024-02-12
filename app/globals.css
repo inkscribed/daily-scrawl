@@ -7,6 +7,17 @@ html {
 	overflow-x: hidden;
 }
 
+:root {
+	/* Your default theme */
+	--background: white;
+	--foreground: #151414;
+}
+
+[data-theme="dark"] {
+	--background: #151414;
+	--foreground: white;
+}
+
 body {
 	overflow-x: hidden !important;
 	max-width: 100% !important;

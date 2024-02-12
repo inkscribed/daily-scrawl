@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Navbar } from "./components/navigation/Navbar";
+import { ThemeProvider } from "@/app/providers/ThemeProvider";
 
 import "@mantine/core/styles.css";
 
@@ -19,15 +20,17 @@ export default function RootLayout({
 }>) {
 	return (
 		<ClerkProvider>
-			<html lang="en">
+			<html lang="en" suppressHydrationWarning>
 				<head>
 					<ColorSchemeScript />
 				</head>
 				<body className="bg-text dark:bg-background text-background dark:text-text">
-					<MantineProvider>
-						<Navbar />
-						{children}
-					</MantineProvider>
+					<ThemeProvider>
+						<MantineProvider>
+							<Navbar />
+							{children}
+						</MantineProvider>
+					</ThemeProvider>
 				</body>
 			</html>
 		</ClerkProvider>

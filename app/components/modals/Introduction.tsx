@@ -9,7 +9,7 @@ export const Introduction: FC<{
 	return (
 		<div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center -mt-20 p-4">
 			<div className="bg-text dark:bg-background p-6 rounded-lg max-w-lg w-full relative">
-				<CloseModalButton>
+				<CloseModalButton className="absolute top-3 right-3">
 					<IconX size={20} />
 				</CloseModalButton>
 
@@ -63,7 +63,9 @@ export const Introduction: FC<{
 								securely, so you can come back to them anytime you wish.
 							</li>
 						</ul>
-						<CloseModalButton>Start writing</CloseModalButton>
+						<CloseModalButton className="ml-auto text-sm">
+							Start writing
+						</CloseModalButton>
 					</section>
 				)}
 			</div>

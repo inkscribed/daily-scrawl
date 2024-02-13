@@ -4,7 +4,8 @@ import { useRouter } from "next/navigation";
 
 export const CloseModalButton: FC<{
 	children?: React.ReactNode;
-}> = ({ children }) => {
+	className?: string;
+}> = ({ children, className }) => {
 	const router = useRouter();
 
 	function close() {
@@ -13,7 +14,7 @@ export const CloseModalButton: FC<{
 	}
 
 	return (
-		<button className="bg-white rounded-sm" onClick={close}>
+		<button className={`rounded-sm ${className}`} onClick={close}>
 			{children}
 		</button>
 	);

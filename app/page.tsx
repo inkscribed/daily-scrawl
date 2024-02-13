@@ -1,6 +1,9 @@
 import { Introduction } from "./components/modals/Introduction";
 import { LocalStorageChecker } from "./components/LocalStorageChecker";
 import { Editor } from "@/app/components/editor/Editor";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 type SearchParamProps = {
 	searchParams: {
@@ -9,9 +12,18 @@ type SearchParamProps = {
 	};
 };
 
-export default function Page({ searchParams }: SearchParamProps) {
+async function getUsers() {
+	const users = await prisma.user.findMany();
+	return users;
+}
+
+export default async function Page({ searchParams }: SearchParamProps) {
 	const show = searchParams?.show;
 	const step = searchParams?.step;
+
+	const users = await getUsers();
+
+	console.log(users);
 
 	return (
 		<LocalStorageChecker>

@@ -1,0 +1,34 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  name      String?
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  scrawls   Scrawl[]
+}
+
+model Scrawl {
+  id           Int      @id @default(autoincrement())
+  content      String
+  isCompleted  Boolean  @default(false)
+  completedAt  DateTime @default(now())
+  snoozedCount Int      @default(0)
+  authorId     Int
+  author       User     @relation(fields: [authorId], references: [id])
+
+  @@index([authorId])
+}

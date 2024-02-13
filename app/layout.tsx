@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "@mantine/tiptap/styles.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Navbar } from "./components/navigation/Navbar";
 import { ThemeProvider } from "@/app/providers/ThemeProvider";

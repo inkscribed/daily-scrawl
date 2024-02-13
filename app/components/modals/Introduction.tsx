@@ -7,7 +7,7 @@ export const Introduction: FC<{
 	step: string;
 }> = ({ step }) => {
 	return (
-		<div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center -mt-20 p-4">
+		<div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center -mt-20 p-4 z-50">
 			<div className="bg-text dark:bg-background p-6 rounded-lg max-w-lg w-full relative">
 				<CloseModalButton className="absolute top-3 right-3">
 					<IconX size={20} />

@@ -40,7 +40,7 @@ export const Introduction: FC<{
 						</ul>
 						<Link
 							href={`/?show=true&step=2`}
-							className="ml-auto px-2 py-1 text-sm"
+							className="ml-auto bg-hoverLight hover:bg-text dark:bg-hoverDark dark:hover:bg-background duration-300 transition-all ease-in-out rounded px-3 py-1 text-sm"
 						>
 							Next
 						</Link>
@@ -55,15 +55,19 @@ export const Introduction: FC<{
 						</p>
 						<ul className="list-disc pl-5 mb-4">
 							<li>
-								<strong>Access Anytime</strong>: Log in to view, edit, or
-								continue your writings from any day.
-							</li>
-							<li>
 								<strong>Never Lose a Word</strong>: Your writings are saved
 								securely, so you can come back to them anytime you wish.
 							</li>
+							<li>
+								<strong>Export</strong>: Download your writings in plain text or
+								markdown format.
+							</li>
+							<li>
+								<strong>Share</strong>: Share your writings with friends,
+								family, or the world.
+							</li>
 						</ul>
-						<CloseModalButton className="ml-auto text-sm">
+						<CloseModalButton className="ml-auto text-sm bg-hoverLight hover:bg-text dark:bg-hoverDark dark:hover:bg-background duration-300 transition-all ease-in-out rounded px-3 py-1">
 							Start writing
 						</CloseModalButton>
 					</section>

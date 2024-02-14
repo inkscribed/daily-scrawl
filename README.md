@@ -1,36 +1,25 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# DailyScrawl
+![image](https://github.com/BaraKona/daily-scrawl/assets/62246274/964c698c-feba-4222-a17d-7cce8332a176)
 
-## Getting Started
+## Overview
 
-First, run the development server:
+DailyScrawl is a simple app designed to cultivate a habit of daily writing. In a world full of distractions, DailyScrawl offers a unique and minimalist environment for writers, thinkers, and anyone looking to express their thoughts freely. Our mission is to encourage users to dedicate a small portion of their day to writing, reflecting, and exploring ideas in a focused manner.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## The DailyScrawl Experience
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Every day, users are presented with a blank canvas and a challenge: write for 10 minutes. This simple premise is at the heart of DailyScrawl, creating a space where thoughts can unfold unimpeded by the outside world.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Features
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Daily Writing Timer**: Each session lasts for 10 minutes, encouraging short, focused periods of writing.
+- **Snooze Option**: Need more time? Users can snooze the timer twice per session, each time adding an additional 5 minutes.
+- **Secure Account Creation**: Users can create an account to save their daily writings, making it easy to track progress over time and revisit past reflections.
+- **Minimalist Design**: With a user-friendly interface, DailyScrawl removes all distractions, allowing users to focus solely on their writing.
 
-## Learn More
+## Why DailyScrawl?
 
-To learn more about Next.js, take a look at the following resources:
+Writing every day, even for just 10 minutes, can have profound benefits on mental clarity, creativity, and personal growth. DailyScrawl makes this practice accessible to everyone, regardless of their writing background. Whether you're a seasoned writer looking for a new routine, a beginner hoping to start a writing habit, or simply someone in search of a quiet space to gather your thoughts, DailyScrawl is for you.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### A Space for Your Thoughts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+DailyScrawl is more than just a writing tool; it's a sanctuary for your thoughts. In today's fast-paced world, finding a moment of peace can be challenging. DailyScrawl offers that moment every day, inviting you to pause, reflect, and express yourself.

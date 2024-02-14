@@ -12,7 +12,7 @@ import { IconAlarmSnooze, IconDeviceFloppy } from "@tabler/icons-react";
 const content = "";
 
 export const Editor = () => {
-	const [time, setTime] = useState(60000);
+	const [time, setTime] = useState(600000);
 	const [start, setStart] = useState(false);
 
 	const editor = useEditor({

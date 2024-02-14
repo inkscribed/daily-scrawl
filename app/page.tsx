@@ -2,7 +2,7 @@ import { Introduction } from "./components/modals/Introduction";
 import { LocalStorageChecker } from "./components/LocalStorageChecker";
 import { Editor } from "@/app/components/editor/Editor";
 import { PrismaClient } from "@prisma/client";
-
+import { Details } from "./components/modals/Details";
 const prisma = new PrismaClient();
 
 type SearchParamProps = {
@@ -31,6 +31,7 @@ export default async function Page({ searchParams }: SearchParamProps) {
 			<section className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">
 				<Editor />
 			</section>
+			<Details />
 		</LocalStorageChecker>
 	);
 }

@@ -1,7 +1,7 @@
 # DailyScrawl
+![image](https://github.com/BaraKona/daily-scrawl/assets/62246274/964c698c-feba-4222-a17d-7cce8332a176)
 
 ## Overview
-![image](https://github.com/BaraKona/daily-scrawl/assets/62246274/964c698c-feba-4222-a17d-7cce8332a176)
 
 DailyScrawl is a simple app designed to cultivate a habit of daily writing. In a world full of distractions, DailyScrawl offers a unique and minimalist environment for writers, thinkers, and anyone looking to express their thoughts freely. Our mission is to encourage users to dedicate a small portion of their day to writing, reflecting, and exploring ideas in a focused manner.
 

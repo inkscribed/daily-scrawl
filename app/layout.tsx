@@ -4,10 +4,12 @@ import "@mantine/tiptap/styles.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Navbar } from "./components/navigation/Navbar";
 import { ThemeProvider } from "@/app/providers/ThemeProvider";
+import { dark } from "@clerk/themes";
 
 import "@mantine/core/styles.css";
 
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
+import { useTheme } from "next-themes";
 
 export const metadata: Metadata = {
 	title: "Create Next App",
@@ -19,8 +21,14 @@ export default function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	// const { theme } = useTheme();
+
 	return (
-		<ClerkProvider>
+		<ClerkProvider
+			appearance={{
+				baseTheme: dark,
+			}}
+		>
 			<html lang="en" suppressHydrationWarning>
 				<head>
 					<ColorSchemeScript />

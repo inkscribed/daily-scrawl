@@ -4,11 +4,12 @@ import { FC } from "react";
 import { IconBooks, IconInfoCircle } from "@tabler/icons-react";
 import { Icon } from "../navigation/Icon";
 import { useRouter } from "next/navigation";
-import { SignInButton, SignedOut } from "@clerk/nextjs";
+import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
 export const Details: FC<{
 	details?: string;
-}> = ({ details }) => {
+	children: React.ReactNode;
+}> = ({ details, children }) => {
 	const { theme, setTheme } = useTheme();
 
 	const router = useRouter();
@@ -62,6 +63,7 @@ export const Details: FC<{
 						</div>
 					</Alert>
 				</SignedOut>
+				<SignedIn>{children}</SignedIn>
 			</Drawer>
 			{!Boolean(details) && (
 				<Affix position={{ bottom: 20, left: 20 }}>

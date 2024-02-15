@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.7",
+    "@clerk/themes": "^1.7.9",
     "@mantine/core": "^7.5.2",
     "@mantine/hooks": "^7.5.2",
     "@mantine/tiptap": "^7.5.2",
@@ -34,6 +35,7 @@
     "prisma": "^5.9.1",
     "react": "^18",
     "react-dom": "^18",
+    "svix": "^1.18.0",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7"
   },

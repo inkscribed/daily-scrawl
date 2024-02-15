@@ -9,6 +9,7 @@ type SearchParamProps = {
 	searchParams: {
 		show: Record<string, string> | null | undefined;
 		step: string;
+		details: string;
 	};
 };
 
@@ -20,6 +21,7 @@ async function getUsers() {
 export default async function Page({ searchParams }: SearchParamProps) {
 	const show = searchParams?.show;
 	const step = searchParams?.step;
+	const details = searchParams?.details;
 
 	const users = await getUsers();
 
@@ -31,7 +33,7 @@ export default async function Page({ searchParams }: SearchParamProps) {
 			<section className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">
 				<Editor />
 			</section>
-			<Details />
+			<Details details={details} />
 		</LocalStorageChecker>
 	);
 }

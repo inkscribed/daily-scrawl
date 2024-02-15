@@ -1,5 +1,6 @@
 "use client";
 
+import { Skeleton } from "@mantine/core";
 import { IconSunFilled, IconMoonStars, IconFlare } from "@tabler/icons-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
@@ -16,7 +17,7 @@ export const ThemeToggler = () => {
 		return (
 			<div className="flex flex-row items-center justify-center gap-2">
 				<button className="flex flex-row items-center justify-center gap-2 font-semibold px-2 py-1 ">
-					<IconFlare size={20} className="text-orange-500" />
+					<Skeleton width={20} height={20} animate />
 				</button>
 			</div>
 		);

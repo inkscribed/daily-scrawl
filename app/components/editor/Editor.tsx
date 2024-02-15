@@ -82,7 +82,7 @@ export const Editor = () => {
 				{!start && (
 					<button
 						onClick={() => setStart(true)}
-						className="flex flex-col items-center font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text absolute px-10 py-4 mx-auto right-0 left-0 z-10 mt-20 rounded-md"
+						className="flex flex-col items-center font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text absolute px-10 py-4 mx-auto right-0 left-0 max-w-48 z-10 mt-20 rounded-md"
 					>
 						Begin scrawl
 					</button>

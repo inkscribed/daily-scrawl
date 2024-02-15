@@ -1,6 +1,6 @@
 import { ThemeToggler } from "../ThemeToggler";
 import { Icon } from "./Icon";
-import { SignInButton, SignedOut, UserButton } from "@clerk/nextjs";
+import { UserButton } from "@clerk/nextjs";
 
 export const Navbar = () => {
 	return (
@@ -10,13 +10,13 @@ export const Navbar = () => {
 				<h1 className="font-semibold text-lg">Daily Scrawl</h1>
 			</ul>
 			<section className="flex items-center gap-2">
-				<SignedOut>
+				{/* <SignedOut>
 					<SignInButton>
 						<button className="flex flex-row items-center justify-center gap-2 font-semibold">
 							Sign in
 						</button>
 					</SignInButton>
-				</SignedOut>
+				</SignedOut> */}
 				<UserButton afterSignOutUrl="/" />
 				<ThemeToggler />
 			</section>

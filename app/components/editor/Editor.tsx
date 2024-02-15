@@ -7,7 +7,11 @@ import TextAlign from "@tiptap/extension-text-align";
 import CharacterCount from "@tiptap/extension-character-count";
 import Placeholder from "@tiptap/extension-placeholder";
 import { useEffect, useState } from "react";
-import { IconAlarmSnooze, IconDeviceFloppy } from "@tabler/icons-react";
+import {
+	IconAlarmSnooze,
+	IconDeviceFloppy,
+	IconLogin,
+} from "@tabler/icons-react";
 import { SignedOut } from "@clerk/nextjs";
 
 const content = "";
@@ -58,13 +62,14 @@ export const Editor = () => {
 						Well done! You&#39;ve completed your daily scrawl!
 						<SignedOut>
 							<br />
-							If you&#39;d like to keep your work, please create an account.
+							If you&#39;d like to <b className="underline">keep</b> your work,
+							please sign in.
 						</SignedOut>
 					</p>
 					<div className="flex items-center flex-wrap justify-center w-full grow gap-2">
 						<SignedOut>
 							<button className="flex items-center justify-center gap-2 px-4 py-2 bg-primary basis-48 rounded-md font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text mt-4">
-								<IconDeviceFloppy /> Save
+								<IconLogin /> Sign in
 							</button>
 						</SignedOut>
 						<button className="flex items-center justify-center gap-2 px-4 py-2 bg-primary basis-48 rounded-md font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text mt-4">

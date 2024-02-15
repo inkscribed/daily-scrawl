@@ -10,13 +10,6 @@ export const Navbar = () => {
 				<h1 className="font-semibold text-lg">Daily Scrawl</h1>
 			</ul>
 			<section className="flex items-center gap-2">
-				{/* <SignedOut>
-					<SignInButton>
-						<button className="flex flex-row items-center justify-center gap-2 font-semibold">
-							Sign in
-						</button>
-					</SignInButton>
-				</SignedOut> */}
 				<UserButton afterSignOutUrl="/" />
 				<ThemeToggler />
 			</section>

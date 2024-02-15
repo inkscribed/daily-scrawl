@@ -13,7 +13,7 @@ export const Details: FC<{
 
 	const router = useRouter();
 	return (
-		<>
+		<section>
 			<Drawer
 				opened={Boolean(details)}
 				onClose={() => router.push("/")}
@@ -31,8 +31,8 @@ export const Details: FC<{
 				overlayProps={{ backgroundOpacity: 0.5, blur: 4 }}
 				classNames={{
 					inner: "!p-2",
-					header: "dark:!bg-hoverDark !bg-hoverLight !rounded-t-md ",
-					content: "dark:!bg-hoverDark !bg-hoverLight !rounded-b-md",
+					header: "dark:!bg-hoverDark !bg-hoverLight",
+					content: "dark:!bg-hoverDark !bg-hoverLight !rounded-md",
 					close:
 						"hover:dark:!bg-background !hover:bg-text !text-background dark:!text-text",
 				}}
@@ -74,6 +74,6 @@ export const Details: FC<{
 					</button>
 				</Affix>
 			)}
-		</>
+		</section>
 	);
 };

@@ -5,6 +5,7 @@ import { Details } from "./components/modals/Details";
 import { currentUser, SignInButton } from "@clerk/nextjs";
 import { getScrawls } from "./api/scrawl/route";
 import { SignInAlert } from "./components/SignInAlert";
+import { ConsistencyChart } from "./components/ConsistencyChart";
 
 type SearchParamProps = {
 	searchParams: {
@@ -24,7 +25,7 @@ async function Scrawls({ userId }: { userId: string }) {
 	return (
 		<div>
 			{scrawls?.map((scrawl: any) => (
-				<div key={scrawl.id}>{scrawl.content}</div>
+				<div key={scrawl.id}>{scrawls.length}</div>
 			))}
 		</div>
 	);
@@ -61,7 +62,10 @@ export default async function Page({ searchParams }: SearchParamProps) {
 						</div>
 					</SignInAlert>
 				) : (
-					<Scrawls userId={user.id} />
+					<section>
+						<Scrawls userId={user.id} />
+						<ConsistencyChart />
+					</section>
 				)}
 			</Details>
 		</LocalStorageChecker>

@@ -56,7 +56,6 @@ export async function getScrawls(userId: string) {
 			},
 		});
 
-		console.log(scrawls);
 		return NextResponse.json(scrawls);
 	} catch (error) {
 		console.error("Error fetching scrawls:", error);

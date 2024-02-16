@@ -68,11 +68,11 @@ export const Editor = () => {
 					</p>
 					<div className="flex items-center flex-wrap justify-center w-full grow gap-2">
 						<SignedOut>
-							<button className="flex items-center justify-center gap-2 px-4 py-2 bg-primary basis-48 rounded-md font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text mt-4">
+							<button className="flex items-center justify-center gap-2 px-4 py-2 basis-48 rounded-md font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text mt-4">
 								<IconLogin /> Sign in
 							</button>
 						</SignedOut>
-						<button className="flex items-center justify-center gap-2 px-4 py-2 bg-primary basis-48 rounded-md font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text mt-4">
+						<button className="flex items-center justify-center gap-2 px-4 py-2 basis-48 rounded-md font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text mt-4">
 							<IconAlarmSnooze /> Snooze{" "}
 							<span className="text-xs">(+5 min)</span>
 						</button>

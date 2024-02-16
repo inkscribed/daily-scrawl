@@ -6,6 +6,7 @@ import { Icon } from "../navigation/Icon";
 import { useRouter } from "next/navigation";
 import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
+
 export const Details: FC<{
 	details?: string;
 	children: React.ReactNode;

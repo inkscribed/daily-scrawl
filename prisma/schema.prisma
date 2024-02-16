@@ -24,6 +24,7 @@ model User {
 model Scrawl {
   id           String   @id @default(uuid())
   content      String
+  name         String?
   isCompleted  Boolean  @default(false)
   completedAt  DateTime @default(now())
   snoozedCount Int      @default(0)

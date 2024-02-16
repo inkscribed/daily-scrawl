@@ -4,8 +4,7 @@ import { useTheme } from "next-themes";
 
 export const ConsistencyChart = () => {
 	const { theme } = useTheme();
-	const today = new Date().toDateString();
-	const weekNames = ["Sun", "", "Tue", "", "Thu", "", "Sat"];
+	const weekNames = ["", "M", "", "W", "", "F", ""];
 	const values = {
 		"2024-02-14": 2,
 		"2024-02-15": 3,
@@ -23,6 +22,7 @@ export const ConsistencyChart = () => {
 	const weekLabelAttributes = {
 		style: {
 			"font-size": 10,
+			margin: "0 10px",
 			fill: theme === "dark" ? "#d0d0d0" : "#151414",
 		},
 	};
@@ -35,18 +35,18 @@ export const ConsistencyChart = () => {
 	};
 
 	const panelColors = [
-		theme === "dark" ? "#222222" : "#1f1f1f",
+		theme === "dark" ? "#111" : "#b0b0b0",
 		"#0e4429",
 		"#26A641",
 		"#39D353",
 	];
 
 	return (
-		<section className="flex flex-col gap-2">
+		<section className="flex flex-col gap-2 ">
 			<p className=" font-semibold text-background dark:text-text">
 				1 contribution(s) in the last year
 			</p>
-			<section className="">
+			<section className="!-mr-2">
 				<Calendar
 					values={values}
 					until={until}

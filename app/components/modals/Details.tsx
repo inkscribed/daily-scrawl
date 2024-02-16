@@ -4,14 +4,11 @@ import { FC } from "react";
 import { IconBooks } from "@tabler/icons-react";
 import { Icon } from "../navigation/Icon";
 import { useRouter } from "next/navigation";
-import { useTheme } from "next-themes";
 
 export const Details: FC<{
 	details?: string;
 	children: React.ReactNode;
 }> = ({ details, children }) => {
-	const { theme, setTheme } = useTheme();
-
 	const router = useRouter();
 	return (
 		<section>
@@ -47,7 +44,7 @@ export const Details: FC<{
 						type="button"
 						onClick={() => router.push("/?details=true")}
 					>
-						<IconBooks size={24} />
+						<IconBooks size={22} />
 					</button>
 				</Affix>
 			)}

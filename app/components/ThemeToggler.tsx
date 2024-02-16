@@ -1,7 +1,7 @@
 "use client";
 
 import { Skeleton } from "@mantine/core";
-import { IconSunFilled, IconMoonStars, IconFlare } from "@tabler/icons-react";
+import { IconSunFilled, IconMoonStars } from "@tabler/icons-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 
@@ -17,7 +17,7 @@ export const ThemeToggler = () => {
 		return (
 			<div className="flex flex-row items-center justify-center gap-2">
 				<button className="flex flex-row items-center justify-center gap-2 font-semibold px-2 py-1 ">
-					<Skeleton width={20} height={20} animate />
+					<Skeleton width={22} height={22} animate />
 				</button>
 			</div>
 		);
@@ -27,12 +27,12 @@ export const ThemeToggler = () => {
 		<div className="flex flex-row items-center justify-center gap-2">
 			<button
 				onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-				className="flex flex-row items-center justify-center gap-2 font-semibold px-2 py-1 "
+				className="p-2 border border-lightBorder dark:border-border rounded-md bg-primary-500 text-background dark:text-text hover:bg-hoverLight dark:hover:bg-hoverDark duration-300 transition-all ease-in-out"
 			>
 				{theme === "dark" ? (
-					<IconMoonStars size={20} className="text-sky-500" />
+					<IconMoonStars size={22} className="text-sky-500" />
 				) : (
-					<IconSunFilled size={20} className="text-yellow-600" />
+					<IconSunFilled size={22} className="text-yellow-600" />
 				)}
 			</button>
 		</div>

@@ -6,6 +6,9 @@ import { currentUser, SignInButton } from "@clerk/nextjs";
 import { getScrawls } from "./api/scrawl/route";
 import { SignInAlert } from "./components/SignInAlert";
 import { ConsistencyChart } from "./components/ConsistencyChart";
+import { YYYYMMDD } from "@/lib/dayJs";
+import { IconBook, IconPencil } from "@tabler/icons-react";
+import { ButtonWrapper } from "./components/buttons/ButtonWrapper";
 
 type SearchParamProps = {
 	searchParams: {
@@ -23,10 +26,26 @@ async function Scrawls({ userId }: { userId: string }) {
 	}
 
 	return (
-		<div>
-			{scrawls?.map((scrawl: any) => (
-				<div key={scrawl.id}>{scrawls.length}</div>
-			))}
+		<div className="space-y-2">
+			<h2 className="font-semibold">Scrawls</h2>
+			<ul className="h-[calc(100dvh-20rem)] overflow-y-auto flex flex-col gap-1">
+				{scrawls?.map((scrawl: any) => (
+					<li
+						className="flex gap-2 justify-between hover:bg-text dark:hover:bg-background dark:text-text text-background duration-300 transition-all ease-in-out rounded px-3 py-1 "
+						key={scrawl.id}
+					>
+						<div className="flex gap-2 items-center">
+							<IconPencil size={20} />
+							<p className="text-sm font-semibold">
+								{YYYYMMDD(scrawl.completedAt)}
+							</p>
+						</div>
+						<ButtonWrapper className="p-1">
+							<IconBook size={20} />
+						</ButtonWrapper>
+					</li>
+				))}
+			</ul>
 		</div>
 	);
 }
@@ -63,8 +82,9 @@ export default async function Page({ searchParams }: SearchParamProps) {
 					</SignInAlert>
 				) : (
 					<section>
-						<Scrawls userId={user.id} />
 						<ConsistencyChart />
+						<hr className="h-px my-4 bg-hr border-0 dark:bg-hrDark" />
+						<Scrawls userId={user.id} />
 					</section>
 				)}
 			</Details>

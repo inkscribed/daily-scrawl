@@ -12,8 +12,7 @@ generator client {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  clerkId   String   @unique
+  id        String   @id @unique
   email     String   @unique
   name      String?
   password  String?
@@ -23,12 +22,12 @@ model User {
 }
 
 model Scrawl {
-  id           Int      @id @default(autoincrement())
+  id           String   @id @default(uuid())
   content      String
   isCompleted  Boolean  @default(false)
   completedAt  DateTime @default(now())
   snoozedCount Int      @default(0)
-  authorId     Int
+  authorId     String
   author       User     @relation(fields: [authorId], references: [id])
 
   @@index([authorId])

@@ -1,10 +1,9 @@
 "use client";
-import { Drawer, Affix, Alert } from "@mantine/core";
+import { Drawer, Affix } from "@mantine/core";
 import { FC } from "react";
-import { IconBooks, IconInfoCircle } from "@tabler/icons-react";
+import { IconBooks } from "@tabler/icons-react";
 import { Icon } from "../navigation/Icon";
 import { useRouter } from "next/navigation";
-import { SignInButton, SignedIn, SignedOut } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
 
 export const Details: FC<{
@@ -39,32 +38,7 @@ export const Details: FC<{
 						"hover:dark:!bg-background !hover:bg-text !text-background dark:!text-text",
 				}}
 			>
-				<SignedOut>
-					<Alert
-						variant="light"
-						color={theme === "dark" ? "violet" : "dark"}
-						title="You are not signed in!"
-						icon={<IconInfoCircle />}
-						classNames={{
-							message: "!flex flex-col gap-4",
-						}}
-					>
-						<p className="text-background dark:text-text">
-							Please sign in to access these features.
-							<br />
-							You will be able to view your past writings and track your
-							consistency as well as export your writings.
-						</p>
-						<div className="ml-auto">
-							<SignInButton>
-								<button className="ml-auto text-sm hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text duration-300 transition-all ease-in-out rounded px-3 py-1">
-									Sign in
-								</button>
-							</SignInButton>
-						</div>
-					</Alert>
-				</SignedOut>
-				<SignedIn>{children}</SignedIn>
+				{children}
 			</Drawer>
 			{!Boolean(details) && (
 				<Affix position={{ bottom: 20, left: 20 }}>

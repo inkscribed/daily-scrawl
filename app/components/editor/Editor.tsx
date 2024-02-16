@@ -7,18 +7,17 @@ import TextAlign from "@tiptap/extension-text-align";
 import CharacterCount from "@tiptap/extension-character-count";
 import Placeholder from "@tiptap/extension-placeholder";
 import { useEffect, useState } from "react";
-import {
-	IconAlarmSnooze,
-	IconDeviceFloppy,
-	IconLogin,
-} from "@tabler/icons-react";
-import { SignedOut } from "@clerk/nextjs";
+import { IconAlarmSnooze, IconLogin } from "@tabler/icons-react";
+import { SignInButton, SignedOut, useAuth } from "@clerk/nextjs";
+import { Prisma } from "@prisma/client";
 
 const content = "";
 
 export const Editor = () => {
 	const [time, setTime] = useState(3000);
 	const [start, setStart] = useState(false);
+	const [data, setData] = useState({} as Prisma.ScrawlCreateInput);
+	const { isSignedIn, userId } = useAuth();
 
 	const editor = useEditor({
 		extensions: [
@@ -31,10 +30,61 @@ export const Editor = () => {
 			}),
 		],
 		content,
-		// autofocus: start,
 	});
 
+	async function snooze() {
+		if (!isSignedIn && data.snoozedCount !== 2) {
+			setData({
+				...data,
+				snoozedCount: data.snoozedCount ? data.snoozedCount + 1 : 1,
+			});
+			setTime(50000);
+		} else {
+			const requestData = {
+				...data,
+				userId,
+			};
+
+			const response = await fetch("/api/scrawl", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(requestData),
+			});
+
+			const scrawl = await response.json();
+		}
+	}
+
 	useEffect(() => {
+		const saveScrawl = async () => {
+			const requestData = {
+				...data,
+				userId,
+			};
+
+			console.log({
+				requestData,
+			});
+
+			const response = await fetch("/api/scrawl/", {
+				method: "POST",
+				headers: {
+					Accept: "application/json",
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(requestData),
+			});
+
+			const scrawl = await response.json();
+			setData(scrawl);
+		};
+
+		if (time <= 0 && isSignedIn) {
+			saveScrawl();
+		}
+
 		if (time > 0 && start) {
 			editor?.setEditable(true);
 			setTimeout(() => {
@@ -45,9 +95,18 @@ export const Editor = () => {
 		return () => {
 			editor?.setEditable(false);
 		};
-	}, [time, start, editor]);
+	}, [time, start, editor, isSignedIn, userId]);
 
-	editor?.setEditable(start && time > 0);
+	useEffect(() => {
+		if (editor) {
+			editor.on("transaction", () => {
+				setData({
+					...data,
+					content: editor.getHTML(),
+				});
+			});
+		}
+	}, [editor, data]);
 
 	if (!editor) {
 		return null;
@@ -68,11 +127,17 @@ export const Editor = () => {
 					</p>
 					<div className="flex items-center flex-wrap justify-center w-full grow gap-2">
 						<SignedOut>
-							<button className="flex items-center justify-center gap-2 px-4 py-2 basis-48 rounded-md font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text mt-4">
-								<IconLogin /> Sign in
-							</button>
+							<SignInButton>
+								<button className="flex items-center justify-center gap-2 px-4 py-2 basis-48 rounded-md font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text mt-4">
+									<IconLogin /> Sign in
+								</button>
+							</SignInButton>
 						</SignedOut>
-						<button className="flex items-center justify-center gap-2 px-4 py-2 basis-48 rounded-md font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text mt-4">
+						<button
+							onClick={snooze}
+							disabled={data.snoozedCount === 2}
+							className="flex items-center justify-center gap-2 px-4 py-2 basis-48 rounded-md font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text mt-4"
+						>
 							<IconAlarmSnooze /> Snooze{" "}
 							<span className="text-xs">(+5 min)</span>
 						</button>
@@ -89,6 +154,7 @@ export const Editor = () => {
 					control: "!bg-transparent !hover:text-primary",
 					controlsGroup: "!bg-transparent !hover:bg-text/50 !border-0",
 				}}
+				onChange={() => console.log("dsg")}
 			>
 				{!start && (
 					<button
@@ -172,11 +238,7 @@ export const Editor = () => {
 					</RichTextEditor.ControlsGroup>
 				</RichTextEditor.Toolbar>
 
-				<RichTextEditor.Content
-					onChange={(content) => {
-						console.log(content);
-					}}
-				/>
+				<RichTextEditor.Content onChange={() => console.log("dsg")} />
 			</RichTextEditor>
 		</section>
 	);

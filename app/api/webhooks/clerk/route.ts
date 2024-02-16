@@ -88,7 +88,7 @@ async function createUser(data: any) {
 				name: `${first_name} ${last_name}`,
 				createdAt,
 				updatedAt: createdAt,
-				clerkId: id,
+				id: id,
 			},
 		});
 
@@ -100,12 +100,12 @@ async function createUser(data: any) {
 }
 
 async function updateUser(data: any) {
-	const { first_name, last_name, email_addresses, createdAt, id } = data;
+	const { first_name, last_name, email_addresses, id } = data;
 
 	try {
 		const user = await prisma.user.update({
 			where: {
-				clerkId: id,
+				id,
 			},
 			data: {
 				email: email_addresses[0].email_address,
@@ -127,7 +127,7 @@ async function deleteUser(data: any) {
 	try {
 		const user = await prisma.user.delete({
 			where: {
-				clerkId: id,
+				id,
 			},
 		});
 

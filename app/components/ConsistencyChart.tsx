@@ -1,15 +1,26 @@
 "use client";
 import Calendar from "react-github-contribution-calendar";
 import { useTheme } from "next-themes";
+import { Scrawl } from "@prisma/client";
+import { FC } from "react";
+import { YYYYMMDD } from "@/lib/dayJs";
 
-export const ConsistencyChart = () => {
+type AccumulatorType = {
+	[key: string]: number;
+};
+
+export const ConsistencyChart: FC<{
+	scrawls: Scrawl[];
+}> = ({ scrawls }) => {
 	const { theme } = useTheme();
 	const weekNames = ["", "M", "", "W", "", "F", ""];
-	const values = {
-		"2024-02-14": 2,
-		"2024-02-15": 3,
-		"2024-02-16": 1,
-	};
+
+	const values = scrawls.reduce<AccumulatorType>((acc, scrawl) => {
+		const key = YYYYMMDD(scrawl.completedAt);
+		acc[key] = scrawl.snoozedCount + 1;
+		return acc;
+	}, {});
+
 	const until = new Date().toDateString();
 	const panelAttributes = {
 		rx: 2,

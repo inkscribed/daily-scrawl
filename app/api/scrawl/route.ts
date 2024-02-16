@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { Scrawl } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest, res: Response) {
@@ -48,7 +49,7 @@ export async function PATCH(data: any) {
 	}
 }
 
-export async function getScrawls(userId: string) {
+export async function getScrawls(userId: string): Promise<Scrawl[] | null> {
 	try {
 		const scrawls = await prisma.scrawl.findMany({
 			where: {
@@ -56,9 +57,32 @@ export async function getScrawls(userId: string) {
 			},
 		});
 
-		return NextResponse.json(scrawls);
+		return scrawls;
 	} catch (error) {
 		console.error("Error fetching scrawls:", error);
-		return NextResponse.json({ error: "error fetching scrawls" });
+		return null;
+	}
+}
+
+export async function getLatestScrawl(userId: string): Promise<Scrawl | null> {
+	if (!userId) {
+		console.error("No userId provided");
+		return null;
+	}
+
+	try {
+		const scrawl = await prisma.scrawl.findFirst({
+			where: {
+				authorId: userId,
+			},
+			orderBy: {
+				completedAt: "desc",
+			},
+		});
+
+		return scrawl;
+	} catch (error) {
+		console.error("Error fetching latest scrawl:", error);
+		return null;
 	}
 }

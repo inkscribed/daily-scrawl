@@ -8,15 +8,19 @@ import CharacterCount from "@tiptap/extension-character-count";
 import Placeholder from "@tiptap/extension-placeholder";
 import { useEffect, useState } from "react";
 import { IconAlarmSnooze, IconLogin } from "@tabler/icons-react";
-import { SignInButton, SignedOut, useAuth } from "@clerk/nextjs";
-import { Prisma } from "@prisma/client";
+import { SignInButton, useAuth } from "@clerk/nextjs";
+import { Scrawl } from "@prisma/client";
+import { YYYYMMDD } from "@/lib/dayJs";
 
 const content = "";
 
 export const Editor = () => {
 	const [time, setTime] = useState(3000);
 	const [start, setStart] = useState(false);
-	const [data, setData] = useState({} as Prisma.ScrawlCreateInput);
+	const [data, setData] = useState({
+		content,
+		snoozedCount: 0,
+	} as Scrawl);
 	const { isSignedIn, userId } = useAuth();
 
 	const editor = useEditor({
@@ -59,14 +63,14 @@ export const Editor = () => {
 
 	useEffect(() => {
 		const saveScrawl = async () => {
+			if (!isSignedIn) {
+				localStorage.setItem(YYYYMMDD(new Date()), JSON.stringify(data));
+				return;
+			}
 			const requestData = {
 				...data,
 				userId,
 			};
-
-			console.log({
-				requestData,
-			});
 
 			const response = await fetch("/api/scrawl/", {
 				method: "POST",
@@ -81,7 +85,7 @@ export const Editor = () => {
 			setData(scrawl);
 		};
 
-		if (time <= 0 && isSignedIn) {
+		if (time <= 0) {
 			saveScrawl();
 		}
 
@@ -115,33 +119,37 @@ export const Editor = () => {
 	return (
 		<section className="relative">
 			{time <= 0 && (
-				<div className="absolute inset-0 items-start mx-auto justify-center bg-text/90 dark:bg-background/90 text-background/90 dark:text-text/90 z-10 overflow-y-hidden">
-					<h2 className="text-3xl font-semibold text-center">Time&#39;s up!</h2>
-					<p className="text-center mt-4">
-						Well done! You&#39;ve completed your daily scrawl!
-						<SignedOut>
-							<br />
-							If you&#39;d like to <b className="underline">keep</b> your work,
-							please sign in.
-						</SignedOut>
-					</p>
-					<div className="flex items-center flex-wrap justify-center w-full grow gap-2">
-						<SignedOut>
-							<SignInButton>
-								<button className="flex items-center justify-center gap-2 px-4 py-2 basis-48 rounded-md font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text mt-4">
-									<IconLogin /> Sign in
-								</button>
-							</SignInButton>
-						</SignedOut>
-						<button
-							onClick={snooze}
-							disabled={data.snoozedCount === 2}
-							className="flex items-center justify-center gap-2 px-4 py-2 basis-48 rounded-md font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text mt-4"
-						>
-							<IconAlarmSnooze /> Snooze{" "}
-							<span className="text-xs">(+5 min)</span>
-						</button>
-					</div>
+				<div className="absolute inset-0 items-center mx-auto justify-center bg-text/90 dark:bg-background/90 text-background/90 dark:text-text/90 z-10 !overflow-y-hidden">
+					<section className="flex items-center justify-center h-[calc(100dvh-20rem)]">
+						<div className="mx-auto p-4 text-background dark:text-text z-10 flex flex-col">
+							<h2 className="text-5xl font-bold text-center">Time&#39;s up!</h2>
+							<p className="text-center mt-4 text-3xl w-96">
+								Great job on your daily scrawl!
+							</p>
+
+							<div className="flex items-center justify-center w-full grow gap-2">
+								{!userId && (
+									<SignInButton
+										afterSignInUrl={`/?completed=true&snoozedCount=${data.snoozedCount}`}
+									>
+										<button className="flex items-center justify-center gap-2 px-4 py-2 basis-48 rounded-md font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text mt-4">
+											<IconLogin /> Sign in
+										</button>
+									</SignInButton>
+								)}
+								{data.snoozedCount < 2 && (
+									<button
+										onClick={snooze}
+										disabled={data.snoozedCount === 2}
+										className="flex items-center justify-center gap-2 px-4 py-2 basis-48 rounded-md font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text mt-4"
+									>
+										<IconAlarmSnooze /> Snooze{" "}
+										<span className="text-xs">(+5 min)</span>
+									</button>
+								)}
+							</div>
+						</div>
+					</section>
 				</div>
 			)}
 			<RichTextEditor

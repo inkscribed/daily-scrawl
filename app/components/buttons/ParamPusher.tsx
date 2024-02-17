@@ -14,11 +14,9 @@ export const ParamPusher = ({
 	const router = useRouter();
 	const path = usePathname();
 
-	console.log(path);
-
 	return (
 		<button
-			onClick={() => router.push(`${path}/${param}`)}
+			onClick={() => router.push(`${path}${param}`)}
 			className={className}
 		>
 			{children}

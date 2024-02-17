@@ -1,5 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import { Scrawl } from "@prisma/client";
+import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest, res: Response) {
@@ -82,6 +83,8 @@ export async function getLatestScrawl(userId: string): Promise<Scrawl | null> {
 				completedAt: "desc",
 			},
 		});
+
+		revalidatePath("/");
 
 		return scrawl;
 	} catch (error) {

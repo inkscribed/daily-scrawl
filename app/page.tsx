@@ -44,7 +44,7 @@ export async function DailyScrawl({
 				<h2 className="text-5xl font-bold text-center">
 					Hi {name || "Scrawler"}
 				</h2>
-				<p className="text-center mt-4 text-3xl w-96">
+				<p className="text-center mt-4 text-3xl w-96 mx-auto">
 					Great job on your daily scrawl!
 				</p>
 				<Link

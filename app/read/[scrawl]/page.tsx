@@ -10,8 +10,6 @@ export default async function Page({
 	params: { scrawl: string; show: string; step: string };
 }) {
 	const user = await currentUser();
-
-	console.log(params);
 	return (
 		<Suspense fallback={<div>Loading...</div>}>
 			{params.show && <Introduction step={params.step} />}

@@ -12,12 +12,17 @@ import { SignInButton, useAuth } from "@clerk/nextjs";
 import { Scrawl } from "@prisma/client";
 import { YYYYMMDD } from "@/lib/dayJs";
 import { Tooltip } from "@mantine/core";
+import { useRouter } from "next/navigation";
 
 const content = "";
 
 export const Editor = () => {
-	const [time, setTime] = useState(3000);
+	const [time, setTime] = useState(10000);
 	const [start, setStart] = useState(false);
+	const [isSaving, setIsSaving] = useState(false);
+
+	const router = useRouter();
+
 	const [data, setData] = useState({
 		content,
 		snoozedCount: 0,
@@ -48,12 +53,13 @@ export const Editor = () => {
 				...data,
 				snoozedCount: data.snoozedCount ? data.snoozedCount + 1 : 1,
 			});
-			setTime(50000);
+			setTime(10000);
 		}
 	}
 
 	const saveScrawl = async () => {
 		localStorage.setItem(YYYYMMDD(new Date()), JSON.stringify(data));
+		setIsSaving(true);
 
 		if (!isSignedIn) {
 			return;
@@ -74,6 +80,8 @@ export const Editor = () => {
 		})
 			.then(() => {
 				localStorage.removeItem(YYYYMMDD(new Date()));
+				setIsSaving(false);
+				router.push("/?completed=true");
 			})
 			.catch((error) => {
 				console.error("Error saving scrawl:", error);
@@ -135,11 +143,18 @@ export const Editor = () => {
 								)}
 								{userId && (
 									<button
+										disabled={isSaving}
 										onClick={saveScrawl}
 										className="flex items-center justify-center gap-2 px-4 py-2 basis-48 rounded-md font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text"
 									>
-										<IconConfetti />
-										Finish scrawl
+										{isSaving ? (
+											"Saving..."
+										) : (
+											<div className="flex items-center justify-center gap-2">
+												<IconConfetti />
+												Finish scrawl
+											</div>
+										)}
 									</button>
 								)}
 

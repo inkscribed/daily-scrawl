@@ -31,20 +31,19 @@ export const ConsistencyChart: FC<{
 		ry: 2,
 		style: {
 			stroke: theme === "dark" ? "#222222" : "#b0b0b0",
-			"stroke-width": 0.5,
+			strokeWidth: 0.5,
 		},
 	};
 	const weekLabelAttributes = {
 		style: {
-			"font-size": 10,
+			fontSize: 10,
 			margin: "0 10px",
 			fill: theme === "dark" ? "#d0d0d0" : "#151414",
 		},
 	};
 	const monthLabelAttributes = {
 		style: {
-			"font-size": 10,
-			"alignment-baseline": "central",
+			fontSize: 10,
 			fill: theme === "dark" ? "#d0d0d0" : "#151414",
 		},
 	};

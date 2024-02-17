@@ -21,6 +21,10 @@ export const ConsistencyChart: FC<{
 		return acc;
 	}, {});
 
+	const wordsWritten = scrawls.reduce((acc, scrawl) => {
+		return acc + scrawl.wordCount;
+	}, 0);
+
 	const until = new Date().toDateString();
 	const panelAttributes = {
 		rx: 2,
@@ -55,7 +59,7 @@ export const ConsistencyChart: FC<{
 	return (
 		<section className="flex flex-col gap-2 ">
 			<p className=" font-semibold text-background dark:text-text">
-				1 contribution(s) in the last year
+				{scrawls.length} contribution(s) in the last year
 			</p>
 			<section className="!-mr-2">
 				<Calendar
@@ -68,6 +72,9 @@ export const ConsistencyChart: FC<{
 					weekNames={weekNames}
 				/>
 			</section>
+			<p className="ml-auto font-semibold text-background dark:text-text text-xs">
+				Words: {wordsWritten || 0}
+			</p>
 		</section>
 	);
 };

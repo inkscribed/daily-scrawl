@@ -20,7 +20,7 @@ export async function Scrawls({ userId }: { userId: string }) {
 			<hr className="h-px my-4 bg-hr border-0 dark:bg-hrDark" />
 			<div className="space-y-2">
 				<h2 className="font-semibold">Scrawls</h2>
-				<ul className="h-[calc(100dvh-20rem)] overflow-y-auto flex flex-col gap-1">
+				<ul className="h-[calc(100dvh-21rem)] overflow-y-auto flex flex-col gap-1">
 					{scrawls?.map((scrawl: any) => (
 						<li
 							className="flex gap-2 justify-between hover:bg-text dark:hover:bg-background dark:text-text text-background duration-300 transition-all ease-in-out rounded px-3 py-1 "

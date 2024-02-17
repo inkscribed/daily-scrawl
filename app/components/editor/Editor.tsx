@@ -43,7 +43,7 @@ export const Editor = () => {
 
 	function snooze() {
 		localStorage.setItem(YYYYMMDD(new Date()), JSON.stringify(data));
-		if (!isSignedIn && data.snoozedCount !== 2) {
+		if (data.snoozedCount !== 2) {
 			setData({
 				...data,
 				snoozedCount: data.snoozedCount ? data.snoozedCount + 1 : 1,

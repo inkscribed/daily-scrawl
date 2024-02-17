@@ -28,12 +28,12 @@ async function Scrawl({
 
 	return (
 		<section className="flex">
-			<div className="basis-[36rem] mx-auto px-2 flex flex-col gap-4">
+			<div className="basis-[58rem] mx-auto px-4 flex flex-col gap-4">
 				<h2 className="font-semibold text-3xl">
 					{YYYYMMDD(scrawlData?.completedAt)}
 				</h2>
 				<div
-					className="h-[calc(100dvh-8rem)] overflow-y-auto"
+					className="h-[calc(100dvh-8rem)] overflow-y-auto pb-10"
 					dangerouslySetInnerHTML={{ __html: scrawlData.content }}
 				/>
 			</div>

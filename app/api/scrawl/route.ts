@@ -3,7 +3,7 @@ import { Scrawl } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest, res: Response) {
-	const { content, userId, wordCount } = await req.json();
+	const { content, userId, wordCount, snoozedCount } = await req.json();
 	console.log({
 		content,
 		userId,
@@ -15,7 +15,7 @@ export async function POST(req: NextRequest, res: Response) {
 				content,
 				authorId: userId,
 				completedAt: new Date(),
-				snoozedCount: 0,
+				snoozedCount,
 				isCompleted: true,
 				wordCount,
 			},

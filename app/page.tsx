@@ -19,11 +19,9 @@ type SearchParamProps = {
 export async function DailyScrawl({
 	userId,
 	name,
-	start,
 }: {
 	userId: string;
 	name: string;
-	start: boolean;
 }) {
 	const scrawl = await getLatestScrawl(userId);
 
@@ -32,17 +30,7 @@ export async function DailyScrawl({
 		? new Date(scrawl.completedAt).toLocaleDateString().split("T")[0]
 		: null;
 
-	console.log({ scrawl });
-
-	// if (start || !scrawl || scrawlDate !== today) {
-	// 	return (
-	// 		<section className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">
-	// 			<Editor />
-	// 		</section>
-	// 	);
-	// }
-
-	if (start || !scrawl || scrawlDate !== today) {
+	if (!scrawl || scrawlDate !== today) {
 		return (
 			<section className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">
 				<Editor />
@@ -75,7 +63,6 @@ export async function DailyScrawl({
 export default async function Page({ searchParams }: SearchParamProps) {
 	const show = searchParams?.show;
 	const step = searchParams?.step;
-	const start = searchParams?.start;
 	const completed = searchParams?.completed;
 
 	const user = await currentUser();
@@ -90,7 +77,6 @@ export default async function Page({ searchParams }: SearchParamProps) {
 					userId={user?.id}
 					/* @ts-ignore */
 					name={user?.firstName + " " + user?.lastName}
-					start={start}
 				/>
 			</CompletionController>
 		</LocalStorageChecker>

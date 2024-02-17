@@ -14,7 +14,7 @@ export const CloseModalButton: FC<{
 	}
 
 	return (
-		<button className={`rounded-sm ${className}`} onClick={close}>
+		<button className={`rounded ${className}`} onClick={close}>
 			{children}
 		</button>
 	);

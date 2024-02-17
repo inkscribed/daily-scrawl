@@ -3,7 +3,7 @@ import { ThemeToggler } from "../ThemeToggler";
 import { Icon } from "./Icon";
 import { UserButton } from "@clerk/nextjs";
 import { IconHelpHexagon } from "@tabler/icons-react";
-import { ButtonWrapper } from "../buttons/ButtonWrapper";
+import { ParamPusher } from "../buttons/ParamPusher";
 
 export const Navbar = () => {
 	return (
@@ -30,11 +30,12 @@ export const Navbar = () => {
 						},
 					}}
 				/>
-				<Link href="/?show=true&step=1">
-					<ButtonWrapper>
-						<IconHelpHexagon size={22} />
-					</ButtonWrapper>
-				</Link>
+				<ParamPusher
+					param={`/?show=true&step=1`}
+					className="p-2 border border-lightBorder dark:border-border rounded-md bg-primary-500 text-background dark:text-text hover:bg-hoverLight dark:hover:bg-hoverDark duration-300 transition-all ease-in-out"
+				>
+					<IconHelpHexagon size={22} />
+				</ParamPusher>
 				<ThemeToggler />
 			</section>
 		</nav>

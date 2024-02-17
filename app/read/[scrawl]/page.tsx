@@ -1,13 +1,20 @@
 import { getSingleScrawl } from "@/app/api/scrawl/route";
+import { Introduction } from "@/app/components/modals/Introduction";
 import { YYYYMMDD } from "@/lib/dayJs";
 import { currentUser } from "@clerk/nextjs";
 import { Suspense } from "react";
 
-export default async function Page({ params }: { params: { scrawl: string } }) {
+export default async function Page({
+	params,
+}: {
+	params: { scrawl: string; show: string; step: string };
+}) {
 	const user = await currentUser();
 
+	console.log(params);
 	return (
 		<Suspense fallback={<div>Loading...</div>}>
+			{params.show && <Introduction step={params.step} />}
 			<Scrawl scrawl={params.scrawl} userId={user ? user.id : null} />
 		</Suspense>
 	);

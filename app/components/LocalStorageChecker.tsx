@@ -1,10 +1,11 @@
 "use client";
 import React, { FC, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 export const LocalStorageChecker: FC<{
 	children: React.ReactNode;
 }> = ({ children }) => {
 	const router = useRouter();
+	const path = usePathname();
 
 	useEffect(() => {
 		const notification =
@@ -12,9 +13,9 @@ export const LocalStorageChecker: FC<{
 			localStorage.setItem("notification-accepted", "false");
 
 		if (notification === "false") {
-			router.push("/?show=true&step=1");
+			router.push(`${path}?show=true&step=1`);
 		}
-	}, [router]);
+	}, [router, path]);
 
 	return <>{children}</>;
 };

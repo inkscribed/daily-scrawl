@@ -67,7 +67,7 @@ export const Introduction: FC<{
 								family, or the world.
 							</li>
 						</ul>
-						<CloseModalButton className="ml-auto text-sm bg-hoverLight hover:bg-text dark:bg-hoverDark dark:hover:bg-background duration-300 transition-all ease-in-out rounded px-3 py-1">
+						<CloseModalButton className="ml-auto text-sm bg-hoverLight hover:bg-text dark:bg-hoverDark dark:hover:bg-background duration-300 transition-all ease-in-out px-3 py-1">
 							Start writing
 						</CloseModalButton>
 					</section>

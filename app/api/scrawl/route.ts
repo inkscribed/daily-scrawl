@@ -3,7 +3,7 @@ import { Scrawl } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest, res: Response) {
-	const { content, userId } = await req.json();
+	const { content, userId, wordCount } = await req.json();
 	console.log({
 		content,
 		userId,
@@ -14,10 +14,10 @@ export async function POST(req: NextRequest, res: Response) {
 			data: {
 				content,
 				authorId: userId,
-				// time now
 				completedAt: new Date(),
 				snoozedCount: 0,
 				isCompleted: true,
+				wordCount,
 			},
 		});
 
@@ -55,6 +55,9 @@ export async function getScrawls(userId: string): Promise<Scrawl[] | null> {
 			where: {
 				authorId: userId,
 			},
+			orderBy: {
+				completedAt: "desc",
+			},
 		});
 
 		return scrawls;
@@ -83,6 +86,36 @@ export async function getLatestScrawl(userId: string): Promise<Scrawl | null> {
 		return scrawl;
 	} catch (error) {
 		console.error("Error fetching latest scrawl:", error);
+		return null;
+	}
+}
+
+export async function getSingleScrawl(
+	id: string,
+	userId: string | null
+): Promise<Scrawl | null> {
+	try {
+		if (!userId) {
+			const scrawl = await prisma.scrawl.findUnique({
+				where: {
+					id,
+					isPublic: true,
+				},
+			});
+
+			return scrawl;
+		} else {
+			const scrawl = await prisma.scrawl.findUnique({
+				where: {
+					id,
+					authorId: userId,
+				},
+			});
+
+			return scrawl;
+		}
+	} catch (error) {
+		console.error("Error fetching single scrawl:", error);
 		return null;
 	}
 }

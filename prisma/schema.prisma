@@ -25,6 +25,7 @@ model Scrawl {
   id           String   @id @default(uuid())
   content      String
   name         String?
+  isPublic     Boolean  @default(false)
   wordCount    Int      @default(0)
   isCompleted  Boolean  @default(false)
   completedAt  DateTime @default(now())

@@ -4,11 +4,15 @@ import { ButtonWrapper } from "../buttons/ButtonWrapper";
 import Link from "next/link";
 import { YYYYMMDD } from "@/lib/dayJs";
 import { getScrawls } from "@/app/api/scrawl/route";
-import { IconShare } from "@tabler/icons-react";
-import { IconShareOff } from "@tabler/icons-react";
-
+import { togglePublic } from "@/app/api/scrawl/route";
+import { PublicUpdateButton } from "./PublicUpdateButton";
 export async function Scrawls({ userId }: { userId: string }) {
 	const scrawls = await getScrawls(userId);
+
+	async function handleTogglePublic(scrawlId: string, isPublic: boolean) {
+		"use server";
+		await togglePublic(scrawlId, userId, isPublic);
+	}
 
 	if (!scrawls) {
 		return <div>No scrawls</div>;
@@ -33,19 +37,11 @@ export async function Scrawls({ userId }: { userId: string }) {
 								</p>
 							</div>
 							<div className="flex gap-1 items-center">
-								<ButtonWrapper className="p-1 hover:bg-white dark:hover:bg-black transition-all ease-in-out duration-300">
-									{scrawl.isPublic ? (
-										<IconShare
-											size={18}
-											className="dark:text-sky-600 text-blue-600"
-										/>
-									) : (
-										<IconShareOff
-											size={18}
-											className="dark:text-yellow-600 text-yellow-600"
-										/>
-									)}
-								</ButtonWrapper>
+								<PublicUpdateButton
+									scrawlId={scrawl.id}
+									isPublic={scrawl.isPublic}
+									togglePublic={handleTogglePublic}
+								/>
 								<ButtonWrapper className="p-1 hover:bg-white dark:hover:bg-black transition-all ease-in-out duration-300">
 									<IconPencil size={18} />
 								</ButtonWrapper>

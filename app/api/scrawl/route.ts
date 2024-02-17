@@ -122,3 +122,36 @@ export async function getSingleScrawl(
 		return null;
 	}
 }
+
+export async function togglePublic(
+	id: string,
+	userId: string,
+	isPublic: boolean
+): Promise<Scrawl | null> {
+	if (!userId) {
+		console.error("No userId provided when toggling public scrawl");
+		return null;
+	}
+
+	try {
+		const scrawl = await prisma.scrawl.update({
+			where: {
+				id,
+				authorId: userId,
+			},
+			data: {
+				isPublic: {
+					set: !isPublic,
+				},
+			},
+		});
+
+		console.log("Toggled public scrawl:", scrawl);
+
+		revalidatePath("/");
+		return scrawl;
+	} catch (error) {
+		console.error("Error toggling public scrawl:", error);
+		return null;
+	}
+}

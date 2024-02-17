@@ -23,3 +23,10 @@ Writing every day, even for just 10 minutes, can have profound benefits on menta
 ### A Space for Your Thoughts
 
 DailyScrawl is more than just a writing tool; it's a sanctuary for your thoughts. In today's fast-paced world, finding a moment of peace can be challenging. DailyScrawl offers that moment every day, inviting you to pause, reflect, and express yourself.
+
+
+### Screenshots
+![image](https://github.com/BaraKona/daily-scrawl/assets/62246274/b7579ae0-570d-484e-90b9-7705b0f485d8)
+![image](https://github.com/BaraKona/daily-scrawl/assets/62246274/5731c098-b2e4-4589-8ea7-2aacf6f757a1)
+![image](https://github.com/BaraKona/daily-scrawl/assets/62246274/097ccf5e-a825-4d26-9d6b-fcceb91c019e)
+

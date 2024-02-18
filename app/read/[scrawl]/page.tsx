@@ -71,7 +71,7 @@ async function Scrawl({
 				<h2 className="font-semibold text-3xl">
 					{YYYYMMDD(scrawlData?.completedAt)}
 				</h2>
-				<TypographyStylesProvider className="py-10">
+				<TypographyStylesProvider className="pb-10">
 					<div dangerouslySetInnerHTML={{ __html: scrawlData.content }} />
 				</TypographyStylesProvider>
 			</div>

@@ -14,7 +14,7 @@ export const DetailsAffix = () => {
 	}
 
 	return (
-		<Affix position={{ bottom: 20, left: 20 }}>
+		<Affix position={{ bottom: 20, left: 20 }} zIndex={1}>
 			<button
 				className="p-2 border border-lightBorder dark:border-border rounded-md bg-primary-500 text-background dark:text-text hover:bg-hoverLight dark:hover:bg-hoverDark dark:bg-background bg-text duration-300 transition-all ease-in-out"
 				type="button"

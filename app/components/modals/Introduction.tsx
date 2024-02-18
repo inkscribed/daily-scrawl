@@ -2,25 +2,42 @@ import { IconX } from "@tabler/icons-react";
 import Link from "next/link";
 import { FC } from "react";
 import { CloseModalButton } from "../buttons/CloseModalButton";
+import { DailyScrawlIcon } from "../ui/ScrawlIcon";
 
 export const Introduction: FC<{
 	step: string;
 }> = ({ step }) => {
 	return (
-		<div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center -mt-20 p-4 z-50">
+		<div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center -mt-20 p-4 z-[9999]">
 			<div className="bg-text dark:bg-background p-6 rounded-lg max-w-lg w-full relative">
 				<CloseModalButton className="absolute top-3 right-3">
 					<IconX size={20} />
 				</CloseModalButton>
-
+				{step === "0" && (
+					<section className="flex flex-col">
+						<div className="flex items-center flex-col justify-center gap-2 mb-6">
+							<div className="w-64 h-64">
+								<DailyScrawlIcon />
+							</div>
+							<h2 className="font-semibold text-2xl">Daily Scrawl</h2>
+							<p className="text-center"> Your daily writing companion.</p>
+						</div>
+						<Link
+							href={`/?show=true&step=1`}
+							className="ml-auto bg-hoverLight hover:bg-text dark:bg-hoverDark dark:hover:bg-background duration-300 font-semibold transition-all ease-in-out rounded px-3 py-1 text-sm"
+						>
+							next
+						</Link>
+					</section>
+				)}
 				{step === "1" && (
 					<section className="flex flex-col">
 						<h2 className="font-bold text-xl mb-4">Welcome to DailyScrawl!</h2>
 						<p className="mb-2">
 							DailyScrawl offers you a unique writing experience designed to
 							boost your creativity and focus. Every day, you are given a blank
-							canvas and 10 minutes of uninterrupted time to pour your thoughts
-							and ideas into words.
+							canvas and <b>10 minutes</b> of uninterrupted time to pour your
+							thoughts and ideas into words.
 						</p>
 						<ul className="list-disc pl-5 mb-4">
 							<li>You start with 10 minutes of writing time each day.</li>
@@ -38,12 +55,20 @@ export const Introduction: FC<{
 								anytime.
 							</li>
 						</ul>
-						<Link
-							href={`/?show=true&step=2`}
-							className="ml-auto bg-hoverLight hover:bg-text dark:bg-hoverDark dark:hover:bg-background duration-300 transition-all ease-in-out rounded px-3 py-1 text-sm"
-						>
-							Next
-						</Link>
+						<div className="flex items-center gap-2 justify-between">
+							<Link
+								href={`/?show=true&step=0`}
+								className="bg-hoverLight hover:bg-text dark:bg-hoverDark dark:hover:bg-background duration-300 font-semibold transition-all ease-in-out rounded px-3 py-1 text-sm"
+							>
+								back
+							</Link>
+							<Link
+								href={`/?show=true&step=2`}
+								className="bg-hoverLight hover:bg-text dark:bg-hoverDark dark:hover:bg-background duration-300 font-semibold transition-all ease-in-out rounded px-3 py-1 text-sm"
+							>
+								next
+							</Link>
+						</div>
 					</section>
 				)}
 				{step === "2" && (
@@ -67,9 +92,18 @@ export const Introduction: FC<{
 								family, or the world.
 							</li>
 						</ul>
-						<CloseModalButton className="ml-auto text-sm bg-hoverLight hover:bg-text dark:bg-hoverDark dark:hover:bg-background duration-300 transition-all ease-in-out px-3 py-1">
-							Start writing
-						</CloseModalButton>
+						<div className="flex items-center gap-2 justify-between">
+							<Link
+								href={`/?show=true&step=1`}
+								className="bg-hoverLight hover:bg-text dark:bg-hoverDark dark:hover:bg-background duration-300 font-semibold transition-all ease-in-out rounded px-3 py-1 text-sm"
+							>
+								back
+							</Link>
+
+							<CloseModalButton className="ml-auto text-sm bg-hoverLight hover:bg-text dark:bg-hoverDark dark:hover:bg-background duration-300 font-semibold transition-all ease-in-out px-3 py-1">
+								Start writing
+							</CloseModalButton>
+						</div>
 					</section>
 				)}
 			</div>

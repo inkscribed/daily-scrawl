@@ -31,7 +31,7 @@ export const Navbar = () => {
 					}}
 				/>
 				<ParamPusher
-					param={`/?show=true&step=1`}
+					param={`/?show=true&step=0`}
 					className="p-2 border border-lightBorder dark:border-border rounded-md bg-primary-500 text-background dark:text-text hover:bg-hoverLight dark:hover:bg-hoverDark duration-300 transition-all ease-in-out"
 				>
 					<IconHelpHexagon size={22} />

@@ -16,7 +16,7 @@ export const ThemeToggler = () => {
 	if (!mounted) {
 		return (
 			<div className="flex flex-row items-center justify-center gap-2">
-				<button className="flex flex-row items-center justify-center gap-2 font-semibold px-2 py-1 ">
+				<button className="p-2 border border-lightBorder dark:border-border rounded-md bg-primary-500 text-background dark:text-text hover:bg-hoverLight dark:hover:bg-hoverDark duration-300 transition-all ease-in-out">
 					<Skeleton width={22} height={22} animate />
 				</button>
 			</div>

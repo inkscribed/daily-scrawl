@@ -13,7 +13,7 @@ export const LocalStorageChecker: FC<{
 			localStorage.setItem("notification-accepted", "false");
 
 		if (notification === "false") {
-			router.push(`${path}?show=true&step=1`);
+			router.push(`${path}?show=true&step=0`);
 		}
 	}, [router, path]);
 

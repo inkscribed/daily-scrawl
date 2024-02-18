@@ -135,7 +135,7 @@ export const Introduction: FC<{}> = () => {
 							quick, easy, and lets you come back to your work anytime.
 						</motion.li>
 					</motion.ul>
-					<div className="flex items-center gap-2 justify-end mt-auto">
+					<div className="flex items-center gap-1 justify-end mt-auto">
 						<motion.div initial="default" whileHover="hover">
 							<Link
 								href={path + `?show=true&step=0`}
@@ -153,7 +153,7 @@ export const Introduction: FC<{}> = () => {
 						</motion.div>
 
 						<motion.div initial="default" whileHover="hover">
-							<CloseModalButton className="flex items-center group text-sm text-text dark:text-background bg-background hover:bg-hoverDark dark:bg-text dark:hover:bg-hoverLight duration-300 font-semibold transition-all ease-in-out px-3 py-1">
+							<CloseModalButton className="flex items-center text-sm text-text dark:text-background bg-background hover:bg-hoverDark dark:bg-text dark:hover:bg-hoverLight duration-300 font-semibold transition-all ease-in-out px-3 py-1">
 								Start writing
 								<motion.div
 									variants={{

@@ -18,8 +18,13 @@ export default async function Page({
 				<section className="flex">
 					<div className="basis-[58rem] mx-auto px-4 flex flex-col gap-4">
 						<h2 className="font-semibold text-3xl bg-hoverDark dark:bg-hoverLight w-60 h-[30px] rounded-md" />
-						<p className="h-3 w-80 bg-hoverDark dark:bg-hoverLight rounded" />
-						<p className="h-3 w-40 bg-hoverDark dark:bg-hoverLight rounded" />
+						<p className="h-3 w-5/6 bg-hoverDark dark:bg-hoverLight rounded" />
+						<p className="h-3 w-full bg-hoverDark dark:bg-hoverLight rounded" />
+						<p className="h-3 w-2/4 bg-hoverDark dark:bg-hoverLight rounded" />
+						<p className="h-3 w-4/5 bg-hoverDark dark:bg-hoverLight rounded" />
+						<br /> <br />
+						<p className="h-3 w-full bg-hoverDark dark:bg-hoverLight rounded" />
+						<p className="h-3 w-1/2 bg-hoverDark dark:bg-hoverLight rounded" />
 					</div>
 				</section>
 			}

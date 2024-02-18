@@ -13,6 +13,7 @@ import "@mantine/core/styles.css";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { Details } from "./components/modals/Details";
 import { Scrawls } from "./components/scrawls/Scrawls";
+import { Introduction } from "./components/modals/Introduction";
 
 export const metadata: Metadata = {
 	title: "Daily Scrawl",
@@ -72,6 +73,7 @@ export default async function RootLayout({
 								)}
 							</Details>
 							<DetailsAffix />
+							<Introduction />
 						</MantineProvider>
 					</ThemeProvider>
 				</body>

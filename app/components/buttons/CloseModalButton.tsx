@@ -1,16 +1,17 @@
 "use client";
 import React, { FC } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 export const CloseModalButton: FC<{
 	children?: React.ReactNode;
 	className?: string;
 }> = ({ children, className }) => {
 	const router = useRouter();
+	const path = usePathname();
 
 	function close() {
 		localStorage.setItem("notification-accepted", "true");
-		router.push("/");
+		router.push(path);
 	}
 
 	return (

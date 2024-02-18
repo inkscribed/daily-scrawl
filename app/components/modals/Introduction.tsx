@@ -1,12 +1,17 @@
+"use client";
 import { IconX } from "@tabler/icons-react";
 import Link from "next/link";
 import { FC } from "react";
 import { CloseModalButton } from "../buttons/CloseModalButton";
 import { DailyScrawlIcon } from "../ui/ScrawlIcon";
+import { usePathname, useSearchParams } from "next/navigation";
+export const Introduction: FC<{}> = () => {
+	const path = usePathname();
+	const searchParams = useSearchParams();
+	const step = searchParams.get("step");
 
-export const Introduction: FC<{
-	step: string;
-}> = ({ step }) => {
+	if (!step) return null;
+
 	return (
 		<div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center -mt-20 p-4 z-[9999]">
 			<div className="bg-text dark:bg-background p-6 rounded-lg max-w-lg w-full relative">
@@ -23,7 +28,7 @@ export const Introduction: FC<{
 							<p className="text-center"> Your daily writing companion.</p>
 						</div>
 						<Link
-							href={`/?show=true&step=1`}
+							href={path + `?show=true&step=1`}
 							className="ml-auto bg-hoverLight hover:bg-text dark:bg-hoverDark dark:hover:bg-background duration-300 font-semibold transition-all ease-in-out rounded px-3 py-1 text-sm"
 						>
 							next
@@ -57,7 +62,7 @@ export const Introduction: FC<{
 						</ul>
 						<div className="flex items-center gap-2 justify-between">
 							<Link
-								href={`/?show=true&step=0`}
+								href={path + `?show=true&step=0`}
 								className="bg-hoverLight hover:bg-text dark:bg-hoverDark dark:hover:bg-background duration-300 font-semibold transition-all ease-in-out rounded px-3 py-1 text-sm"
 							>
 								back

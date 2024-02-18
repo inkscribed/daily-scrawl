@@ -1,5 +1,4 @@
 import { getSingleScrawl } from "@/app/api/scrawl/route";
-import { Introduction } from "@/app/components/modals/Introduction";
 import { YYYYMMDD } from "@/lib/dayJs";
 import { currentUser } from "@clerk/nextjs";
 import { TypographyStylesProvider } from "@mantine/core";
@@ -15,7 +14,6 @@ export default async function Page({
 	const user = await currentUser();
 	return (
 		<Suspense fallback={<div>Loading...</div>}>
-			{params.show && <Introduction step={params.step} />}
 			<Scrawl scrawl={params.scrawl} userId={user ? user.id : null} />
 		</Suspense>
 	);

@@ -1,4 +1,3 @@
-import { Introduction } from "./components/modals/Introduction";
 import { LocalStorageChecker } from "./components/LocalStorageChecker";
 import { Editor } from "@/app/components/editor/Editor";
 import { currentUser } from "@clerk/nextjs";
@@ -71,8 +70,6 @@ export default async function Page({ searchParams }: SearchParamProps) {
 	return (
 		<LocalStorageChecker>
 			<CompletionController completed={scrawlCompleted}>
-				{show && <Introduction step={step} />}
-
 				<DailyScrawl
 					/* @ts-ignore */
 					userId={user?.id}

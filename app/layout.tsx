@@ -6,7 +6,7 @@ import { Navbar } from "./components/navigation/Navbar";
 import { ThemeProvider } from "@/app/providers/ThemeProvider";
 import { dark } from "@clerk/themes";
 import { DetailsAffix } from "./components/modals/DetailsAffix";
-import { SignInAlert } from "./components/SignInAlert";
+import { SignInAlert } from "./components/ui/SignInAlert";
 
 import "@mantine/core/styles.css";
 

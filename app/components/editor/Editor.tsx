@@ -134,7 +134,8 @@ export const Editor = () => {
 							<div className="flex items-center justify-center w-full grow gap-2 mt-10">
 								{!userId && (
 									<SignInButton
-										afterSignInUrl={`/?completed=true&snoozedCount=${data.snoozedCount}`}
+										mode="modal"
+										redirectUrl={`/?scrawlCompleted=true`}
 									>
 										<button className="flex items-center justify-center gap-2 px-4 py-2 basis-48 rounded-md font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text">
 											<IconLogin /> Sign in
@@ -192,7 +193,6 @@ export const Editor = () => {
 					control: "!bg-transparent !hover:text-primary",
 					controlsGroup: "!bg-transparent !hover:bg-text/50 !border-0",
 				}}
-				onChange={() => console.log("dsg")}
 			>
 				{!start && (
 					<button

@@ -1,11 +1,12 @@
-import { IconNotes, IconPencil, IconBook } from "@tabler/icons-react";
-import { ConsistencyChart } from "../ConsistencyChart";
+import { IconNotes, IconBook } from "@tabler/icons-react";
+import { ConsistencyChart } from "../ui/ConsistencyChart";
 import { ButtonWrapper } from "../buttons/ButtonWrapper";
 import Link from "next/link";
 import { YYYYMMDD } from "@/lib/dayJs";
 import { getScrawls } from "@/app/api/scrawl/route";
 import { togglePublic } from "@/app/api/scrawl/route";
 import { PublicUpdateButton } from "./PublicUpdateButton";
+import { ToolTipWrapper } from "../ui/TooltipWrapper";
 export async function Scrawls({ userId }: { userId: string }) {
 	const scrawls = await getScrawls(userId);
 
@@ -42,14 +43,18 @@ export async function Scrawls({ userId }: { userId: string }) {
 									isPublic={scrawl.isPublic}
 									togglePublic={handleTogglePublic}
 								/>
-								<ButtonWrapper className="p-1 hover:bg-white dark:hover:bg-black transition-all ease-in-out duration-300">
-									<IconPencil size={18} />
-								</ButtonWrapper>
-								<ButtonWrapper className="p-1 hover:bg-white dark:hover:bg-black transition-all ease-in-out duration-300">
-									<Link href={`/read/${scrawl.id}`}>
-										<IconBook size={18} />
-									</Link>
-								</ButtonWrapper>
+								{/* <ToolTipWrapper label="Edit name">
+									<ButtonWrapper className="p-1 hover:bg-white dark:hover:bg-black transition-all ease-in-out duration-300">
+										<IconPencil size={18} />
+									</ButtonWrapper>
+								</ToolTipWrapper> */}
+								<ToolTipWrapper label="Read">
+									<ButtonWrapper className="p-1 hover:bg-white dark:hover:bg-black transition-all ease-in-out duration-300">
+										<Link href={`/read/${scrawl.id}`}>
+											<IconBook size={18} />
+										</Link>
+									</ButtonWrapper>
+								</ToolTipWrapper>
 							</div>
 						</li>
 					))}

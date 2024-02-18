@@ -14,7 +14,7 @@ export const CompletionController: FC<{
 	useEffect(() => {
 		const today = new Date();
 		const scrawl = localStorage.getItem(YYYYMMDD(today));
-
+		console.log({ scrawl, userId, completed });
 		async function saveScrawl(scrawl: string) {
 			const data = JSON.parse(scrawl);
 			const requestData = {
@@ -22,24 +22,28 @@ export const CompletionController: FC<{
 				userId,
 			};
 
-			try {
-				await fetch("/api/scrawl", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify(requestData),
+			console.log({ requestData });
+
+			await fetch("/api/scrawl", {
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify(requestData),
+			})
+				.then(() => {
+					localStorage.removeItem(YYYYMMDD(today));
+				})
+				.catch((error) => {
+					console.error("Error saving scrawl:", error);
+				})
+				.finally(() => {
+					router.push("/");
 				});
-			} catch (error) {
-				console.error("Error saving scrawl:", error);
-			}
 		}
 
 		if (completed && scrawl && userId) {
 			saveScrawl(scrawl);
-			localStorage.removeItem(YYYYMMDD(today));
-
-			router.push("/");
 		}
 	}, [router, userId, completed]);
 

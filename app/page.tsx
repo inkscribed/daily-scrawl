@@ -13,6 +13,7 @@ type SearchParamProps = {
 		step: string;
 		start: boolean;
 		completed: boolean;
+		scrawlCompleted: boolean;
 	};
 };
 
@@ -24,7 +25,6 @@ export async function DailyScrawl({
 	name: string;
 }) {
 	const scrawl = await getLatestScrawl(userId);
-
 	const today = new Date().toLocaleDateString().split("T")[0];
 	const scrawlDate = scrawl
 		? new Date(scrawl.completedAt).toLocaleDateString().split("T")[0]
@@ -64,12 +64,13 @@ export default async function Page({ searchParams }: SearchParamProps) {
 	const show = searchParams?.show;
 	const step = searchParams?.step;
 	const completed = searchParams?.completed;
+	const scrawlCompleted = searchParams?.scrawlCompleted;
 
 	const user = await currentUser();
 
 	return (
 		<LocalStorageChecker>
-			<CompletionController completed={completed}>
+			<CompletionController completed={scrawlCompleted}>
 				{show && <Introduction step={step} />}
 
 				<DailyScrawl

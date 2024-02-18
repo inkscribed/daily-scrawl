@@ -13,7 +13,17 @@ export default async function Page({
 }) {
 	const user = await currentUser();
 	return (
-		<Suspense fallback={<div>Loading...</div>}>
+		<Suspense
+			fallback={
+				<section className="flex">
+					<div className="basis-[58rem] mx-auto px-4 flex flex-col gap-4">
+						<h2 className="font-semibold text-3xl bg-hoverDark dark:bg-hoverLight w-60 h-[30px] rounded-md" />
+						<p className="h-3 w-80 bg-hoverDark dark:bg-hoverLight rounded" />
+						<p className="h-3 w-40 bg-hoverDark dark:bg-hoverLight rounded" />
+					</div>
+				</section>
+			}
+		>
 			<Scrawl scrawl={params.scrawl} userId={user ? user.id : null} />
 		</Suspense>
 	);

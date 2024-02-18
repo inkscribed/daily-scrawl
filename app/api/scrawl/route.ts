@@ -22,6 +22,7 @@ export async function POST(req: NextRequest, res: Response) {
 			},
 		});
 
+		revalidatePath("/");
 		return NextResponse.json(scrawl);
 	} catch (error) {
 		console.error("Error creating scrawl:", error);
@@ -83,8 +84,6 @@ export async function getLatestScrawl(userId: string): Promise<Scrawl | null> {
 				completedAt: "desc",
 			},
 		});
-
-		revalidatePath("/");
 
 		return scrawl;
 	} catch (error) {

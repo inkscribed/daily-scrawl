@@ -2,6 +2,7 @@ import { getSingleScrawl } from "@/app/api/scrawl/route";
 import { Introduction } from "@/app/components/modals/Introduction";
 import { YYYYMMDD } from "@/lib/dayJs";
 import { currentUser } from "@clerk/nextjs";
+import { TypographyStylesProvider } from "@mantine/core";
 import { IconArrowLeft } from "@tabler/icons-react";
 import Link from "next/link";
 import { Suspense } from "react";
@@ -57,10 +58,9 @@ async function Scrawl({
 				<h2 className="font-semibold text-3xl">
 					{YYYYMMDD(scrawlData?.completedAt)}
 				</h2>
-				<div
-					className="h-[calc(100dvh-8rem)] overflow-y-auto pb-10"
-					dangerouslySetInnerHTML={{ __html: scrawlData.content }}
-				/>
+				<TypographyStylesProvider>
+					<div dangerouslySetInnerHTML={{ __html: scrawlData.content }} />
+				</TypographyStylesProvider>
 			</div>
 		</section>
 	);

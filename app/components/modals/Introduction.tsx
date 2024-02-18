@@ -32,7 +32,7 @@ export const Introduction: FC<{
 				)}
 				{step === "1" && (
 					<section className="flex flex-col">
-						<h2 className="font-bold text-xl mb-4">Welcome to DailyScrawl!</h2>
+						<h2 className="font-bold text-xl mb-4">Ground rules</h2>
 						<p className="mb-2">
 							DailyScrawl offers you a unique writing experience designed to
 							boost your creativity and focus. Every day, you are given a blank
@@ -62,44 +62,6 @@ export const Introduction: FC<{
 							>
 								back
 							</Link>
-							<Link
-								href={`/?show=true&step=2`}
-								className="bg-hoverLight hover:bg-text dark:bg-hoverDark dark:hover:bg-background duration-300 font-semibold transition-all ease-in-out rounded px-3 py-1 text-sm"
-							>
-								next
-							</Link>
-						</div>
-					</section>
-				)}
-				{step === "2" && (
-					<section className="flex flex-col">
-						<h2 className="font-bold text-xl mb-4">Save Your Masterpieces!</h2>
-						<p className="mb-2">
-							Don&#39;t let your words vanish! Create an account to save your
-							daily writings.
-						</p>
-						<ul className="list-disc pl-5 mb-4">
-							<li>
-								<strong>Never Lose a Word</strong>: Your writings are saved
-								securely, so you can come back to them anytime you wish.
-							</li>
-							<li>
-								<strong>Export</strong>: Download your writings in plain text or
-								markdown format.
-							</li>
-							<li>
-								<strong>Share</strong>: Share your writings with friends,
-								family, or the world.
-							</li>
-						</ul>
-						<div className="flex items-center gap-2 justify-between">
-							<Link
-								href={`/?show=true&step=1`}
-								className="bg-hoverLight hover:bg-text dark:bg-hoverDark dark:hover:bg-background duration-300 font-semibold transition-all ease-in-out rounded px-3 py-1 text-sm"
-							>
-								back
-							</Link>
-
 							<CloseModalButton className="ml-auto text-sm bg-hoverLight hover:bg-text dark:bg-hoverDark dark:hover:bg-background duration-300 font-semibold transition-all ease-in-out px-3 py-1">
 								Start writing
 							</CloseModalButton>

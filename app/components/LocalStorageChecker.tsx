@@ -8,11 +8,9 @@ export const LocalStorageChecker: FC<{
 	const path = usePathname();
 
 	useEffect(() => {
-		const notification =
-			localStorage.getItem("notification-accepted") ||
-			localStorage.setItem("notification-accepted", "false");
+		const notification = localStorage.getItem("notification-accepted");
 
-		if (notification === "false") {
+		if (!notification) {
 			router.push(`${path}?show=true&step=0`);
 		}
 	}, [router, path]);

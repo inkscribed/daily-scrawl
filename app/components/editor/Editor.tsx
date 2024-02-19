@@ -274,7 +274,7 @@ export const Editor = () => {
 						</p>
 					</RichTextEditor.ControlsGroup>
 
-					<RichTextEditor.ControlsGroup className="w-14 flex justify-end">
+					<RichTextEditor.ControlsGroup className="w-14 flex justify-center items-center">
 						<p className="text-sm font-bold ">
 							{editor.storage.characterCount.words()}
 						</p>

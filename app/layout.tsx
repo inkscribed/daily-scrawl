@@ -52,7 +52,6 @@ export default async function RootLayout({
 						<MantineProvider>
 							<Navbar />
 							{children}
-							<Analytics />
 							<Details>
 								{!userId ? (
 									<SignInAlert>
@@ -78,6 +77,7 @@ export default async function RootLayout({
 							<Introduction />
 						</MantineProvider>
 					</ThemeProvider>
+					<Analytics />
 				</body>
 			</html>
 		</ClerkProvider>

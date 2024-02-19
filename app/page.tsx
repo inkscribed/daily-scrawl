@@ -17,13 +17,7 @@ type SearchParamProps = {
 	};
 };
 
-export async function DailyScrawl({
-	userId,
-	name,
-}: {
-	userId: string;
-	name: string;
-}) {
+async function DailyScrawl({ userId, name }: { userId: string; name: string }) {
 	const scrawl = await prisma.scrawl.findFirst({
 		where: {
 			authorId: userId,

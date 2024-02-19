@@ -8,7 +8,7 @@ import { dark } from "@clerk/themes";
 import { DetailsAffix } from "./components/modals/DetailsAffix";
 import { SignInAlert } from "./components/ui/SignInAlert";
 import { Analytics } from "@vercel/analytics/react";
-
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "@mantine/core/styles.css";
 
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
@@ -78,6 +78,7 @@ export default async function RootLayout({
 						</MantineProvider>
 					</ThemeProvider>
 					<Analytics />
+					<SpeedInsights />
 				</body>
 			</html>
 		</ClerkProvider>

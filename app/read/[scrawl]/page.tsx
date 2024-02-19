@@ -1,5 +1,5 @@
-import { getSingleScrawl } from "@/app/api/scrawl/route";
 import { YYYYMMDD } from "@/app/lib/dayJs";
+import { prisma } from "@/app/lib/prisma";
 import { currentUser } from "@clerk/nextjs";
 import { TypographyStylesProvider } from "@mantine/core";
 import { IconArrowLeft } from "@tabler/icons-react";
@@ -46,7 +46,19 @@ async function Scrawl({
 	scrawl: string;
 	userId: string | null;
 }) {
-	const scrawlData = await getSingleScrawl(scrawl, userId);
+	const payLoad = userId
+		? {
+				id: scrawl,
+				authorId: userId,
+		  }
+		: {
+				id: scrawl,
+				isPublic: true,
+		  };
+
+	const scrawlData = await prisma.scrawl.findUnique({
+		where: payLoad,
+	});
 
 	if (!scrawlData) {
 		return (

@@ -1,11 +1,11 @@
 import { LocalStorageChecker } from "./components/LocalStorageChecker";
 import { Editor } from "@/app/components/editor/Editor";
 import { currentUser } from "@clerk/nextjs";
-import { getLatestScrawl } from "./api/scrawl/route";
 import { defaultDate } from "@/app/lib/dayJs";
 import Link from "next/link";
 import { CompletionController } from "./components/CompletionController";
 import { Suspense } from "react";
+import { prisma } from "./lib/prisma";
 
 type SearchParamProps = {
 	searchParams: {
@@ -24,14 +24,21 @@ export async function DailyScrawl({
 	userId: string;
 	name: string;
 }) {
-	const scrawl = await getLatestScrawl(userId);
+	const scrawl = await prisma.scrawl.findFirst({
+		where: {
+			authorId: userId,
+		},
+		orderBy: {
+			completedAt: "desc",
+		},
+	});
 
 	const today = new Date().toLocaleDateString().split("T")[0];
 	const scrawlDate = scrawl
 		? new Date(scrawl.completedAt).toLocaleDateString().split("T")[0]
 		: null;
 
-	if (!scrawl || scrawlDate !== today) {
+	if (!scrawl || scrawlDate !== today || !userId) {
 		return (
 			<section className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">
 				<Editor />

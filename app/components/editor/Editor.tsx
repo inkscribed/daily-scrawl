@@ -281,7 +281,7 @@ export const Editor = () => {
 					</RichTextEditor.ControlsGroup>
 				</RichTextEditor.Toolbar>
 
-				<RichTextEditor.Content onChange={() => console.log("dsg")} />
+				<RichTextEditor.Content />
 			</RichTextEditor>
 		</section>
 	);

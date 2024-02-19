@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/app/providers/ThemeProvider";
 import { dark } from "@clerk/themes";
 import { DetailsAffix } from "./components/modals/DetailsAffix";
 import { SignInAlert } from "./components/ui/SignInAlert";
+import { Analytics } from "@vercel/analytics/react";
 
 import "@mantine/core/styles.css";
 
@@ -51,6 +52,7 @@ export default async function RootLayout({
 						<MantineProvider>
 							<Navbar />
 							{children}
+							<Analytics />
 							<Details>
 								{!userId ? (
 									<SignInAlert>

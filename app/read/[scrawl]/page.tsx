@@ -1,10 +1,15 @@
 import { getSingleScrawl } from "@/app/api/scrawl/route";
-import { YYYYMMDD } from "@/lib/dayJs";
+import { YYYYMMDD } from "@/app/lib/dayJs";
 import { currentUser } from "@clerk/nextjs";
 import { TypographyStylesProvider } from "@mantine/core";
 import { IconArrowLeft } from "@tabler/icons-react";
+import { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
+
+export const metadata: Metadata = {
+	title: "Read Scrawl",
+};
 
 export default async function Page({
 	params,

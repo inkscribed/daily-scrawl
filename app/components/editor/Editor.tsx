@@ -10,9 +10,10 @@ import { useEffect, useState } from "react";
 import { IconAlarmSnooze, IconConfetti, IconLogin } from "@tabler/icons-react";
 import { SignInButton, useAuth } from "@clerk/nextjs";
 import { Scrawl } from "@prisma/client";
-import { YYYYMMDD } from "@/lib/dayJs";
+import { YYYYMMDD } from "@/app/lib/dayJs";
 import { Tooltip } from "@mantine/core";
 import { useRouter } from "next/navigation";
+import { saveScrawl as actionSaveScrawl } from "@/app/lib/actions";
 
 const content = "";
 
@@ -27,6 +28,7 @@ export const Editor = () => {
 		content,
 		snoozedCount: 0,
 		wordCount: 0,
+		completedAt: new Date(),
 	} as Scrawl);
 	const today = new Date().toLocaleDateString();
 	const params = new URLSearchParams();
@@ -58,7 +60,6 @@ export const Editor = () => {
 	}
 
 	const saveScrawl = async () => {
-		localStorage.setItem(YYYYMMDD(new Date()), JSON.stringify(data));
 		setIsSaving(true);
 
 		if (!isSignedIn) {
@@ -71,21 +72,10 @@ export const Editor = () => {
 			wordCount: editor?.storage.characterCount.words(),
 		};
 
-		await fetch("/api/scrawl", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(requestData),
-		})
-			.then(() => {
-				localStorage.removeItem(YYYYMMDD(new Date()));
-				setIsSaving(false);
-				router.push("/?completed=true");
-			})
-			.catch((error) => {
-				console.error("Error saving scrawl:", error);
-			});
+		await actionSaveScrawl(requestData);
+
+		setIsSaving(false);
+		localStorage.removeItem(YYYYMMDD(new Date()));
 	};
 
 	useEffect(() => {
@@ -111,7 +101,10 @@ export const Editor = () => {
 				setData({
 					...data,
 					content: editor.getHTML(),
+					wordCount: editor.storage.characterCount.words(),
 				});
+
+				localStorage.setItem(YYYYMMDD(new Date()), JSON.stringify(data));
 			});
 		}
 	}, [editor, data]);

@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { ThemeToggler } from "../ThemeToggler";
 import { Icon } from "./Icon";
-import { UserButton } from "@clerk/nextjs";
-import { IconHelpHexagon } from "@tabler/icons-react";
+import { SignedOut, UserButton } from "@clerk/nextjs";
+import { IconHelpHexagon, IconLogin } from "@tabler/icons-react";
 import { ParamPusher } from "../buttons/ParamPusher";
-
+import { ToolTipWrapper } from "../ui/TooltipWrapper";
 export const Navbar = () => {
 	return (
 		<nav className="flex items-center justify-between w-full p-4 gap-4">
@@ -30,6 +30,16 @@ export const Navbar = () => {
 						},
 					}}
 				/>
+				<SignedOut>
+					<ToolTipWrapper label="Login">
+						<Link
+							href="/sign-in"
+							className="p-2 border border-lightBorder dark:border-border rounded-md bg-primary-500 text-background dark:text-text hover:bg-hoverLight dark:hover:bg-hoverDark duration-300 transition-all"
+						>
+							<IconLogin size={22} />
+						</Link>
+					</ToolTipWrapper>
+				</SignedOut>
 				<ParamPusher
 					param={`/?show=true&step=0`}
 					className="p-2 border border-lightBorder dark:border-border rounded-md bg-primary-500 text-background dark:text-text hover:bg-hoverLight dark:hover:bg-hoverDark duration-300 transition-all ease-in-out"

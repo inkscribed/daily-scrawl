@@ -2,11 +2,12 @@ import { IconNotes, IconBook } from "@tabler/icons-react";
 import { ConsistencyChart } from "../ui/ConsistencyChart";
 import { ButtonWrapper } from "../buttons/ButtonWrapper";
 import Link from "next/link";
-import { YYYYMMDD } from "@/lib/dayJs";
+import { YYYYMMDD } from "@/app/lib/dayJs";
 import { getScrawls } from "@/app/api/scrawl/route";
 import { togglePublic } from "@/app/api/scrawl/route";
 import { PublicUpdateButton } from "./PublicUpdateButton";
 import { ToolTipWrapper } from "../ui/TooltipWrapper";
+
 export async function Scrawls({ userId }: { userId: string }) {
 	const scrawls = await getScrawls(userId);
 

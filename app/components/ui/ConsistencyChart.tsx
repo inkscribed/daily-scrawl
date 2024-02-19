@@ -3,7 +3,7 @@ import Calendar from "react-github-contribution-calendar";
 import { useTheme } from "next-themes";
 import { Scrawl } from "@prisma/client";
 import { FC } from "react";
-import { YYYYMMDD } from "@/lib/dayJs";
+import { YYYYMMDD } from "@/app/lib/dayJs";
 
 type AccumulatorType = {
 	[key: string]: number;

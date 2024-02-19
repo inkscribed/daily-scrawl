@@ -1,34 +1,6 @@
-import { prisma } from "@/lib/prisma";
+import { prisma } from "@/app/lib/prisma";
 import { Scrawl } from "@prisma/client";
 import { revalidatePath } from "next/cache";
-import { NextRequest, NextResponse } from "next/server";
-
-export async function POST(req: NextRequest, res: Response) {
-	const { content, userId, wordCount, snoozedCount } = await req.json();
-	console.log({
-		content,
-		userId,
-	});
-
-	try {
-		const scrawl = await prisma.scrawl.create({
-			data: {
-				content,
-				authorId: userId,
-				completedAt: new Date(),
-				snoozedCount,
-				isCompleted: true,
-				wordCount,
-			},
-		});
-
-		revalidatePath("/");
-		return NextResponse.json(scrawl);
-	} catch (error) {
-		console.error("Error creating scrawl:", error);
-		return NextResponse.json({ error: "error creating scrawl" });
-	}
-}
 
 export async function PATCH(data: any) {
 	const { id, snoozedCount, content } = data;

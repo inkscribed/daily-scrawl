@@ -2,9 +2,10 @@ import { LocalStorageChecker } from "./components/LocalStorageChecker";
 import { Editor } from "@/app/components/editor/Editor";
 import { currentUser } from "@clerk/nextjs";
 import { getLatestScrawl } from "./api/scrawl/route";
-import { defaultDate } from "@/lib/dayJs";
+import { defaultDate } from "@/app/lib/dayJs";
 import Link from "next/link";
 import { CompletionController } from "./components/CompletionController";
+import { Suspense } from "react";
 
 type SearchParamProps = {
 	searchParams: {
@@ -24,6 +25,7 @@ export async function DailyScrawl({
 	name: string;
 }) {
 	const scrawl = await getLatestScrawl(userId);
+
 	const today = new Date().toLocaleDateString().split("T")[0];
 	const scrawlDate = scrawl
 		? new Date(scrawl.completedAt).toLocaleDateString().split("T")[0]
@@ -60,22 +62,34 @@ export async function DailyScrawl({
 }
 
 export default async function Page({ searchParams }: SearchParamProps) {
-	const show = searchParams?.show;
-	const step = searchParams?.step;
-	const completed = searchParams?.completed;
 	const scrawlCompleted = searchParams?.scrawlCompleted;
-
-	const user = await currentUser();
+	const user = currentUser ? await currentUser() : null;
 
 	return (
 		<LocalStorageChecker>
 			<CompletionController completed={scrawlCompleted}>
-				<DailyScrawl
-					/* @ts-ignore */
-					userId={user?.id}
-					/* @ts-ignore */
-					name={user?.firstName + " " + user?.lastName}
-				/>
+				<Suspense
+					fallback={
+						<section className="flex items-center justify-center h-[calc(100dvh-20rem)]">
+							<div className="mx-auto p-4 text-background dark:text-text z-10 flex flex-col">
+								<h2 className="text-5xl font-bold text-center">
+									Hi{" "}
+									{user ? user?.firstName + " " + user?.lastName : "Scrawler"}
+								</h2>
+								<p className="text-center mt-4 text-3xl w-96 mx-auto">
+									Loading your daily scrawl...
+								</p>
+							</div>
+						</section>
+					}
+				>
+					<DailyScrawl
+						/* @ts-ignore */
+						userId={user?.id}
+						/* @ts-ignore */
+						name={user?.firstName + " " + user?.lastName}
+					/>
+				</Suspense>
 			</CompletionController>
 		</LocalStorageChecker>
 	);

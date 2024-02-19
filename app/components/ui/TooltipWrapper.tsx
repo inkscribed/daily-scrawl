@@ -1,4 +1,3 @@
-"use client";
 import { Tooltip } from "@mantine/core";
 import { FC } from "react";
 

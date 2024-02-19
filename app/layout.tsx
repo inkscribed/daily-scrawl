@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "@mantine/tiptap/styles.css";
-import { ClerkProvider, SignInButton, currentUser } from "@clerk/nextjs";
+import { ClerkProvider, SignInButton, auth } from "@clerk/nextjs";
 import { Navbar } from "./components/navigation/Navbar";
 import { ThemeProvider } from "@/app/providers/ThemeProvider";
 import { dark } from "@clerk/themes";
@@ -26,7 +26,7 @@ export default async function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	const user = await currentUser();
+	const { userId }: { userId: string | null } = auth();
 
 	return (
 		<ClerkProvider
@@ -52,7 +52,7 @@ export default async function RootLayout({
 							<Navbar />
 							{children}
 							<Details>
-								{!user ? (
+								{!userId ? (
 									<SignInAlert>
 										<p className="text-background dark:text-text">
 											Please sign in to access these features.
@@ -69,7 +69,7 @@ export default async function RootLayout({
 										</div>
 									</SignInAlert>
 								) : (
-									<Scrawls userId={user.id} />
+									<Scrawls userId={userId} />
 								)}
 							</Details>
 							<DetailsAffix />

@@ -40,7 +40,7 @@ export const Introduction: FC<{}> = () => {
 			}}
 			radius={10}
 			classNames={{
-				body: "bg-text dark:bg-background h-[450px] flex grow flex-col",
+				body: "bg-text dark:bg-background min-h-[450px] flex grow flex-col",
 				header: "!bg-text dark:!bg-background",
 				inner: "bg-transparent",
 				content: "!bg-transparent",
@@ -86,7 +86,7 @@ export const Introduction: FC<{}> = () => {
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
 					transition={{ duration: 0.5 }}
-					className="flex flex-col grow px-4"
+					className="flex flex-col grow px-4 overflow-y-auto"
 				>
 					<p className="mb-2">
 						DailyScrawl offers you a unique writing experience designed to boost
@@ -94,7 +94,7 @@ export const Introduction: FC<{}> = () => {
 						and <b>10 minutes</b> of uninterrupted time to pour your thoughts
 						and ideas into words.
 					</p>
-					<motion.ul className="list-disc pl-5 my-4 flex flex-col gap-3 items-start">
+					<motion.ul className="list-disc my-4 flex flex-col gap-3 items-start">
 						<motion.li
 							className="flex items-start gap-2"
 							initial={{ opacity: 0 }}

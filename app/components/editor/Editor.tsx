@@ -117,7 +117,7 @@ export const Editor = () => {
 		<section className="relative">
 			{time <= 0 && (
 				<div className="absolute inset-0 items-center mx-auto justify-center bg-text/90 dark:bg-background/90 text-background/90 dark:text-text/90 z-10 !overflow-y-hidden">
-					<section className="flex items-center justify-center h-[calc(100dvh-20rem)]">
+					<section className="flex items-center justify-center h-[calc(100dvh-20rem)] ">
 						<div className="mx-auto p-4 text-background dark:text-text z-10 flex flex-col">
 							<h2 className="text-5xl font-bold text-center">Time&#39;s up!</h2>
 							<p className="text-center mt-4 text-3xl w-96">
@@ -181,8 +181,10 @@ export const Editor = () => {
 				className="flex flex-col relative pb-8 overflow-y-auto"
 				classNames={{
 					root: "!border-none !bg-transparent",
-					content: "p-4 !bg-transparent min-h-[calc(100dvh-10.5rem)]",
-					toolbar: "!bg-transparent !border-none mx-auto !gap-3 md:!gap-6",
+					content:
+						"p-4 !bg-transparent h-[calc(100dvh-12rem)] md:min-h-[calc(100dvh-10.5rem)]",
+					toolbar:
+						"!bg-transparent !border-none mx-auto !gap-3 md:!gap-6 !items-center",
 					control: "!bg-transparent !hover:text-primary",
 					controlsGroup: "!bg-transparent !hover:bg-text/50 !border-none",
 				}}
@@ -192,7 +194,7 @@ export const Editor = () => {
 						onClick={() => {
 							setStart(true), params.set("start", "true");
 						}}
-						className="flex flex-col items-center font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text absolute px-10 py-4 mx-auto right-0 left-0 max-w-48 z-10 mt-20 rounded-md"
+						className="flex flex-col items-center font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text absolute px-10 py-4 mx-auto right-0 left-0 max-w-48 z-10 mt-28 md:mt-20 rounded-md"
 					>
 						Begin scrawl
 					</button>
@@ -231,13 +233,13 @@ export const Editor = () => {
 					</BubbleMenu>
 				)}
 				<RichTextEditor.Toolbar sticky>
-					<RichTextEditor.ControlsGroup>
+					{/* <RichTextEditor.ControlsGroup className="md:visible md:w-auto invisible w-0">
 						<p className="font-semibold w-14 flex items-center justify-center">
 							{time > 0
 								? `${new Date(time).toISOString().substr(14, 5)}`
 								: "10:00"}
 						</p>
-					</RichTextEditor.ControlsGroup>
+					</RichTextEditor.ControlsGroup> */}
 
 					<RichTextEditor.ControlsGroup>
 						<RichTextEditor.Bold />
@@ -264,8 +266,16 @@ export const Editor = () => {
 						<RichTextEditor.Redo />
 					</RichTextEditor.ControlsGroup>
 
-					<RichTextEditor.ControlsGroup>
-						<p className="text-sm font-bold">
+					<RichTextEditor.ControlsGroup className="flex items-center sm:mx-0 mx-auto">
+						<p className="font-semibold w-14 flex items-center justify-center">
+							{time > 0
+								? `${new Date(time).toISOString().substr(14, 5)}`
+								: "10:00"}
+						</p>
+					</RichTextEditor.ControlsGroup>
+
+					<RichTextEditor.ControlsGroup className="w-14 flex justify-end">
+						<p className="text-sm font-bold ">
 							{editor.storage.characterCount.words()}
 						</p>
 					</RichTextEditor.ControlsGroup>

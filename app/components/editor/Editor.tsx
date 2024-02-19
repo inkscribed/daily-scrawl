@@ -180,11 +180,11 @@ export const Editor = () => {
 				editor={editor}
 				className="flex flex-col relative pb-8 overflow-y-auto"
 				classNames={{
-					root: "!border-0 !bg-transparent",
+					root: "!border-none !bg-transparent",
 					content: "p-4 !bg-transparent min-h-[calc(100dvh-10.5rem)]",
-					toolbar: "!bg-transparent !border-0 mx-auto !gap-3 md:!gap-6",
+					toolbar: "!bg-transparent !border-none mx-auto !gap-3 md:!gap-6",
 					control: "!bg-transparent !hover:text-primary",
-					controlsGroup: "!bg-transparent !hover:bg-text/50 !border-0",
+					controlsGroup: "!bg-transparent !hover:bg-text/50 !border-none",
 				}}
 			>
 				{!start && (

@@ -8,7 +8,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-	title: "Read Scrawl",
+	title: "Reading Scrawl",
 };
 
 export default async function Page({

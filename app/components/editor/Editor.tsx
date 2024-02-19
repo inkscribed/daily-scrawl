@@ -18,7 +18,7 @@ import { saveScrawl as actionSaveScrawl } from "@/app/lib/actions";
 const content = "";
 
 export const Editor = () => {
-	const [time, setTime] = useState(10000);
+	const [time, setTime] = useState(600000);
 	const [start, setStart] = useState(false);
 	const [isSaving, setIsSaving] = useState(false);
 
@@ -55,7 +55,7 @@ export const Editor = () => {
 				...data,
 				snoozedCount: data.snoozedCount ? data.snoozedCount + 1 : 1,
 			});
-			setTime(10000);
+			setTime(50000);
 		}
 	}
 

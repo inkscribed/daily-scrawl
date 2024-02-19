@@ -2,14 +2,15 @@
 import { FC } from "react";
 import { IconShare, IconShareOff } from "@tabler/icons-react";
 import { Tooltip } from "@mantine/core";
+import { togglePublic } from "@/app/lib/actions";
 
 export const PublicUpdateButton: FC<{
 	isPublic: boolean;
 	scrawlId: string;
-	togglePublic: (scrawlId: string, isPublic: boolean) => void;
-}> = ({ isPublic, scrawlId, togglePublic }) => {
+	userId: string;
+}> = ({ isPublic, scrawlId, userId }) => {
 	const handleTogglePublic = () => {
-		togglePublic(scrawlId, isPublic);
+		togglePublic(scrawlId, userId, isPublic);
 	};
 
 	return (

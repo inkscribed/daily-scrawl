@@ -4,17 +4,11 @@ import { ButtonWrapper } from "../buttons/ButtonWrapper";
 import Link from "next/link";
 import { YYYYMMDD } from "@/app/lib/dayJs";
 import { getScrawls } from "@/app/api/scrawl/route";
-import { togglePublic } from "@/app/api/scrawl/route";
 import { PublicUpdateButton } from "./PublicUpdateButton";
 import { ToolTipWrapper } from "../ui/TooltipWrapper";
 
 export async function Scrawls({ userId }: { userId: string }) {
 	const scrawls = await getScrawls(userId);
-
-	async function handleTogglePublic(scrawlId: string, isPublic: boolean) {
-		"use server";
-		await togglePublic(scrawlId, userId, isPublic);
-	}
 
 	if (!scrawls) {
 		return <div>No scrawls</div>;
@@ -42,7 +36,7 @@ export async function Scrawls({ userId }: { userId: string }) {
 								<PublicUpdateButton
 									scrawlId={scrawl.id}
 									isPublic={scrawl.isPublic}
-									togglePublic={handleTogglePublic}
+									userId={userId}
 								/>
 								{/* <ToolTipWrapper label="Edit name">
 									<ButtonWrapper className="p-1 hover:bg-white dark:hover:bg-black transition-all ease-in-out duration-300">

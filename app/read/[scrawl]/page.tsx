@@ -46,19 +46,31 @@ async function Scrawl({
 	scrawl: string;
 	userId: string | null;
 }) {
-	const payLoad = userId
-		? {
-				id: scrawl,
-				authorId: userId,
-		  }
-		: {
+	let scrawlData = null;
+
+	if (userId) {
+		scrawlData = await prisma.scrawl.findFirst({
+			where: {
+				OR: [
+					{
+						id: scrawl,
+						authorId: userId,
+					},
+					{
+						id: scrawl,
+						isPublic: true,
+					},
+				],
+			},
+		});
+	} else {
+		scrawlData = await prisma.scrawl.findUnique({
+			where: {
 				id: scrawl,
 				isPublic: true,
-		  };
-
-	const scrawlData = await prisma.scrawl.findUnique({
-		where: payLoad,
-	});
+			},
+		});
+	}
 
 	if (!scrawlData) {
 		return (

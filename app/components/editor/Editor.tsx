@@ -6,7 +6,7 @@ import Underline from "@tiptap/extension-underline";
 import TextAlign from "@tiptap/extension-text-align";
 import CharacterCount from "@tiptap/extension-character-count";
 import Placeholder from "@tiptap/extension-placeholder";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { IconAlarmSnooze, IconConfetti, IconLogin } from "@tabler/icons-react";
 import { SignInButton, useAuth } from "@clerk/nextjs";
 import { Scrawl } from "@prisma/client";
@@ -14,12 +14,12 @@ import { YYYYMMDD } from "@/app/lib/dayJs";
 import { Tooltip } from "@mantine/core";
 import { useRouter } from "next/navigation";
 import { saveScrawl as actionSaveScrawl } from "@/app/lib/actions";
-
-const content = "";
+import debounce from "debounce";
 
 export const Editor = () => {
 	const [time, setTime] = useState(600000);
 	const [start, setStart] = useState(false);
+	const [content, setContent] = useState("");
 	const [isSaving, setIsSaving] = useState(false);
 
 	const router = useRouter();
@@ -95,19 +95,32 @@ export const Editor = () => {
 		};
 	}, [time, start, editor, today]);
 
+	// Debounce function to update content state
+	const debouncedUpdateContent = useCallback(
+		debounce((newContent) => {
+			setData((currentData) => ({
+				...currentData,
+				content: newContent,
+				wordCount: editor?.storage.characterCount.words(),
+			}));
+			localStorage.setItem(YYYYMMDD(new Date()), JSON.stringify(data));
+		}, 500),
+		[data, editor]
+	); // Adjust debounce interval as needed
+
 	useEffect(() => {
 		if (editor) {
 			editor.on("transaction", () => {
-				setData({
-					...data,
-					content: editor.getHTML(),
-					wordCount: editor.storage.characterCount.words(),
-				});
-
-				localStorage.setItem(YYYYMMDD(new Date()), JSON.stringify(data));
+				const newContent = editor.getHTML();
+				debouncedUpdateContent(newContent);
 			});
 		}
-	}, [editor, data]);
+
+		// Cleanup on component unmount
+		return () => {
+			debouncedUpdateContent.clear();
+		};
+	}, [editor, debouncedUpdateContent]);
 
 	if (!editor) {
 		return null;

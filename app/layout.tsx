@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "@mantine/tiptap/styles.css";
-import { ClerkProvider, SignInButton, auth } from "@clerk/nextjs";
+import { ClerkProvider, auth } from "@clerk/nextjs";
 import { Navbar } from "./components/navigation/Navbar";
 import { ThemeProvider } from "@/app/providers/ThemeProvider";
 import { dark } from "@clerk/themes";
@@ -15,6 +15,7 @@ import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { Details } from "./components/modals/Details";
 import { Scrawls } from "./components/scrawls/Scrawls";
 import { Introduction } from "./components/modals/Introduction";
+import Link from "next/link";
 
 export const metadata: Metadata = {
 	title: "Daily Scrawl",
@@ -61,12 +62,13 @@ export default async function RootLayout({
 											You will be able to view your past writings and track your
 											consistency as well as export your writings.
 										</p>
-										<div className="ml-auto">
-											<SignInButton>
-												<button className="ml-auto text-sm hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text duration-300 transition-all ease-in-out rounded px-3 py-1">
-													Sign in
-												</button>
-											</SignInButton>
+										<div className="ml-auto mb-2">
+											<Link
+												href="/sign-in"
+												className="ml-auto text-sm hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text duration-300 transition-all ease-in-out rounded px-3 py-1"
+											>
+												Sign in
+											</Link>
 										</div>
 									</SignInAlert>
 								) : (

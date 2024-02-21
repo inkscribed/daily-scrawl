@@ -59,8 +59,8 @@ export default async function RootLayout({
 										<p className="text-background dark:text-text">
 											Please sign in to access these features.
 											<br />
-											You will be able to view your past writings and track your
-											consistency as well as export your writings.
+											You will be able to view your past writing and track your
+											consistency as well as export to various formats.
 										</p>
 										<div className="ml-auto mb-2">
 											<Link

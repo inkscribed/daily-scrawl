@@ -55,7 +55,7 @@ export const Editor = () => {
 				...data,
 				snoozedCount: data.snoozedCount ? data.snoozedCount + 1 : 1,
 			});
-			setTime(50000);
+			setTime(300000);
 		}
 	}
 

@@ -46,7 +46,7 @@ export async function Scrawls({ userId }: { userId: string }) {
 									userId={userId}
 								/>
 								<ToolTipWrapper label="Read">
-									<ButtonWrapper className="p-1 hover:bg-white dark:hover:bg-black transition-all ease-in-out duration-300">
+									<ButtonWrapper className="p-1 dark:hover:bg-black transition-all ease-in-out duration-300">
 										<Link href={`/read/${scrawl.id}`}>
 											<IconBook size={18} />
 										</Link>

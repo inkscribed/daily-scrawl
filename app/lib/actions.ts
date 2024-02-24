@@ -1,5 +1,4 @@
 "use server";
-
 import { prisma } from "@/app/lib/prisma";
 import { Scrawl } from "@prisma/client";
 import { revalidatePath } from "next/cache";
@@ -93,4 +92,24 @@ export async function togglePublic(
 		console.error("Error toggling public scrawl:", error);
 		return null;
 	}
+}
+
+export async function exportScrawlAsPDF(scrawlId: string) {
+	// try {
+	// 	const scrawl = await prisma.scrawl.findUnique({
+	// 		where: {
+	// 			id: scrawlId,
+	// 		},
+	// 	});
+
+	// 	if (!scrawl) {
+	// 		console.error("Scrawl not found");
+	// 		return null;
+	// 	}
+	// } catch (error) {
+	// 	console.error("Error exporting scrawl as PDF:", error);
+	// 	return null;
+	// }
+
+	console.log("Exporting scrawl as PDF:", scrawlId);
 }

@@ -1,4 +1,4 @@
-import { IconNotes, IconBook } from "@tabler/icons-react";
+import { IconNotes, IconBook, IconDownload } from "@tabler/icons-react";
 import { ConsistencyChart } from "../ui/ConsistencyChart";
 import { ButtonWrapper } from "../buttons/ButtonWrapper";
 import Link from "next/link";
@@ -7,6 +7,7 @@ import { PublicUpdateButton } from "./PublicUpdateButton";
 import { ToolTipWrapper } from "../ui/TooltipWrapper";
 import { prisma } from "@/app/lib/prisma";
 import { ListWrapper } from "./ListWrapper";
+import { DownloadPDFButton } from "../buttons/DownloadPDFButton";
 
 export async function Scrawls({ userId }: { userId: string }) {
 	const scrawls = await prisma.scrawl.findMany({
@@ -38,6 +39,11 @@ export async function Scrawls({ userId }: { userId: string }) {
 								</p>
 							</div>
 							<div className="flex gap-1 items-center">
+								<ToolTipWrapper label="Download">
+									<DownloadPDFButton scrawlId={scrawl.id}>
+										<IconDownload size={16} />
+									</DownloadPDFButton>
+								</ToolTipWrapper>
 								<PublicUpdateButton
 									scrawlId={scrawl.id}
 									isPublic={scrawl.isPublic}
@@ -45,7 +51,7 @@ export async function Scrawls({ userId }: { userId: string }) {
 								/>
 								<Link href={`/read/${scrawl.id}`}>
 									<ToolTipWrapper label="Read">
-										<ButtonWrapper className="dark:hover:bg-black transition-all ease-in-out duration-300">
+										<ButtonWrapper className="dark:hover:bg-black">
 											<IconBook size={16} />
 										</ButtonWrapper>
 									</ToolTipWrapper>

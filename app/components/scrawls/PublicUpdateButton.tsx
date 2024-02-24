@@ -30,7 +30,7 @@ export const PublicUpdateButton: FC<{
 			<button
 				onClick={handleTogglePublic}
 				disabled={isLoading}
-				className={`p-2 rounded-md bg-primary-500 text-background dark:text-text hover:bg-hoverLight dark:hover:bg-hoverDark duration-300 transition-all ease-in-out`}
+				className={`p-1.5 rounded-md bg-primary-500 text-background dark:text-text hover:bg-hoverLight dark:hover:bg-hoverDark duration-300 transition-all ease-in-out`}
 			>
 				{isPublic ? (
 					<IconShare

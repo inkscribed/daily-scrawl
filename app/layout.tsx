@@ -5,7 +5,6 @@ import { ClerkProvider, auth } from "@clerk/nextjs";
 import { Navbar } from "./components/navigation/Navbar";
 import { ThemeProvider } from "@/app/providers/ThemeProvider";
 import { dark } from "@clerk/themes";
-import { DetailsAffix } from "./components/modals/DetailsAffix";
 import { SignInAlert } from "./components/ui/SignInAlert";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -75,7 +74,6 @@ export default async function RootLayout({
 									<Scrawls userId={userId} />
 								)}
 							</Details>
-							<DetailsAffix />
 							<Introduction />
 						</MantineProvider>
 					</ThemeProvider>

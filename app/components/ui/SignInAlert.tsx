@@ -28,7 +28,9 @@ export const SignInAlert = () => {
 			</p>
 			<div className="ml-auto mb-2">
 				<Link href="/sign-in">
-					<AnimatedArrowButton>Sign in</AnimatedArrowButton>
+					<AnimatedArrowButton className="text-sm font-semibold hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text duration-300 transition-all ease-in-out rounded px-3 py-1 flex items-center">
+						Sign in
+					</AnimatedArrowButton>
 				</Link>
 			</div>
 		</Alert>

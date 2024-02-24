@@ -6,6 +6,7 @@ import Link from "next/link";
 import { CompletionController } from "./components/CompletionController";
 import { Suspense } from "react";
 import { prisma } from "./lib/prisma";
+import { AnimatedArrowButton } from "./components/ui/AnimatedArrowButton";
 
 type SearchParamProps = {
 	searchParams: {
@@ -49,11 +50,10 @@ async function DailyScrawl({ userId, name }: { userId: string; name: string }) {
 				<p className="text-center mt-4 text-3xl w-96 mx-auto">
 					Great job on your daily scrawl!
 				</p>
-				<Link
-					href="?details=true"
-					className="mt-6 mx-auto bg-background hover:bg-hoverDark dark:bg-text dark:text-background text-text dark:hover:bg-hoverLight rounded-full p-3 px-5 font-semibold"
-				>
-					See your progress
+				<Link href="?details=true" className="mx-auto">
+					<AnimatedArrowButton className="mt-6 flex items-center mx-auto bg-background hover:bg-hoverDark dark:bg-text dark:text-background text-text dark:hover:bg-hoverLight rounded-full py-3 px-5 font-semibold">
+						<p className="-mt-0.5">See your progress</p>
+					</AnimatedArrowButton>
 				</Link>
 
 				<p className="text-center mt-4">{defaultDate(scrawl.completedAt)}</p>

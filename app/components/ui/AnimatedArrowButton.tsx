@@ -3,13 +3,15 @@ import { IconArrowRight } from "@tabler/icons-react";
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
 
-export const AnimatedArrowButton = ({ children }: { children: ReactNode }) => {
+export const AnimatedArrowButton = ({
+	children,
+	className,
+}: {
+	children: ReactNode;
+	className: string;
+}) => {
 	return (
-		<motion.div
-			initial="default"
-			whileHover="hover"
-			className="text-sm hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text duration-300 transition-all ease-in-out rounded px-3 py-1 flex items-center"
-		>
+		<motion.div initial="default" whileHover="hover" className={className}>
 			{children}
 			<motion.div
 				variants={{

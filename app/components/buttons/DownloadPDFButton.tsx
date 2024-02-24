@@ -11,50 +11,98 @@ export const DownloadPDFButton: FC<{
 }> = ({ children, scrawl }) => {
 	function downloadScrawl() {
 		const doc = new jsPDF();
+		const parseAndRenderHtml = (
+			html: string,
+			x: number,
+			startY: number
+		): void => {
+			let cursorY: number = startY;
+			const pageWidth: number = doc.internal.pageSize.width;
+			const maxWidth: number = pageWidth - x * 2; // Calculate max width of text
 
-		// @ts-ignore
-		const parseAndRenderHtml = (html, x, y) => {
-			let cursorY = y;
-
-			const lines = html
-				.split(/<\/?p>/i)
-				.filter((line: string) => line.trim() !== "");
-
-			lines.forEach((line: string) => {
-				let isBold = false;
-				let isItalic = false;
-
-				// Splitting by <br>, <b>, <i>, their closing tags, or combinations thereof
-				const parts = line
-					.split(/(<br>|<\/?b>|<\/?i>)/i)
-					.filter((part) => part.trim() !== "");
-
-				parts.forEach((part) => {
-					if (part.toLowerCase() === "<br>") {
-						cursorY += 10; // Move down for a line break
-					} else if (part.toLowerCase() === "<b>") {
-						isBold = true;
-					} else if (part.toLowerCase() === "</b>") {
-						isBold = false;
-					} else if (part.toLowerCase() === "<i>") {
-						isItalic = true;
-					} else if (part.toLowerCase() === "</i>") {
-						isItalic = false;
-					} else {
-						doc.setFont(
-							// @ts-ignore
-							undefined,
-							isBold ? "bold" : isItalic ? "italic" : "normal"
-						);
-						doc.text(part, x, cursorY);
-						cursorY += 7; // Adjust line spacing as needed
+			const renderTextWithStyles = (
+				text: string,
+				x: number,
+				y: number,
+				isBold: boolean,
+				isItalic: boolean,
+				isUnderline: boolean
+			) => {
+				doc.setFont(
+					"helvetica",
+					isBold ? "bold" : isItalic ? "italic" : "normal"
+				);
+				const lines = doc.splitTextToSize(text, maxWidth);
+				lines.forEach((line: string, index: number) => {
+					doc.text(line, x, y + index * 7);
+					if (isUnderline) {
+						const lineWidth = doc.getTextWidth(line);
+						doc.line(x, y + 2 + index * 7, x + lineWidth, y + 2 + index * 7); // Draw underline
 					}
 				});
+				return lines.length * 7; // Return the height of the rendered text
+			};
 
-				cursorY += 10; // Space between paragraphs
-			});
+			// Extract content blocks and styles
+			const regex = /<\/?([a-z1-6]+)>/gi; // Matches opening and closing tags
+			let currentPos = 0;
+			let match;
+
+			while ((match = regex.exec(html)) !== null) {
+				const tag = match[1].toLowerCase();
+				let content = html.substring(currentPos, match.index).trim();
+				if (content) {
+					// Process and render the content before the tag
+					cursorY +=
+						renderTextWithStyles(content, x, cursorY, false, false, false) + 3; // Adjust spacing
+				}
+
+				// Adjust styling based on the current tag
+				switch (tag) {
+					case "h1":
+						doc.setFontSize(22);
+						break;
+					case "h2":
+						doc.setFontSize(20);
+						break;
+					case "h3":
+						doc.setFontSize(18);
+						break;
+					case "h4":
+						doc.setFontSize(16);
+						break;
+					case "p":
+						doc.setFontSize(10);
+						break;
+					case "b":
+						doc.setFont("bold");
+						break;
+					case "i":
+						doc.setFont("italic");
+						break;
+					case "u":
+						break;
+					default:
+						break;
+				}
+
+				currentPos = regex.lastIndex;
+			}
+
+			// Render any remaining content after the last tag
+			let remainingContent = html.substring(currentPos).trim();
+			if (remainingContent) {
+				cursorY +=
+					renderTextWithStyles(
+						remainingContent,
+						x,
+						cursorY,
+						false,
+						false,
+						false
+					) + 10; // Adjust spacing
+			}
 		};
-
 		parseAndRenderHtml(scrawl.content, 10, 10);
 		doc.save(`${YYYYMMDD(scrawl.completedAt)}.pdf`);
 	}

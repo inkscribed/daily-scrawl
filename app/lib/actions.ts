@@ -3,7 +3,8 @@ import { prisma } from "@/app/lib/prisma";
 import { Scrawl } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
-import * as DOMPurify from "dompurify";
+// import * as DOMPurify from "dompurify";
+import DOMPurify from "isomorphic-dompurify";
 
 type ScrawlRequest = Scrawl & { userId: string };
 

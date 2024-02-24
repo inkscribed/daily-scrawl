@@ -3,6 +3,8 @@ import { prisma } from "@/app/lib/prisma";
 import { Scrawl } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
+import * as DOMPurify from "dompurify";
+
 type ScrawlRequest = Scrawl & { userId: string };
 
 export async function saveScrawl(scrawlRequest: ScrawlRequest) {
@@ -17,6 +19,8 @@ export async function saveScrawl(scrawlRequest: ScrawlRequest) {
 		content,
 		userId,
 	});
+
+	const clean = DOMPurify.sanitize(content);
 
 	try {
 		const lastScrawl = await prisma.scrawl.findFirst({
@@ -43,7 +47,7 @@ export async function saveScrawl(scrawlRequest: ScrawlRequest) {
 
 		const scrawl = await prisma.scrawl.create({
 			data: {
-				content,
+				content: clean,
 				authorId: userId,
 				completedAt: completedAt ? new Date(completedAt) : new Date(),
 				snoozedCount,

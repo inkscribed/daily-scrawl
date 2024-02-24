@@ -40,7 +40,7 @@ export async function Scrawls({ userId }: { userId: string }) {
 							</div>
 							<div className="flex gap-1 items-center">
 								<ToolTipWrapper label="Download">
-									<DownloadPDFButton scrawlId={scrawl.id}>
+									<DownloadPDFButton scrawl={scrawl}>
 										<IconDownload size={16} />
 									</DownloadPDFButton>
 								</ToolTipWrapper>

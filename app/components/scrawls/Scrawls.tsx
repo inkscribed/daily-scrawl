@@ -45,13 +45,13 @@ export async function Scrawls({ userId }: { userId: string }) {
 									isPublic={scrawl.isPublic}
 									userId={userId}
 								/>
-								<ToolTipWrapper label="Read">
-									<ButtonWrapper className="p-1 dark:hover:bg-black transition-all ease-in-out duration-300">
-										<Link href={`/read/${scrawl.id}`}>
+								<Link href={`/read/${scrawl.id}`}>
+									<ToolTipWrapper label="Read">
+										<ButtonWrapper className="p-1 dark:hover:bg-black transition-all ease-in-out duration-300">
 											<IconBook size={18} />
-										</Link>
-									</ButtonWrapper>
-								</ToolTipWrapper>
+										</ButtonWrapper>
+									</ToolTipWrapper>
+								</Link>
 							</div>
 						</li>
 					))}

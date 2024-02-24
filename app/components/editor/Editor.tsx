@@ -197,7 +197,7 @@ export const Editor = () => {
 					content:
 						"p-4 !bg-transparent h-[calc(100dvh-12rem)] md:min-h-[calc(100dvh-10.5rem)]",
 					toolbar:
-						"!bg-transparent !border-none mx-auto !gap-3 md:!gap-6 !items-center",
+						"!bg-text dark:!bg-background !rounded-md !border-none mx-auto !gap-3 md:!gap-6 !items-center",
 					control: "!bg-transparent !border-none",
 					controlsGroup: "!bg-transparent !border-none",
 				}}

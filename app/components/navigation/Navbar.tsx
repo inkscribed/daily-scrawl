@@ -34,7 +34,7 @@ export const Navbar = () => {
 					<ToolTipWrapper label="Login">
 						<Link
 							href="/sign-in"
-							className="p-2 border border-lightBorder dark:border-border rounded-md bg-primary-500 text-background dark:text-text hover:bg-hoverLight dark:hover:bg-hoverDark duration-300 transition-all"
+							className="p-2 bg-violet-500 rounded-md bg-primary-500 text-background  hover:bg-violet-600 duration-300 transition-all"
 						>
 							<IconLogin size={22} />
 						</Link>

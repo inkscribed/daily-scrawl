@@ -1,6 +1,7 @@
 import { Alert } from "@mantine/core";
 import Link from "next/link";
 import { IconInfoCircle } from "@tabler/icons-react";
+import { AnimatedArrowButton } from "./AnimatedArrowButton";
 
 export const SignInAlert = () => {
 	return (
@@ -26,11 +27,8 @@ export const SignInAlert = () => {
 				well as export to various formats.
 			</p>
 			<div className="ml-auto mb-2">
-				<Link
-					href="/sign-in"
-					className="ml-auto text-sm hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text duration-300 transition-all ease-in-out rounded px-3 py-1"
-				>
-					Sign in
+				<Link href="/sign-in">
+					<AnimatedArrowButton>Sign in</AnimatedArrowButton>
 				</Link>
 			</div>
 		</Alert>

@@ -9,7 +9,7 @@ export const ButtonWrapper: FC<{
 	return (
 		<button
 			onClick={onClick}
-			className={`p-2 border border-lightBorder dark:border-border rounded-md bg-primary-500 text-background dark:text-text hover:bg-hoverLight dark:hover:bg-hoverDark duration-300 transition-all ease-in-out ${className}`}
+			className={`p-2 rounded-md bg-primary-500 text-background dark:text-text hover:bg-hoverLight dark:hover:bg-hoverDark duration-300 transition-all ease-in-out ${className}`}
 		>
 			{children}
 		</button>

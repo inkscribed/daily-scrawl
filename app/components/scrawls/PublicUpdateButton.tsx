@@ -30,18 +30,18 @@ export const PublicUpdateButton: FC<{
 			<button
 				onClick={handleTogglePublic}
 				disabled={isLoading}
-				className={`p-2 border border-lightBorder dark:border-border rounded-md bg-primary-500 text-background dark:text-text hover:bg-hoverLight dark:hover:bg-hoverDark duration-300 transition-all ease-in-out`}
+				className={`p-2 rounded-md bg-primary-500 text-background dark:text-text hover:bg-hoverLight dark:hover:bg-hoverDark duration-300 transition-all ease-in-out`}
 			>
 				{isPublic ? (
 					<IconShare
 						aria-disabled={isLoading}
-						size={18}
+						size={16}
 						className="dark:text-sky-600 text-blue-600 disabled:text-gray-400"
 					/>
 				) : (
 					<IconShareOff
 						aria-disabled={isLoading}
-						size={18}
+						size={16}
 						className="dark:text-yellow-600 text-yellow-600 disabled:text-gray-400"
 					/>
 				)}

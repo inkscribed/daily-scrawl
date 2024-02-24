@@ -30,7 +30,7 @@ export async function Scrawls({ userId }: { userId: string }) {
 				<ul className="h-[calc(100dvh-21rem)] overflow-y-auto flex flex-col gap-1">
 					{scrawls?.map((scrawl: any) => (
 						<li
-							className="flex gap-2 justify-between hover:bg-text dark:hover:bg-background dark:text-text text-background duration-300 transition-all ease-in-out rounded px-3 py-1 "
+							className="flex gap-2 justify-between hover:bg-text dark:hover:bg-background dark:text-text text-background duration-300 transition-all ease-in-out rounded-md px-3 py-1 "
 							key={scrawl.id}
 						>
 							<div className="flex gap-2 items-center">
@@ -47,8 +47,8 @@ export async function Scrawls({ userId }: { userId: string }) {
 								/>
 								<Link href={`/read/${scrawl.id}`}>
 									<ToolTipWrapper label="Read">
-										<ButtonWrapper className="p-1 dark:hover:bg-black transition-all ease-in-out duration-300">
-											<IconBook size={18} />
+										<ButtonWrapper className="dark:hover:bg-black transition-all ease-in-out duration-300">
+											<IconBook size={16} />
 										</ButtonWrapper>
 									</ToolTipWrapper>
 								</Link>

@@ -3,6 +3,7 @@ import { FC, ReactNode } from "react";
 import { Scrawl } from "@prisma/client";
 // import { exportScrawlAsPDF } from "@/app/lib/actions";
 import { jsPDF } from "jspdf";
+import { YYYYMMDD } from "@/app/lib/dayJs";
 
 export const DownloadPDFButton: FC<{
 	children: ReactNode;
@@ -54,12 +55,8 @@ export const DownloadPDFButton: FC<{
 			});
 		};
 
-		// Example HTML content, replace with `scrawl.content`
-		const htmlContent =
-			"<p>Hello <b>World</b><br> This is <i>jsPDF</i> and HTML.</p><p>New paragraph.</p>";
-
 		parseAndRenderHtml(scrawl.content, 10, 10);
-		doc.save(`${scrawl.id}.pdf`);
+		doc.save(`${YYYYMMDD(scrawl.completedAt)}.pdf`);
 	}
 
 	return (

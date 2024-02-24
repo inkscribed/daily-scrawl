@@ -1,9 +1,8 @@
 "use client";
 import { Drawer } from "@mantine/core";
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import { Icon } from "../navigation/Icon";
-import { usePathname, useRouter } from "next/navigation";
-import { useDisclosure } from "@mantine/hooks";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { IconBooks } from "@tabler/icons-react";
 import { Affix } from "@mantine/core";
 
@@ -11,20 +10,14 @@ export const Details: FC<{
 	children: React.ReactNode;
 }> = ({ children }) => {
 	const path = usePathname();
-	const fullPath = useRouter();
-
-	const [opened, { open, close }] = useDisclosure(false);
-
-	useEffect(() => {
-		close();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [path]);
+	const details = useSearchParams().get("details");
+	const router = useRouter();
 
 	return (
 		<>
 			<Drawer
-				opened={opened}
-				onClose={close}
+				opened={Boolean(details)}
+				onClose={() => router.push(path)}
 				title={
 					<ul className="flex items-center gap-4">
 						<Icon />
@@ -51,7 +44,9 @@ export const Details: FC<{
 				<button
 					className="p-2 border border-lightBorder dark:border-border rounded-md bg-primary-500 text-background dark:text-text hover:bg-hoverLight dark:hover:bg-hoverDark dark:bg-background bg-text duration-300 transition-all ease-in-out"
 					type="button"
-					onClick={open}
+					onClick={() => {
+						router.push(path + "?details=true");
+					}}
 				>
 					<IconBooks size={22} />
 				</button>

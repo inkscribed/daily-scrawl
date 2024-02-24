@@ -1,8 +1,8 @@
 "use client";
 import { Drawer } from "@mantine/core";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Icon } from "../navigation/Icon";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useDisclosure } from "@mantine/hooks";
 import { IconBooks } from "@tabler/icons-react";
 import { Affix } from "@mantine/core";
@@ -10,11 +10,15 @@ import { Affix } from "@mantine/core";
 export const Details: FC<{
 	children: React.ReactNode;
 }> = ({ children }) => {
-	const router = useRouter();
 	const path = usePathname();
-	const details = useSearchParams().get("details");
+	const fullPath = useRouter();
 
 	const [opened, { open, close }] = useDisclosure(false);
+
+	useEffect(() => {
+		close();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [path]);
 
 	return (
 		<>

@@ -6,6 +6,7 @@ import { YYYYMMDD } from "@/app/lib/dayJs";
 import { PublicUpdateButton } from "./PublicUpdateButton";
 import { ToolTipWrapper } from "../ui/TooltipWrapper";
 import { prisma } from "@/app/lib/prisma";
+import { ListWrapper } from "./ListWrapper";
 
 export async function Scrawls({ userId }: { userId: string }) {
 	const scrawls = await prisma.scrawl.findMany({
@@ -29,10 +30,7 @@ export async function Scrawls({ userId }: { userId: string }) {
 				<h2 className="font-semibold">Scrawls</h2>
 				<ul className="h-[calc(100dvh-21rem)] overflow-y-auto flex flex-col gap-1">
 					{scrawls?.map((scrawl: any) => (
-						<li
-							className="flex gap-2 justify-between hover:bg-text dark:hover:bg-background dark:text-text text-background duration-300 transition-all ease-in-out rounded-md px-3 py-1 "
-							key={scrawl.id}
-						>
+						<ListWrapper href={`/read/${scrawl.id}`} key={scrawl.id}>
 							<div className="flex gap-2 items-center">
 								<IconNotes size={20} />
 								<p className="text-sm font-semibold">
@@ -53,7 +51,7 @@ export async function Scrawls({ userId }: { userId: string }) {
 									</ToolTipWrapper>
 								</Link>
 							</div>
-						</li>
+						</ListWrapper>
 					))}
 				</ul>
 			</div>

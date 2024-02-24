@@ -1,7 +1,3 @@
-import "./globals.css";
-import "@mantine/tiptap/styles.css";
-import "@mantine/core/styles.css";
-
 import { Alert } from "@mantine/core";
 import Link from "next/link";
 import { IconInfoCircle } from "@tabler/icons-react";

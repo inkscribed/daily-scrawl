@@ -198,8 +198,8 @@ export const Editor = () => {
 						"p-4 !bg-transparent h-[calc(100dvh-12rem)] md:min-h-[calc(100dvh-10.5rem)]",
 					toolbar:
 						"!bg-transparent !border-none mx-auto !gap-3 md:!gap-6 !items-center",
-					control: "!bg-transparent !hover:text-primary",
-					controlsGroup: "!bg-transparent !hover:bg-text/50 !border-none",
+					control: "!bg-transparent !border-none",
+					controlsGroup: "!bg-transparent !border-none",
 				}}
 			>
 				{!start && (
@@ -246,14 +246,6 @@ export const Editor = () => {
 					</BubbleMenu>
 				)}
 				<RichTextEditor.Toolbar sticky>
-					{/* <RichTextEditor.ControlsGroup className="md:visible md:w-auto invisible w-0">
-						<p className="font-semibold w-14 flex items-center justify-center">
-							{time > 0
-								? `${new Date(time).toISOString().substr(14, 5)}`
-								: "10:00"}
-						</p>
-					</RichTextEditor.ControlsGroup> */}
-
 					<RichTextEditor.ControlsGroup>
 						<RichTextEditor.Bold />
 						<RichTextEditor.Italic />

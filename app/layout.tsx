@@ -15,6 +15,8 @@ import { Details } from "./components/modals/Details";
 import { Scrawls } from "./components/scrawls/Scrawls";
 import { Introduction } from "./components/modals/Introduction";
 import Link from "next/link";
+import { DetailsAffix } from "./components/modals/DetailsAffix";
+import { IconBooks } from "@tabler/icons-react";
 
 export const metadata: Metadata = {
 	title: "Daily Scrawl",
@@ -74,6 +76,13 @@ export default async function RootLayout({
 									<Scrawls userId={userId} />
 								)}
 							</Details>
+							<DetailsAffix>
+								<Link href="?details=true" prefetch={true}>
+									<button className="p-2 border border-lightBorder dark:border-border rounded-md bg-primary-500 text-background dark:text-text hover:bg-hoverLight dark:hover:bg-hoverDark dark:bg-background bg-text duration-300 transition-all ease-in-out">
+										<IconBooks size={22} />
+									</button>
+								</Link>
+							</DetailsAffix>
 							<Introduction />
 						</MantineProvider>
 					</ThemeProvider>

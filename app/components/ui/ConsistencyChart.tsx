@@ -49,7 +49,7 @@ export const ConsistencyChart: FC<{
 	};
 
 	const darkPanelColors = ["#111", "#1E8C34", "#26A641", "#39D353"];
-	const lightPanelColors = ["#b0b0b0", "#39D353", "#26A641", "#1E8C34"];
+	const lightPanelColors = ["#b0b0b0", "#40c463", "#30a14e", "#26A641"];
 
 	return (
 		<section className="flex flex-col gap-2 ">

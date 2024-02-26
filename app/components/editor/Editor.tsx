@@ -12,32 +12,31 @@ import { SignInButton, useAuth } from "@clerk/nextjs";
 import { Scrawl } from "@prisma/client";
 import { YYYYMMDD } from "@/app/lib/dayJs";
 import { Tooltip } from "@mantine/core";
-import { useRouter } from "next/navigation";
 import { saveScrawl as actionSaveScrawl } from "@/app/lib/actions";
 import debounce from "debounce";
 
 export const Editor = () => {
 	const [time, setTime] = useState(600000);
 	const [start, setStart] = useState(false);
-	const [content, setContent] = useState("");
 	const [isSaving, setIsSaving] = useState(false);
 
-	const router = useRouter();
-
 	const [data, setData] = useState({
-		content,
+		content: "",
 		snoozedCount: 0,
 		wordCount: 0,
 		completedAt: new Date(),
 	} as Scrawl);
 	const today = new Date().toLocaleDateString();
-	const params = new URLSearchParams();
 
 	const { isSignedIn, userId } = useAuth();
 
 	const editor = useEditor({
 		extensions: [
-			StarterKit,
+			StarterKit.configure({
+				codeBlock: false,
+				blockquote: false,
+				horizontalRule: false,
+			}),
 			Underline,
 			TextAlign.configure({ types: ["heading", "paragraph"] }),
 			Placeholder.configure({ placeholder: "What's on your mind?" }),
@@ -45,7 +44,8 @@ export const Editor = () => {
 				mode: "nodeSize",
 			}),
 		],
-		content,
+		content: data.content,
+		autofocus: "start",
 	});
 
 	function snooze() {
@@ -104,27 +104,20 @@ export const Editor = () => {
 				wordCount: editor?.storage.characterCount.words(),
 			}));
 			localStorage.setItem(YYYYMMDD(new Date()), JSON.stringify(data));
-		}, 500),
+		}, 1500),
 		[data, editor]
-	); // Adjust debounce interval as needed
+	);
 
 	useEffect(() => {
 		if (editor) {
 			editor.on("transaction", () => {
-				const newContent = editor.getHTML();
-				debouncedUpdateContent(newContent);
+				debouncedUpdateContent(editor.getHTML());
 			});
 		}
-
-		// Cleanup on component unmount
 		return () => {
 			debouncedUpdateContent.clear();
 		};
 	}, [editor, debouncedUpdateContent]);
-
-	if (!editor) {
-		return null;
-	}
 
 	return (
 		<section className="relative">
@@ -205,7 +198,7 @@ export const Editor = () => {
 				{!start && (
 					<button
 						onClick={() => {
-							setStart(true), params.set("start", "true");
+							setStart(true), editor?.setOptions({ autofocus: "start" });
 						}}
 						className="flex flex-col items-center font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text absolute px-10 py-4 mx-auto right-0 left-0 max-w-48 z-10 mt-28 md:mt-20 rounded-md"
 					>
@@ -281,7 +274,7 @@ export const Editor = () => {
 
 					<RichTextEditor.ControlsGroup className="w-14 flex justify-center items-center">
 						<p className="text-sm font-bold ">
-							{editor.storage.characterCount.words()}
+							{editor?.storage.characterCount.words() || 0}
 						</p>
 					</RichTextEditor.ControlsGroup>
 				</RichTextEditor.Toolbar>

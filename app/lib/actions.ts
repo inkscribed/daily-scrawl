@@ -16,6 +16,7 @@ export async function saveScrawl(scrawlRequest: ScrawlRequest) {
 		snoozedCount,
 		completedAt,
 	}: ScrawlRequest = scrawlRequest;
+
 	console.log({
 		content,
 		userId,

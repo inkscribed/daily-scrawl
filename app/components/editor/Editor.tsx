@@ -9,25 +9,22 @@ import Placeholder from "@tiptap/extension-placeholder";
 import { useCallback, useEffect, useState } from "react";
 import { IconAlarmSnooze, IconConfetti, IconLogin } from "@tabler/icons-react";
 import { SignInButton, useAuth } from "@clerk/nextjs";
-import { Scrawl } from "@prisma/client";
 import { YYYYMMDD } from "@/app/lib/dayJs";
 import { Tooltip } from "@mantine/core";
 import { saveScrawl as actionSaveScrawl } from "@/app/lib/actions";
 import debounce from "debounce";
+import { Scrawl } from "@prisma/client";
 
 export const Editor = () => {
-	const [time, setTime] = useState(600000);
+	const [time, setTime] = useState(6000);
 	const [start, setStart] = useState(false);
 	const [isSaving, setIsSaving] = useState(false);
-
 	const [data, setData] = useState({
 		content: "",
 		snoozedCount: 0,
 		wordCount: 0,
 		completedAt: new Date(),
 	} as Scrawl);
-	const today = new Date().toLocaleDateString();
-
 	const { isSignedIn, userId } = useAuth();
 
 	const editor = useEditor({
@@ -40,81 +37,71 @@ export const Editor = () => {
 			Underline,
 			TextAlign.configure({ types: ["heading", "paragraph"] }),
 			Placeholder.configure({ placeholder: "What's on your mind?" }),
-			CharacterCount.configure({
-				mode: "nodeSize",
-			}),
+			CharacterCount.configure({ mode: "nodeSize" }),
 		],
 		content: data.content,
 		autofocus: "start",
 	});
 
-	function snooze() {
+	const snooze = useCallback(() => {
 		localStorage.setItem(YYYYMMDD(new Date()), JSON.stringify(data));
-		if (data.snoozedCount !== 2) {
-			setData({
-				...data,
-				snoozedCount: data.snoozedCount ? data.snoozedCount + 1 : 1,
-			});
+		if (data.snoozedCount < 2) {
+			setData((prevData) => ({
+				...prevData,
+				snoozedCount: prevData.snoozedCount + 1,
+			}));
 			setTime(300000);
 		}
-	}
+	}, [data]);
 
-	const saveScrawl = async () => {
+	const saveScrawl = useCallback(async () => {
 		setIsSaving(true);
-
-		if (!isSignedIn) {
-			return;
-		}
-
-		const requestData = {
+		if (!isSignedIn) return;
+		const updatedData = {
 			...data,
 			userId,
 			wordCount: editor?.storage.characterCount.words(),
 		};
-
-		await actionSaveScrawl(requestData);
-
+		await actionSaveScrawl(updatedData);
 		setIsSaving(false);
 		localStorage.removeItem(YYYYMMDD(new Date()));
-	};
+	}, [data, isSignedIn, userId, editor]);
 
 	useEffect(() => {
-		if (!start) {
-			editor?.setEditable(false);
-		}
-
-		if (time > 0 && start) {
-			editor?.setEditable(true);
-			setTimeout(() => {
-				setTime(time - 1000);
-			}, 1000);
-		}
-
+		const timer =
+			start && time > 0 ? setTimeout(() => setTime(time - 1000), 1000) : null;
+		editor?.setEditable(time > 0 && start);
 		return () => {
+			if (timer) clearTimeout(timer);
 			editor?.setEditable(false);
 		};
-	}, [time, start, editor, today]);
+	}, [time, start, editor]);
 
 	// Debounce function to update content state
 	const debouncedUpdateContent = useCallback(
 		debounce((newContent) => {
-			setData((currentData) => ({
-				...currentData,
-				content: newContent,
-				wordCount: editor?.storage.characterCount.words(),
-			}));
-			localStorage.setItem(YYYYMMDD(new Date()), JSON.stringify(data));
+			setData((currentData) => {
+				const newData = {
+					...currentData,
+					content: newContent,
+					wordCount: editor?.storage.characterCount.words(),
+				};
+				localStorage.setItem(YYYYMMDD(new Date()), JSON.stringify(newData));
+				return newData;
+			});
 		}, 1500),
-		[data, editor]
+		[editor]
 	);
 
 	useEffect(() => {
+		const handleTransaction = () => {
+			debouncedUpdateContent(editor?.getHTML());
+		};
 		if (editor) {
-			editor.on("transaction", () => {
-				debouncedUpdateContent(editor.getHTML());
-			});
+			editor.on("transaction", handleTransaction);
 		}
 		return () => {
+			editor?.off("transaction", handleTransaction);
 			debouncedUpdateContent.clear();
 		};
 	}, [editor, debouncedUpdateContent]);

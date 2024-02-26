@@ -16,7 +16,7 @@ import debounce from "debounce";
 import { Scrawl } from "@prisma/client";
 
 export const Editor = () => {
-	const [time, setTime] = useState(6000);
+	const [time, setTime] = useState(600000);
 	const [start, setStart] = useState(false);
 	const [isSaving, setIsSaving] = useState(false);
 	const [data, setData] = useState({

@@ -1,6 +1,7 @@
 # DailyScrawl
 
-![image](https://github.com/BaraKona/daily-scrawl/assets/62246274/964c698c-feba-4222-a17d-7cce8332a176)
+![image](https://github.com/BaraKona/daily-scrawl/assets/62246274/9fb1f05e-02c8-49aa-87f1-9924aa5e8c90)
+
 
 ## Overview
 
@@ -27,6 +28,14 @@ DailyScrawl is more than just a writing tool; it's a sanctuary for your thoughts
 
 ### Screenshots
 
-![image](https://github.com/BaraKona/daily-scrawl/assets/62246274/b7579ae0-570d-484e-90b9-7705b0f485d8)
-![image](https://github.com/BaraKona/daily-scrawl/assets/62246274/5731c098-b2e4-4589-8ea7-2aacf6f757a1)
-![image](https://github.com/BaraKona/daily-scrawl/assets/62246274/097ccf5e-a825-4d26-9d6b-fcceb91c019e)
+![image](https://github.com/BaraKona/daily-scrawl/assets/62246274/da8b5f7a-194a-4206-84e7-b0851e79dec3)
+![image](https://github.com/BaraKona/daily-scrawl/assets/62246274/82563fb7-fd39-4f51-8413-4b26aeb938dd)
+![image](https://github.com/BaraKona/daily-scrawl/assets/62246274/d1219d05-ee9f-4588-a6dc-adda160e2bf4)
+
+
+#### Dark
+![image](https://github.com/BaraKona/daily-scrawl/assets/62246274/706f3fbf-dd22-4a64-81b9-66665c3b7af8)
+![image](https://github.com/BaraKona/daily-scrawl/assets/62246274/dcbc8b75-ba80-4b61-8983-4b74887f6756)
+
+
+

@@ -10,7 +10,7 @@
 		"postinstall": "prisma generate"
 	},
 	"dependencies": {
-		"@clerk/nextjs": "^4.29.7",
+		"@clerk/nextjs": "^4.29.8",
 		"@clerk/themes": "^1.7.9",
 		"@mantine/core": "^7.5.2",
 		"@mantine/hooks": "^7.5.2",

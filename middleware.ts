@@ -1,6 +1,9 @@
 import { authMiddleware } from "@clerk/nextjs";
+import { NextResponse } from "next/server";
 
 export default authMiddleware({
+	afterAuth: (auth, req) =>
+		auth.isPublicRoute ? NextResponse.next() : undefined,
 	publicRoutes: [
 		"/",
 		"/api/webhooks(.*)",

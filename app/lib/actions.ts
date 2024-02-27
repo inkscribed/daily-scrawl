@@ -105,7 +105,8 @@ export async function clerkUser() {
 	const { userId } = auth();
 
 	if (!userId) {
-		throw new Error("User not logged in or not found");
+		console.error("User not logged in or not found");
+		return null;
 	}
 
 	return userId;

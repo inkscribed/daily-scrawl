@@ -1,6 +1,6 @@
+import { clerkUser } from "@/app/lib/actions";
 import { YYYYMMDD } from "@/app/lib/dayJs";
 import { prisma } from "@/app/lib/prisma";
-import { auth } from "@clerk/nextjs";
 import { TypographyStylesProvider } from "@mantine/core";
 import { IconArrowLeft } from "@tabler/icons-react";
 import { Metadata } from "next";
@@ -16,7 +16,7 @@ export default async function Page({
 }: {
 	params: { scrawl: string; show: string; step: string };
 }) {
-	const { userId } = await auth();
+	const userId = await clerkUser();
 	return (
 		<Suspense
 			fallback={

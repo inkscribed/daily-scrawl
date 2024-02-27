@@ -5,6 +5,7 @@ import { revalidatePath } from "next/cache";
 
 // import * as DOMPurify from "dompurify";
 import DOMPurify from "isomorphic-dompurify";
+import { auth } from "@clerk/nextjs";
 
 type ScrawlRequest = Scrawl & { userId: string };
 
@@ -100,22 +101,12 @@ export async function togglePublic(
 	}
 }
 
-export async function exportScrawlAsPDF(scrawlId: string) {
-	// try {
-	// 	const scrawl = await prisma.scrawl.findUnique({
-	// 		where: {
-	// 			id: scrawlId,
-	// 		},
-	// 	});
+export async function clerkUser() {
+	const { userId } = auth();
 
-	// 	if (!scrawl) {
-	// 		console.error("Scrawl not found");
-	// 		return null;
-	// 	}
-	// } catch (error) {
-	// 	console.error("Error exporting scrawl as PDF:", error);
-	// 	return null;
-	// }
+	if (!userId) {
+		throw new Error("User not logged in or not found");
+	}
 
-	console.log("Exporting scrawl as PDF:", scrawlId);
+	return userId;
 }

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "@mantine/tiptap/styles.css";
-import { ClerkProvider, auth } from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Navbar } from "./components/navigation/Navbar";
 import { ThemeProvider } from "@/app/providers/ThemeProvider";
 import { dark } from "@clerk/themes";
@@ -16,6 +16,7 @@ import { Introduction } from "./components/modals/Introduction";
 import Link from "next/link";
 import { IconBooks } from "@tabler/icons-react";
 import { SignInAlert } from "./components/ui/SignInAlert";
+import { clerkUser } from "./lib/actions";
 
 export const metadata: Metadata = {
 	title: "Daily Scrawl",
@@ -28,9 +29,7 @@ export default async function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	const { userId }: { userId: string | null } = auth();
-
-	console.log(auth());
+	const userId = await clerkUser();
 
 	return (
 		<ClerkProvider

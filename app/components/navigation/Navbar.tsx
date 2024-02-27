@@ -1,12 +1,15 @@
 import Link from "next/link";
 import { ThemeToggler } from "../ThemeToggler";
 import { Icon } from "./Icon";
-import { SignedOut, UserButton } from "@clerk/nextjs";
+import { UserButton } from "@clerk/nextjs";
 import { IconHelpHexagon, IconLogin } from "@tabler/icons-react";
 import { ParamPusher } from "../buttons/ParamPusher";
 import { ToolTipWrapper } from "../ui/TooltipWrapper";
+import { clerkUser } from "@/app/lib/actions";
 
-export const Navbar = () => {
+export const Navbar = async () => {
+	const userId = await clerkUser();
+
 	return (
 		<nav className="flex items-center justify-between w-full p-4 gap-4">
 			<ul>
@@ -18,20 +21,21 @@ export const Navbar = () => {
 				</li>
 			</ul>
 			<section className="flex items-center gap-2">
-				<UserButton
-					afterSignOutUrl="/"
-					appearance={{
-						elements: {
-							avatarBox:
-								"rounded-md h-10 w-10 border border-lightBorder dark:border-border",
-							avatar: "rounded-md",
-							userButtonBox__open: "rounded-md",
-							userButtonAvatarBox__open: "rounded-md",
-							userButtonTrigger__open: "rounded-md",
-						},
-					}}
-				/>
-				<SignedOut>
+				{userId ? (
+					<UserButton
+						afterSignOutUrl="/"
+						appearance={{
+							elements: {
+								avatarBox:
+									"rounded-md h-10 w-10 border border-lightBorder dark:border-border",
+								avatar: "rounded-md",
+								userButtonBox__open: "rounded-md",
+								userButtonAvatarBox__open: "rounded-md",
+								userButtonTrigger__open: "rounded-md",
+							},
+						}}
+					/>
+				) : (
 					<ToolTipWrapper label="Login">
 						<Link
 							href="/sign-in"
@@ -40,7 +44,8 @@ export const Navbar = () => {
 							<IconLogin size={22} />
 						</Link>
 					</ToolTipWrapper>
-				</SignedOut>
+				)}
+
 				<ParamPusher
 					param={`/?show=true&step=0`}
 					className="p-2 border border-lightBorder dark:border-border rounded-md bg-primary-500 text-background dark:text-text hover:bg-hoverLight dark:hover:bg-hoverDark duration-300 transition-all ease-in-out"

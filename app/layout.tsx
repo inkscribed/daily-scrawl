@@ -30,6 +30,8 @@ export default async function RootLayout({
 }>) {
 	const { userId }: { userId: string | null } = auth();
 
+	console.log(auth());
+
 	return (
 		<ClerkProvider
 			appearance={{

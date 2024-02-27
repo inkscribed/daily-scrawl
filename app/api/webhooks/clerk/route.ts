@@ -81,6 +81,11 @@ export async function POST(req: Request) {
 async function createUser(data: any) {
 	const { first_name, last_name, email_addresses, createdAt, id } = data;
 
+	if (!email_addresses || !email_addresses[0]) {
+		console.error("No email address found");
+		return null;
+	}
+
 	try {
 		const user = await prisma.user.create({
 			data: {

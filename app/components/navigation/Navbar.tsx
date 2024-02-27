@@ -5,6 +5,7 @@ import { SignedOut, UserButton } from "@clerk/nextjs";
 import { IconHelpHexagon, IconLogin } from "@tabler/icons-react";
 import { ParamPusher } from "../buttons/ParamPusher";
 import { ToolTipWrapper } from "../ui/TooltipWrapper";
+
 export const Navbar = () => {
 	return (
 		<nav className="flex items-center justify-between w-full p-4 gap-4">

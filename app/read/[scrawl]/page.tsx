@@ -1,6 +1,6 @@
 import { YYYYMMDD } from "@/app/lib/dayJs";
 import { prisma } from "@/app/lib/prisma";
-import { currentUser } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs";
 import { TypographyStylesProvider } from "@mantine/core";
 import { IconArrowLeft } from "@tabler/icons-react";
 import { Metadata } from "next";
@@ -16,7 +16,7 @@ export default async function Page({
 }: {
 	params: { scrawl: string; show: string; step: string };
 }) {
-	const user = await currentUser();
+	const { userId } = await auth();
 	return (
 		<Suspense
 			fallback={
@@ -34,7 +34,7 @@ export default async function Page({
 				</section>
 			}
 		>
-			<Scrawl scrawl={params.scrawl} userId={user ? user.id : null} />
+			<Scrawl scrawl={params.scrawl} userId={userId || null} />
 		</Suspense>
 	);
 }
@@ -47,6 +47,9 @@ async function Scrawl({
 	userId: string | null;
 }) {
 	let scrawlData = null;
+
+	console.log("Scrawl:", scrawl);
+	console.log("User:", userId);
 
 	if (userId) {
 		scrawlData = await prisma.scrawl.findFirst({

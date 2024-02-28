@@ -6,6 +6,7 @@ import Underline from "@tiptap/extension-underline";
 import TextAlign from "@tiptap/extension-text-align";
 import CharacterCount from "@tiptap/extension-character-count";
 import Placeholder from "@tiptap/extension-placeholder";
+import Typography from "@tiptap/extension-typography";
 import { useCallback, useEffect, useState } from "react";
 import { IconAlarmSnooze, IconConfetti, IconLogin } from "@tabler/icons-react";
 import { SignInButton, useAuth } from "@clerk/nextjs";
@@ -38,6 +39,7 @@ export const Editor = () => {
 			TextAlign.configure({ types: ["heading", "paragraph"] }),
 			Placeholder.configure({ placeholder: "What's on your mind?" }),
 			CharacterCount.configure({ mode: "nodeSize" }),
+			Typography,
 		],
 		content: data.content,
 		autofocus: "start",

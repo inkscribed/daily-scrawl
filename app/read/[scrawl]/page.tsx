@@ -99,12 +99,15 @@ async function Scrawl({
 
 	return (
 		<section className="flex">
-			<div className="basis-[58rem] mx-auto px-4 flex flex-col gap-4">
+			<div className="basis-[59rem] mx-auto px-4 flex flex-col gap-4">
 				<h2 className="font-semibold text-3xl">
 					{YYYYMMDD(scrawlData?.completedAt)}
 				</h2>
-				<TypographyStylesProvider className="pb-10">
-					<div dangerouslySetInnerHTML={{ __html: scrawlData.content }} />
+				<TypographyStylesProvider>
+					<div
+						dangerouslySetInnerHTML={{ __html: scrawlData.content }}
+						className="h-[calc(100dvh-8rem)] overflow-y-auto px-2 pb-10"
+					/>
 				</TypographyStylesProvider>
 			</div>
 		</section>

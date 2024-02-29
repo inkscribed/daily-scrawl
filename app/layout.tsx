@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/app/providers/ThemeProvider";
 import { dark } from "@clerk/themes";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "@mantine/core/styles.css";
 
 import { Affix, ColorSchemeScript, MantineProvider } from "@mantine/core";
@@ -50,6 +51,7 @@ export default async function RootLayout({
 				<head>
 					<ColorSchemeScript />
 				</head>
+
 				<body className="bg-text dark:bg-background text-background dark:text-text">
 					<ThemeProvider>
 						<MantineProvider>
@@ -70,6 +72,7 @@ export default async function RootLayout({
 					</ThemeProvider>
 					<Analytics />
 					<SpeedInsights />
+					<GoogleAnalytics gaId="G-QGRNQTFX1C" />
 					<Toaster position="bottom-right" />
 				</body>
 			</html>

@@ -1,5 +1,4 @@
 import {
-	IconNotes,
 	IconBook,
 	IconDownload,
 	IconBrandGithub,
@@ -10,12 +9,12 @@ import {
 import { ConsistencyChart } from "../ui/ConsistencyChart";
 import { ButtonWrapper } from "../buttons/ButtonWrapper";
 import Link from "next/link";
-import { YYYYMMDD } from "@/app/lib/dayJs";
 import { PublicUpdateButton } from "./PublicUpdateButton";
 import { ToolTipWrapper } from "../ui/TooltipWrapper";
 import { prisma } from "@/app/lib/prisma";
 import { ListWrapper } from "./ListWrapper";
 import { DownloadPDFButton } from "../buttons/DownloadPDFButton";
+import { ScrawlName } from "./ScrawlName";
 
 export async function Scrawls({ userId }: { userId: string }) {
 	const scrawls = await prisma.scrawl.findMany({
@@ -32,7 +31,7 @@ export async function Scrawls({ userId }: { userId: string }) {
 	}
 
 	return (
-		<section>
+		<section className="flex flex-col">
 			<ConsistencyChart scrawls={scrawls} />
 			<hr className="h-px my-4 bg-hr border-0 dark:bg-hrDark" />
 			<div className="space-y-2">
@@ -40,12 +39,7 @@ export async function Scrawls({ userId }: { userId: string }) {
 				<ul className="h-[calc(100dvh-23rem)] overflow-y-auto flex flex-col gap-1">
 					{scrawls?.map((scrawl: any) => (
 						<ListWrapper href={`/read/${scrawl.id}`} key={scrawl.id}>
-							<div className="flex gap-2 items-center">
-								<IconNotes size={20} />
-								<p className="text-sm font-semibold">
-									{YYYYMMDD(scrawl.completedAt)}
-								</p>
-							</div>
+							<ScrawlName scrawl={scrawl} />
 							<div className="flex gap-1 items-center">
 								<ToolTipWrapper label="Download">
 									<DownloadPDFButton scrawl={scrawl}>
@@ -69,7 +63,7 @@ export async function Scrawls({ userId }: { userId: string }) {
 					))}
 				</ul>
 			</div>
-			<div className="flex gap-2 items-center mt-3">
+			<div className="flex gap-2 items-center mt-3 mx-auto">
 				<Link href="https://github.com/BaraKona" target="_blank">
 					<IconBrandGithub size={20} />
 				</Link>

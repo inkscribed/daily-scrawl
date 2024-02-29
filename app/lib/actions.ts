@@ -72,10 +72,10 @@ export async function togglePublic(
 	id: string,
 	userId: string,
 	isPublic: boolean
-): Promise<Scrawl | null> {
+): Promise<Scrawl | Error> {
 	if (!userId) {
 		console.error("No userId provided when toggling public scrawl");
-		return null;
+		return new Error("No userId provided when toggling public scrawl");
 	}
 
 	try {
@@ -97,7 +97,7 @@ export async function togglePublic(
 		return scrawl;
 	} catch (error) {
 		console.error("Error toggling public scrawl:", error);
-		return null;
+		return error as Error;
 	}
 }
 
@@ -110,4 +110,34 @@ export async function clerkUser() {
 	}
 
 	return userId;
+}
+
+export async function renameScrawl(
+	id: string,
+	name: string
+): Promise<Scrawl | Error> {
+	const userId = await clerkUser();
+
+	if (!userId) {
+		console.error("No userId provided when renaming scrawl");
+		return new Error("No userId provided when renaming scrawl");
+	}
+
+	try {
+		const scrawl = await prisma.scrawl.update({
+			where: {
+				id,
+				authorId: userId,
+			},
+			data: {
+				name,
+			},
+		});
+
+		revalidatePath("/");
+		return scrawl;
+	} catch (error) {
+		console.error("Error renaming scrawl:", error);
+		return error as Error;
+	}
 }

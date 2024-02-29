@@ -17,6 +17,7 @@ import Link from "next/link";
 import { IconLayoutSidebarLeftExpand } from "@tabler/icons-react";
 import { SignInAlert } from "./components/ui/SignInAlert";
 import { clerkUser } from "./lib/actions";
+import { Toaster } from "react-hot-toast";
 
 export const metadata: Metadata = {
 	title: "Daily Scrawl",
@@ -69,6 +70,7 @@ export default async function RootLayout({
 					</ThemeProvider>
 					<Analytics />
 					<SpeedInsights />
+					<Toaster position="bottom-right" />
 				</body>
 			</html>
 		</ClerkProvider>

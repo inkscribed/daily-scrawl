@@ -61,7 +61,7 @@ export async function Scrawls({ userId }: { userId: string }) {
 					))}
 				</ul>
 			</div>
-			<div className="flex gap-2 items-center mt-3 mx-auto">
+			<div className="flex gap-3 items-center mt-3 mx-auto">
 				<Link href="https://github.com/BaraKona" target="_blank">
 					<IconBrandGithub size={20} />
 				</Link>

@@ -41,11 +41,9 @@ export async function Scrawls({ userId }: { userId: string }) {
 						<ListWrapper href={`/read/${scrawl.id}`} key={scrawl.id}>
 							<ScrawlName scrawl={scrawl} />
 							<div className="flex gap-1 items-center">
-								<ToolTipWrapper label="Download">
-									<DownloadPDFButton scrawl={scrawl}>
-										<IconDownload size={16} />
-									</DownloadPDFButton>
-								</ToolTipWrapper>
+								<DownloadPDFButton scrawl={scrawl}>
+									<IconDownload size={16} />
+								</DownloadPDFButton>
 								<PublicUpdateButton
 									scrawlId={scrawl.id}
 									isPublic={scrawl.isPublic}

@@ -4,6 +4,7 @@ import { Scrawl } from "@prisma/client";
 // import { exportScrawlAsPDF } from "@/app/lib/actions";
 import { jsPDF } from "jspdf";
 import { YYYYMMDD } from "@/app/lib/dayJs";
+import { ToolTipWrapper } from "../ui/TooltipWrapper";
 
 export const DownloadPDFButton: FC<{
 	children: ReactNode;
@@ -108,11 +109,13 @@ export const DownloadPDFButton: FC<{
 	}
 
 	return (
-		<button
-			onClick={downloadScrawl}
-			className={`p-1.5 rounded-md bg-primary-500 text-background dark:text-text dark:hover:bg-black transition-all ease-in-out duration-300 hover:bg-hoverLight `}
-		>
-			{children}
-		</button>
+		<ToolTipWrapper label="Download">
+			<button
+				onClick={downloadScrawl}
+				className={`p-1.5 rounded-md bg-primary-500 text-background dark:text-text dark:hover:bg-black transition-all ease-in-out duration-300 hover:bg-hoverLight `}
+			>
+				{children}
+			</button>
+		</ToolTipWrapper>
 	);
 };

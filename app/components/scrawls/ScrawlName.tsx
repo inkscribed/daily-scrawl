@@ -2,12 +2,11 @@
 import { YYYYMMDD } from "@/app/lib/dayJs";
 import { Scrawl } from "@prisma/client";
 import { IconNotes, IconPencil } from "@tabler/icons-react";
-import { ButtonWrapper } from "../buttons/ButtonWrapper";
-import { ToolTipWrapper } from "../ui/TooltipWrapper";
 import { useState } from "react";
 import { renameScrawl } from "@/app/lib/actions";
 import toast from "react-hot-toast";
 import { useTheme } from "next-themes";
+import { ToolTipWrapper } from "../ui/TooltipWrapper";
 
 export const ScrawlName = ({ scrawl }: { scrawl: Scrawl }) => {
 	const [editable, setEditable] = useState(false);
@@ -66,14 +65,15 @@ export const ScrawlName = ({ scrawl }: { scrawl: Scrawl }) => {
 					</p>
 				)}
 			</div>
-			<ToolTipWrapper label="Edit Scrawl Name">
-				<ButtonWrapper
+			<ToolTipWrapper label="Edit name">
+				<button
+					className={`p-1.5 rounded-md bg-primary-500 text-background dark:text-text hover:bg-hoverLight dark:hover:bg-hoverDark duration-300 transition-all ease-in-out`}
 					onClick={() => {
 						setEditable(!editable);
 					}}
 				>
 					<IconPencil size={16} />
-				</ButtonWrapper>
+				</button>
 			</ToolTipWrapper>
 		</section>
 	);

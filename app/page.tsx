@@ -43,13 +43,13 @@ async function DailyScrawl({ userId, name }: { userId: string; name: string }) {
 
 	return (
 		<section className="flex items-center justify-center h-[calc(100dvh-20rem)]">
-			<div className="mx-auto p-4 text-background dark:text-text z-10 flex flex-col">
+			<div className="mx-auto p-4 text-background dark:text-textDark z-10 flex flex-col">
 				<h2 className="text-5xl font-bold text-center">Hi {name}</h2>
 				<p className="text-center mt-4 text-3xl w-96 mx-auto">
 					Great job on your daily scrawl!
 				</p>
 				<Link href="?details=true" className="mx-auto">
-					<AnimatedArrowButton className="mt-6 flex items-center mx-auto bg-background hover:bg-hoverDark dark:bg-text dark:text-background text-text dark:hover:bg-hoverLight rounded-full py-3 px-5 font-semibold">
+					<AnimatedArrowButton className="mt-6 flex items-center mx-auto bg-background hover:bg-hoverDark dark:bg-textDark dark:text-background text-text dark:hover:bg-hoverLight rounded-full py-3 px-5 font-semibold">
 						<p className="-mt-0.5">See your progress</p>
 					</AnimatedArrowButton>
 				</Link>
@@ -70,7 +70,7 @@ export default async function Page({ searchParams }: SearchParamProps) {
 				<Suspense
 					fallback={
 						<section className="flex items-center justify-center h-[calc(100dvh-20rem)]">
-							<div className="mx-auto p-4 text-background dark:text-text z-10 flex flex-col">
+							<div className="mx-auto p-4 text-background dark:text-textDark z-10 flex flex-col">
 								<h2 className="text-5xl font-bold text-center">
 									Hi{" "}
 									{user?.firstName

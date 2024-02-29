@@ -11,16 +11,16 @@ export const SignInAlert = () => {
 			icon={<IconInfoCircle />}
 			classNames={{
 				message: "!flex flex-col gap-4",
-				body: "dark:!bg-background !bg-text dark:text-text",
+				body: "dark:!bg-background !bg-text dark:text-textDark",
 				root: "dark:!bg-background !bg-text",
 				wrapper: "dark:bg-background bg-text",
-				label: "dark:text-text text-background",
-				closeButton: "dark:text-text text-background",
-				icon: "dark:text-text text-background",
-				title: "dark:text-text text-background",
+				label: "dark:text-textDark text-background",
+				closeButton: "dark:text-textDark text-background",
+				icon: "dark:text-textDark text-background",
+				title: "dark:text-textDark text-background",
 			}}
 		>
-			<p className="text-background dark:text-text">
+			<p className="text-background dark:text-textDark">
 				Please sign in to access these features.
 				<br />
 				You will be able to view your past writing and track your consistency as
@@ -28,7 +28,7 @@ export const SignInAlert = () => {
 			</p>
 			<div className="ml-auto mb-2">
 				<Link href="/sign-in">
-					<AnimatedArrowButton className="text-sm font-semibold hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text duration-300 transition-all ease-in-out rounded px-3 py-1 flex items-center">
+					<AnimatedArrowButton className="text-sm font-semibold hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-textDark dark:text-background bg-background text-text duration-300 transition-all ease-in-out rounded px-3 py-1 flex items-center">
 						Sign in
 					</AnimatedArrowButton>
 				</Link>

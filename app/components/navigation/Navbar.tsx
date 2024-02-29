@@ -39,7 +39,7 @@ export const Navbar = async () => {
 					<ToolTipWrapper label="Login">
 						<Link
 							href="/sign-in"
-							className="p-2 bg-violet-500/50 rounded-md text-background  hover:bg-violet-600/50 dark:text-text duration-300 transition-all"
+							className="p-2 bg-violet-500/50 rounded-md text-background  hover:bg-violet-600/50 dark:text-textDark duration-300 transition-all"
 						>
 							<IconLogin size={22} />
 						</Link>
@@ -48,7 +48,7 @@ export const Navbar = async () => {
 
 				<ParamPusher
 					param={`/?show=true&step=0`}
-					className="p-2 border border-lightBorder dark:border-border rounded-md bg-primary-500 text-background dark:text-text hover:bg-hoverLight dark:hover:bg-hoverDark duration-300 transition-all ease-in-out"
+					className="p-2 border border-lightBorder dark:border-border rounded-md bg-primary-500 text-background dark:text-textDark hover:bg-hoverLight dark:hover:bg-hoverDark duration-300 transition-all ease-in-out"
 				>
 					<IconHelpHexagon size={22} />
 				</ParamPusher>

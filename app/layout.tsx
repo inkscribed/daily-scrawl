@@ -52,7 +52,7 @@ export default async function RootLayout({
 					<ColorSchemeScript />
 				</head>
 
-				<body className="bg-text dark:bg-background text-background dark:text-text">
+				<body className="bg-text dark:bg-background text-background dark:text-textDark">
 					<ThemeProvider>
 						<MantineProvider>
 							<Navbar />
@@ -62,7 +62,7 @@ export default async function RootLayout({
 							</Details>
 							<Affix position={{ bottom: 20, left: 20 }} zIndex={1}>
 								<Link href="?details=true" prefetch={true}>
-									<button className="p-2 border border-lightBorder dark:border-border rounded-md bg-primary-500 text-background dark:text-text hover:bg-hoverLight dark:hover:bg-hoverDark dark:bg-background bg-text duration-300 transition-all ease-in-out">
+									<button className="p-2 border border-lightBorder dark:border-border rounded-md bg-primary-500 text-background dark:text-textDark hover:bg-hoverLight dark:hover:bg-hoverDark dark:bg-background bg-text duration-300 transition-all ease-in-out">
 										<IconLayoutSidebarLeftExpand size={22} />
 									</button>
 								</Link>

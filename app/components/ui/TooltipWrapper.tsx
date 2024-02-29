@@ -12,7 +12,7 @@ export const ToolTipWrapper: FC<{ label: string; children: JSX.Element }> = ({
 			withArrow
 			classNames={{
 				tooltip:
-					"bg-background dark:bg-text text-text dark:text-background font-semibold",
+					"bg-background dark:bg-textDark text-text dark:text-background font-semibold",
 			}}
 		>
 			{children}

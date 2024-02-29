@@ -32,7 +32,7 @@ export const Details: FC<{
 				header: "dark:!bg-hoverDark !bg-hoverLight",
 				content: "dark:!bg-hoverDark !bg-hoverLight !rounded-md",
 				close:
-					"hover:dark:!bg-background !hover:bg-text !text-background dark:!text-text",
+					"hover:dark:!bg-background !hover:bg-text !text-background dark:!text-textDark",
 			}}
 		>
 			{children}

@@ -111,9 +111,9 @@ export const Editor = () => {
 	return (
 		<section className="relative">
 			{time <= 0 && (
-				<div className="absolute inset-0 items-center mx-auto justify-center bg-text/90 dark:bg-background/90 text-background/90 dark:text-text/90 z-10 !overflow-y-hidden">
+				<div className="absolute inset-0 items-center mx-auto justify-center bg-text/90 dark:bg-background/90 text-background/90 dark:text-textDark/90 z-10 !overflow-y-hidden">
 					<section className="flex items-center justify-center h-[calc(100dvh-20rem)] ">
-						<div className="mx-auto p-4 text-background dark:text-text z-10 flex flex-col">
+						<div className="mx-auto p-4 text-background dark:text-textDark z-10 flex flex-col">
 							<h2 className="text-5xl font-bold text-center">Time&#39;s up!</h2>
 							<p className="text-center mt-4 text-3xl w-96">
 								Great job on your daily scrawl!
@@ -125,7 +125,7 @@ export const Editor = () => {
 										mode="modal"
 										redirectUrl={`/?scrawlCompleted=true`}
 									>
-										<button className="flex items-center justify-center gap-2 px-4 py-2 basis-48 rounded-md font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text">
+										<button className="flex items-center justify-center gap-2 px-4 py-2 basis-48 rounded-md font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-textDark dark:text-background bg-background text-text">
 											<IconLogin /> Sign in
 										</button>
 									</SignInButton>
@@ -134,7 +134,7 @@ export const Editor = () => {
 									<button
 										disabled={isSaving}
 										onClick={saveScrawl}
-										className="flex items-center justify-center gap-2 px-4 py-2 basis-48 rounded-md font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text"
+										className="flex items-center justify-center gap-2 px-4 py-2 basis-48 rounded-md font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-textDark dark:text-background bg-background text-text"
 									>
 										{isSaving ? (
 											"Saving..."
@@ -154,13 +154,13 @@ export const Editor = () => {
 										withArrow
 										classNames={{
 											tooltip:
-												"bg-background dark:bg-text text-text dark:text-background font-semibold",
+												"bg-background dark:bg-textDark text-text dark:text-background font-semibold",
 										}}
 									>
 										<button
 											onClick={snooze}
 											disabled={data.snoozedCount === 2}
-											className="flex items-center justify-center gap-2 px-4 py-2 rounded-md font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text"
+											className="flex items-center justify-center gap-2 px-4 py-2 rounded-md font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-textDark dark:text-background bg-background text-text"
 										>
 											<IconAlarmSnooze />
 										</button>
@@ -189,7 +189,7 @@ export const Editor = () => {
 						onClick={() => {
 							setStart(true), editor?.setOptions({ autofocus: "start" });
 						}}
-						className="flex flex-col items-center font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text absolute px-10 py-4 mx-auto right-0 left-0 max-w-48 z-10 mt-28 md:mt-20 rounded-md"
+						className="flex flex-col items-center font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-textDark dark:text-background bg-background text-text absolute px-10 py-4 mx-auto right-0 left-0 max-w-48 z-10 mt-28 md:mt-20 rounded-md"
 					>
 						Begin scrawl
 					</button>

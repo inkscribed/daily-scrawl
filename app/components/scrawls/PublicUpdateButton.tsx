@@ -47,7 +47,7 @@ export const PublicUpdateButton: FC<{
 			withArrow
 			classNames={{
 				tooltip:
-					"bg-background dark:bg-text text-text dark:text-background font-semibold",
+					"bg-background dark:bg-textDark text-text dark:text-background font-semibold",
 			}}
 		>
 			<button
@@ -55,7 +55,7 @@ export const PublicUpdateButton: FC<{
 				disabled={isLoading}
 				className={`${
 					isLoading ? "p-1.5 py-0.5" : "p-1.5"
-				} rounded-md text-background dark:text-text hover:bg-hoverLight dark:hover:bg-hoverDark `}
+				} rounded-md text-background dark:text-textDark hover:bg-hoverLight dark:hover:bg-hoverDark `}
 			>
 				<IconRenderer isLoading={isLoading} isPublic={isPublic} />
 			</button>

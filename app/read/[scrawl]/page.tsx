@@ -87,7 +87,7 @@ async function Scrawl({
 					<p></p>
 					<Link
 						href="/"
-						className="flex gap-2 items-center mr-auto px-4 py-3 rounded-md font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-text dark:text-background bg-background text-text"
+						className="flex gap-2 items-center mr-auto px-4 py-3 rounded-md font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-textDark dark:text-background bg-background text-text"
 					>
 						<IconArrowLeft size={18} />
 						Go back

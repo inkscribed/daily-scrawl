@@ -66,7 +66,7 @@ export const Introduction: FC<{}> = () => {
 					<motion.div initial="default" whileHover="hover" className="mx-auto">
 						<Link
 							href={path + `?show=true&step=1`}
-							className="group flex items-center bg-background text-text dark:text-background hover:bg-hoverDark dark:bg-text dark:hover:bg-hoverLight duration-300 font-semibold transition-all ease-in-out rounded px-3 py-1 text-sm"
+							className="group flex items-center bg-background text-text dark:text-background hover:bg-hoverDark dark:bg-textDark dark:hover:bg-hoverLight duration-300 font-semibold transition-all ease-in-out rounded px-3 py-1 text-sm"
 						>
 							next{" "}
 							<motion.div
@@ -139,7 +139,7 @@ export const Introduction: FC<{}> = () => {
 						<motion.div initial="default" whileHover="hover">
 							<Link
 								href={path + `?show=true&step=0`}
-								className="flex items-center bg-background text-text dark:text-background hover:bg-hoverDark dark:bg-text dark:hover:bg-hoverLight duration-300 font-semibold transition-all ease-in-out rounded px-3 py-1 text-sm"
+								className="flex items-center bg-background text-text dark:text-background hover:bg-hoverDark dark:bg-textDark dark:hover:bg-hoverLight duration-300 font-semibold transition-all ease-in-out rounded px-3 py-1 text-sm"
 							>
 								<motion.div
 									variants={{
@@ -153,7 +153,7 @@ export const Introduction: FC<{}> = () => {
 						</motion.div>
 
 						<motion.div initial="default" whileHover="hover">
-							<CloseModalButton className="flex items-center text-sm text-text dark:text-background bg-background hover:bg-hoverDark dark:bg-text dark:hover:bg-hoverLight duration-300 font-semibold transition-all ease-in-out px-3 py-1">
+							<CloseModalButton className="flex items-center text-sm text-text dark:text-background bg-background hover:bg-hoverDark dark:bg-textDark dark:hover:bg-hoverLight duration-300 font-semibold transition-all ease-in-out px-3 py-1">
 								Start writing
 								<motion.div
 									variants={{

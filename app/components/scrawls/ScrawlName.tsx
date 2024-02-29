@@ -67,7 +67,7 @@ export const ScrawlName = ({ scrawl }: { scrawl: Scrawl }) => {
 			</div>
 			<ToolTipWrapper label="Edit name">
 				<button
-					className={`p-1.5 rounded-md bg-primary-500 text-background dark:text-text hover:bg-hoverLight dark:hover:bg-hoverDark duration-300 transition-all ease-in-out`}
+					className={`p-1.5 rounded-md bg-primary-500 text-background dark:text-textDark hover:bg-hoverLight dark:hover:bg-hoverDark duration-300 transition-all ease-in-out`}
 					onClick={() => {
 						setEditable(!editable);
 					}}

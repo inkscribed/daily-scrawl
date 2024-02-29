@@ -112,7 +112,7 @@ export const DownloadPDFButton: FC<{
 		<ToolTipWrapper label="Download">
 			<button
 				onClick={downloadScrawl}
-				className={`p-1.5 rounded-md bg-primary-500 text-background dark:text-text dark:hover:bg-black transition-all ease-in-out duration-300 hover:bg-hoverLight `}
+				className={`p-1.5 rounded-md bg-primary-500 text-background dark:text-textDark dark:hover:bg-black transition-all ease-in-out duration-300 hover:bg-hoverLight `}
 			>
 				{children}
 			</button>

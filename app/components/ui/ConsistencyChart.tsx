@@ -53,7 +53,7 @@ export const ConsistencyChart: FC<{
 
 	return (
 		<section className="flex flex-col gap-2 ">
-			<p className=" font-semibold text-background dark:text-text">
+			<p className=" font-semibold text-background dark:text-textDark">
 				{scrawls.length} contribution(s) in the last year
 			</p>
 			<section className="!-mr-2">
@@ -67,7 +67,7 @@ export const ConsistencyChart: FC<{
 					weekNames={weekNames}
 				/>
 			</section>
-			<p className="ml-auto font-semibold text-background dark:text-text text-xs">
+			<p className="ml-auto font-semibold text-background dark:text-textDark text-xs">
 				Words: {wordsWritten || 0}
 			</p>
 		</section>

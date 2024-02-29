@@ -5,6 +5,7 @@ import { Tooltip } from "@mantine/core";
 import { togglePublic } from "@/app/lib/actions";
 import { useTheme } from "next-themes";
 import toast from "react-hot-toast";
+import { Loader } from "@mantine/core";
 
 export const PublicUpdateButton: FC<{
 	isPublic: boolean;
@@ -25,6 +26,7 @@ export const PublicUpdateButton: FC<{
 						color: theme === "light" ? "#d0d0d0" : "#151414",
 					},
 				});
+				setIsLoading(false);
 			})
 			.catch(() => {
 				toast.error("Something went wrong! Please try again.", {
@@ -34,8 +36,8 @@ export const PublicUpdateButton: FC<{
 						color: theme === "light" ? "#d0d0d0" : "#151414",
 					},
 				});
+				setIsLoading(false);
 			});
-		setIsLoading(false);
 	};
 
 	return (
@@ -51,22 +53,32 @@ export const PublicUpdateButton: FC<{
 			<button
 				onClick={handleTogglePublic}
 				disabled={isLoading}
-				className={`p-1.5 rounded-md bg-primary-500 text-background dark:text-text hover:bg-hoverLight dark:hover:bg-hoverDark duration-300 transition-all ease-in-out`}
+				className={`${
+					isLoading ? "p-1.5 py-0.5" : "p-1.5"
+				} rounded-md text-background dark:text-text hover:bg-hoverLight dark:hover:bg-hoverDark `}
 			>
-				{isPublic ? (
-					<IconShare
-						aria-disabled={isLoading}
-						size={16}
-						className="dark:text-sky-600 text-blue-600 disabled:text-gray-400"
-					/>
-				) : (
-					<IconShareOff
-						aria-disabled={isLoading}
-						size={16}
-						className="dark:text-yellow-600 text-yellow-600 disabled:text-gray-400"
-					/>
-				)}
+				<IconRenderer isLoading={isLoading} isPublic={isPublic} />
 			</button>
 		</Tooltip>
+	);
+};
+
+const IconRenderer = ({
+	isLoading,
+	isPublic,
+}: {
+	isLoading: boolean;
+	isPublic: boolean;
+}) => {
+	if (isLoading) {
+		return <Loader size={16} color="gray" />;
+	}
+
+	if (isPublic) {
+		return <IconShare size={16} className="dark:text-sky-600 text-blue-600" />;
+	}
+
+	return (
+		<IconShareOff size={16} className="dark:text-yellow-600 text-yellow-600" />
 	);
 };

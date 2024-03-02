@@ -185,14 +185,24 @@ export const Editor = () => {
 				}}
 			>
 				{!start && (
-					<button
-						onClick={() => {
-							setStart(true), editor?.setOptions({ autofocus: "start" });
-						}}
-						className="flex flex-col items-center font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-textDark dark:text-background bg-background text-text absolute px-10 py-4 mx-auto right-0 left-0 max-w-48 z-10 mt-28 md:mt-20 rounded-md"
-					>
-						Begin scrawl
-					</button>
+					<div className="mx-auto right-0 left-0 max-w-lg gap-6 z-10 mt-28 md:mt-20 absolute flex flex-col">
+						<button
+							onClick={() => {
+								setStart(true), editor?.setOptions({ autofocus: "start" });
+							}}
+							className="flex flex-col items-center max-w-80 mx-auto font-semibold shadow-md hover:dark:bg-hoverLight hover:bg-hoverDark dark:bg-textDark dark:text-background bg-background text-text px-10 py-4 rounded-md"
+						>
+							Begin scrawl
+						</button>
+						<div>
+							<p className="max-w-lg mx-auto text-center text-background/50 dark:text-textDark/50">
+								Click the button above to start your scrawl. You have{" "}
+								<b>10 minutes</b> to write whatever comes to mind. When the time
+								is up, you can save your scrawl or snooze for an additional 5
+								minutes.
+							</p>
+						</div>
+					</div>
 				)}
 				{editor && (
 					<BubbleMenu

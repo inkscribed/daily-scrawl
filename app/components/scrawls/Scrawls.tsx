@@ -1,11 +1,4 @@
-import {
-	IconBook,
-	IconDownload,
-	IconBrandGithub,
-	IconBrandLinkedin,
-	IconMail,
-	IconBrandInstagram,
-} from "@tabler/icons-react";
+import { IconBook, IconDownload } from "@tabler/icons-react";
 import { ConsistencyChart } from "../ui/ConsistencyChart";
 import { ButtonWrapper } from "../buttons/ButtonWrapper";
 import Link from "next/link";
@@ -36,7 +29,7 @@ export async function Scrawls({ userId }: { userId: string }) {
 			<hr className="h-px my-4 bg-hr border-0 dark:bg-hrDark" />
 			<div className="space-y-2">
 				<h2 className="font-semibold">Scrawls</h2>
-				<ul className="h-[calc(100dvh-23rem)] overflow-y-auto flex flex-col gap-1">
+				<ul className="h-[calc(100dvh-22.5rem)] overflow-y-auto flex flex-col gap-1">
 					{scrawls?.map((scrawl: any) => (
 						<ListWrapper href={`/read/${scrawl.id}`} key={scrawl.id}>
 							<ScrawlName scrawl={scrawl} />
@@ -60,20 +53,6 @@ export async function Scrawls({ userId }: { userId: string }) {
 						</ListWrapper>
 					))}
 				</ul>
-			</div>
-			<div className="flex gap-3 items-center mt-3 mx-auto">
-				<Link href="https://github.com/BaraKona" target="_blank">
-					<IconBrandGithub size={20} />
-				</Link>
-				<Link href="https://www.linkedin.com/in/bara-kona/" target="_blank">
-					<IconBrandLinkedin size={20} />
-				</Link>
-				<a href="mailto:bkonateh1@gmail.com" target="_blank">
-					<IconMail size={20} />
-				</a>
-				<Link href="https://instagram.com/barakona00" target="_blank">
-					<IconBrandInstagram size={20} />
-				</Link>
 			</div>
 		</section>
 	);

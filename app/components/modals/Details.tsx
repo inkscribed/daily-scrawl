@@ -44,7 +44,7 @@ export const Details: FC<{
 			}}
 		>
 			{children}
-			<section className="flex items-center justify-between">
+			<section className="flex items-center justify-between mt-auto absolute bottom-3 px-4 w-full right-0 left-0">
 				<div className="flex gap-3 items-center">
 					<Link href="https://github.com/BaraKona" target="_blank">
 						<IconBrandGithub size={20} />

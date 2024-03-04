@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export default authMiddleware({
 	afterAuth: (auth, req) =>
 		auth.isPublicRoute ? NextResponse.next() : undefined,
-	debug: true,
+	// debug: true,
 	publicRoutes: [
 		"/",
 		"/api/webhooks(.*)",

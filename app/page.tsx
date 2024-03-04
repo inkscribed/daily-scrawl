@@ -33,6 +33,8 @@ async function DailyScrawl({ userId, name }: { userId: string; name: string }) {
 		? new Date(scrawl.completedAt).toLocaleDateString().split("T")[0]
 		: null;
 
+	console.log(scrawlDate, today);
+
 	if (!scrawl || scrawlDate !== today || !userId) {
 		return (
 			<section className="max-w-screen-lg mx-auto px-4 sm:px-6 lg:px-8">

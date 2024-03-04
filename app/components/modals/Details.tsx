@@ -27,7 +27,7 @@ export const Details: FC<{
 			close();
 			setCurrentPath(path);
 		}
-	}, [path]);
+	}, [path, currentPath, close]);
 
 	return (
 		<>

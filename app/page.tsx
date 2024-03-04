@@ -7,6 +7,7 @@ import { CompletionController } from "./components/CompletionController";
 import { Suspense } from "react";
 import { prisma } from "./lib/prisma";
 import { AnimatedArrowButton } from "./components/ui/AnimatedArrowButton";
+import dayjs from "dayjs";
 
 type SearchParamProps = {
 	searchParams: {
@@ -28,9 +29,9 @@ async function DailyScrawl({ userId, name }: { userId: string; name: string }) {
 		},
 	});
 
-	const today = new Date().toLocaleDateString().split("T")[0];
+	const today = dayjs().format("YYYY-MM-DD");
 	const scrawlDate = scrawl
-		? new Date(scrawl.completedAt).toLocaleDateString().split("T")[0]
+		? dayjs(scrawl.completedAt).format("YYYY-MM-DD")
 		: null;
 
 	console.log(scrawlDate, today);

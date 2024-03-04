@@ -60,13 +60,6 @@ export default async function RootLayout({
 							<Details>
 								{!userId ? <SignInAlert /> : <Scrawls userId={userId} />}
 							</Details>
-							<Affix position={{ bottom: 20, left: 20 }} zIndex={1}>
-								<Link href="?details=true" prefetch={true}>
-									<button className="p-2 border border-lightBorder dark:border-border rounded-md bg-primary-500 text-background dark:text-textDark hover:bg-hoverLight dark:hover:bg-hoverDark dark:bg-background bg-text duration-300 transition-all ease-in-out">
-										<IconLayoutSidebarLeftExpand size={22} />
-									</button>
-								</Link>
-							</Affix>
 							<Introduction />
 						</MantineProvider>
 					</ThemeProvider>

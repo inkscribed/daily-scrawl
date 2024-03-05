@@ -35,7 +35,10 @@ export async function Scrawls({ userId }: { userId: string }) {
 							<ScrawlName scrawl={scrawl} />
 							<div className="flex gap-1 items-center">
 								<DownloadPDFButton scrawl={scrawl}>
-									<IconDownload size={16} />
+									<IconDownload
+										size={16}
+										className="text-stone-600 dark:text-stone-500"
+									/>
 								</DownloadPDFButton>
 								<PublicUpdateButton
 									scrawlId={scrawl.id}
@@ -45,7 +48,10 @@ export async function Scrawls({ userId }: { userId: string }) {
 								<Link href={`/read/${scrawl.id}`}>
 									<ToolTipWrapper label="Read">
 										<ButtonWrapper className="dark:hover:bg-black">
-											<IconBook size={16} />
+											<IconBook
+												size={16}
+												className="text-stone-600 dark:text-stone-500"
+											/>
 										</ButtonWrapper>
 									</ToolTipWrapper>
 								</Link>

@@ -46,7 +46,7 @@ export const ScrawlName = ({ scrawl }: { scrawl: Scrawl }) => {
 
 	return (
 		<section className="flex justify-between w-full grow">
-			<div className="flex gap-2 items-center">
+			<div className="flex gap-2 items-center text-stone-600 dark:text-stone-500">
 				<IconNotes size={20} />
 				{editable ? (
 					<input
@@ -72,7 +72,10 @@ export const ScrawlName = ({ scrawl }: { scrawl: Scrawl }) => {
 						setEditable(!editable);
 					}}
 				>
-					<IconPencil size={16} />
+					<IconPencil
+						size={16}
+						className="text-stone-600 dark:text-stone-500"
+					/>
 				</button>
 			</ToolTipWrapper>
 		</section>

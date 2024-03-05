@@ -13,6 +13,7 @@ import {
 import Link from "next/link";
 import { useDisclosure } from "@mantine/hooks";
 import { usePathname } from "next/navigation";
+import { StateContext, useStates } from "@/app/providers/StateProvider";
 
 export const Details: FC<{
 	children: React.ReactNode;
@@ -20,7 +21,7 @@ export const Details: FC<{
 	const path = usePathname();
 	const [currentPath, setCurrentPath] = useState(path);
 
-	const [opened, { open, close }] = useDisclosure(false);
+	const { opened, open, close } = useStates();
 
 	useEffect(() => {
 		if (path !== currentPath) {

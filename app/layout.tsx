@@ -10,15 +10,14 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "@mantine/core/styles.css";
 
-import { Affix, ColorSchemeScript, MantineProvider } from "@mantine/core";
+import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import { Details } from "./components/modals/Details";
 import { Scrawls } from "./components/scrawls/Scrawls";
 import { Introduction } from "./components/modals/Introduction";
-import Link from "next/link";
-import { IconLayoutSidebarLeftExpand } from "@tabler/icons-react";
 import { SignInAlert } from "./components/ui/SignInAlert";
 import { clerkUser } from "./lib/actions";
 import { Toaster } from "react-hot-toast";
+import { StateProvider } from "./providers/StateProvider";
 
 export const metadata: Metadata = {
 	title: "Daily Scrawl",
@@ -53,16 +52,18 @@ export default async function RootLayout({
 				</head>
 
 				<body className="bg-text dark:bg-background text-background dark:text-textDark">
-					<ThemeProvider>
-						<MantineProvider>
-							<Navbar />
-							{children}
-							<Details>
-								{!userId ? <SignInAlert /> : <Scrawls userId={userId} />}
-							</Details>
-							<Introduction />
-						</MantineProvider>
-					</ThemeProvider>
+					<StateProvider>
+						<ThemeProvider>
+							<MantineProvider>
+								<Navbar />
+								{children}
+								<Details>
+									{!userId ? <SignInAlert /> : <Scrawls userId={userId} />}
+								</Details>
+								<Introduction />
+							</MantineProvider>
+						</ThemeProvider>
+					</StateProvider>
 					<Analytics />
 					<SpeedInsights />
 					<GoogleAnalytics gaId="G-QGRNQTFX1C" />

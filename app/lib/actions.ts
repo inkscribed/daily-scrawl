@@ -16,12 +16,8 @@ export async function saveScrawl(scrawlRequest: ScrawlRequest) {
 		wordCount,
 		snoozedCount,
 		completedAt,
+		mode,
 	}: ScrawlRequest = scrawlRequest;
-
-	console.log({
-		content,
-		userId,
-	});
 
 	const clean = DOMPurify.sanitize(content);
 
@@ -42,12 +38,6 @@ export async function saveScrawl(scrawlRequest: ScrawlRequest) {
 			return { error: "already completed today" };
 		}
 
-		console.log(
-			lastScrawl?.completedAt.toDateString(),
-			new Date().toDateString(),
-			new Date(completedAt).toDateString()
-		);
-
 		const scrawl = await prisma.scrawl.create({
 			data: {
 				content: clean,
@@ -57,11 +47,11 @@ export async function saveScrawl(scrawlRequest: ScrawlRequest) {
 				isCompleted: true,
 				uniqueId: `${userId}-${new Date().toDateString()}`,
 				wordCount,
+				mode,
 			},
 		});
 
 		revalidatePath("/");
-		return scrawl;
 	} catch (error) {
 		console.error("Error creating scrawl:", error);
 		return { error: "Error creating scrawl" };

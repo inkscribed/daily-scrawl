@@ -1,7 +1,7 @@
 "use client";
 import { YYYYMMDD } from "@/app/lib/dayJs";
 import { Scrawl } from "@prisma/client";
-import { IconNotes, IconPencil } from "@tabler/icons-react";
+import { IconMist, IconPencil } from "@tabler/icons-react";
 import { useState } from "react";
 import { renameScrawl } from "@/app/lib/actions";
 import toast from "react-hot-toast";
@@ -45,9 +45,9 @@ export const ScrawlName = ({ scrawl }: { scrawl: Scrawl }) => {
 	}
 
 	return (
-		<section className="flex justify-between w-full grow">
-			<div className="flex gap-2 items-center text-stone-600 dark:text-stone-500">
-				<IconNotes size={20} />
+		<section className="flex justify-between w-full grow relative">
+			<div className="flex gap-4 items-center text-stone-600 dark:text-stone-500">
+				<IconMist size={20} />
 				{editable ? (
 					<input
 						type="text"
@@ -78,6 +78,9 @@ export const ScrawlName = ({ scrawl }: { scrawl: Scrawl }) => {
 					/>
 				</button>
 			</ToolTipWrapper>
+			<span className="text-background dark:text-text absolute text-xs font-bold -bottom-0.5 left-3.5">
+				{scrawl.mode}
+			</span>
 		</section>
 	);
 };

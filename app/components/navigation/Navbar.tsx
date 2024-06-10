@@ -6,6 +6,7 @@ import { IconHelpHexagon, IconLogin } from "@tabler/icons-react";
 import { ParamPusher } from "../buttons/ParamPusher";
 import { ToolTipWrapper } from "../ui/TooltipWrapper";
 import { clerkUser } from "@/app/lib/actions";
+import { SwitchModeButton } from "../buttons/SwtichModeButton";
 
 export const Navbar = async () => {
 	const userId = await clerkUser();
@@ -52,6 +53,7 @@ export const Navbar = async () => {
 				>
 					<IconHelpHexagon size={22} />
 				</ParamPusher>
+				<SwitchModeButton />
 				<ThemeToggler />
 			</section>
 		</nav>

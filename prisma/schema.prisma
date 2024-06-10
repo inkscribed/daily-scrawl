@@ -33,6 +33,7 @@ model Scrawl {
   snoozedCount Int      @default(0)
   authorId     String
   author       User     @relation(fields: [authorId], references: [id])
+  mode         Int      @default(10)
 
   @@index([authorId])
 }

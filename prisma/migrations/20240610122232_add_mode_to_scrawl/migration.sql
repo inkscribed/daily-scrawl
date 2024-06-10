@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Scrawl" ADD COLUMN     "mode" INTEGER NOT NULL DEFAULT 10;

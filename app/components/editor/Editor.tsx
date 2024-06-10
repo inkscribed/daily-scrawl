@@ -15,10 +15,11 @@ import { Tooltip } from "@mantine/core";
 import { saveScrawl as actionSaveScrawl } from "@/app/lib/actions";
 import debounce from "debounce";
 import { Scrawl } from "@prisma/client";
+import { useStates } from "@/app/providers/StateProvider";
 
 export const Editor = () => {
+	const { mode, start, setStart } = useStates();
 	const [time, setTime] = useState(600000);
-	const [start, setStart] = useState(false);
 	const [isSaving, setIsSaving] = useState(false);
 	const [data, setData] = useState({
 		content: "",
@@ -61,13 +62,14 @@ export const Editor = () => {
 		if (!isSignedIn) return;
 		const updatedData = {
 			...data,
+			mode,
 			userId,
 			wordCount: editor?.storage.characterCount.words(),
 		};
 		await actionSaveScrawl(updatedData);
 		setIsSaving(false);
 		localStorage.removeItem(YYYYMMDD(new Date()));
-	}, [data, isSignedIn, userId, editor]);
+	}, [data, isSignedIn, userId, editor, mode]);
 
 	useEffect(() => {
 		const timer =
@@ -107,6 +109,14 @@ export const Editor = () => {
 			debouncedUpdateContent.clear();
 		};
 	}, [editor, debouncedUpdateContent]);
+
+	useEffect(() => {
+		if (mode === 10) {
+			setTime(600000);
+		} else {
+			setTime(3600000);
+		}
+	}, [mode]);
 
 	return (
 		<section className="relative">
@@ -197,9 +207,9 @@ export const Editor = () => {
 						<div>
 							<p className="max-w-lg mx-auto text-center text-background/50 dark:text-textDark/50">
 								Click the button above to start your scrawl. You have{" "}
-								<b>10 minutes</b> to write whatever comes to mind. When the time
-								is up, you can save your scrawl or snooze for an additional 5
-								minutes.
+								<b>{mode} minutes</b> to write whatever comes to mind. When the
+								time is up, you can save your scrawl or snooze for an additional
+								5 minutes.
 							</p>
 						</div>
 					</div>

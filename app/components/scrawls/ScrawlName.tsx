@@ -13,6 +13,11 @@ export const ScrawlName = ({ scrawl }: { scrawl: Scrawl }) => {
 	const [isSaving, setIsSaving] = useState(false);
 	const { theme } = useTheme();
 
+	function calcTimeSpent() {
+		let snoozeTime = scrawl.snoozedCount * 5;
+		return scrawl.mode + snoozeTime;
+	}
+
 	async function handleNameChange(e: React.ChangeEvent<HTMLInputElement>) {
 		if (e.target.value === scrawl.name) {
 			setEditable(false);
@@ -79,7 +84,7 @@ export const ScrawlName = ({ scrawl }: { scrawl: Scrawl }) => {
 				</button>
 			</ToolTipWrapper>
 			<span className="text-background dark:text-text absolute text-xs font-bold -bottom-0.5 left-3.5">
-				{scrawl.mode}
+				{calcTimeSpent()}
 			</span>
 		</section>
 	);
